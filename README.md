@@ -56,3 +56,11 @@ echo "Q" | openssl s_client -ciphersuites TLS_AES_256_GCM_SHA384 -tls1_3 -CAfile
 >**Note**: The cipher argument is different within OpenSSL for TLS 1.2 and TLS 1.3  
 >> `-cipher <value>          Specify TLSv1.2 and below cipher list to be used`  
 >> `-ciphersuites <value>    Specify TLSv1.3 ciphersuites to be used`  
+
+## Thanks to
+I took the base code here:  
+https://superuser.com/questions/109213/how-do-i-list-the-ssl-tls-CIPHER-suites-a-particular-website-offers
+
+I added support for:
+1. **zsh** shell on macOS
+2. TLS 1.3
