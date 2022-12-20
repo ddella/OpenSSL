@@ -1,12 +1,16 @@
 # OpenSSL 3.0.7 - Nov 2022
 ## OpenSSL Cipher suite test
-Shell script to test CIPHER suites on a TLS server. The script works
+Shell script to test CIPHER suites supported on a TLS server.
 
 1. It queries OpenSSL for a list of supported CIPHER suites
 2. It initiate a TLS connection to the server, using each of the cipher
 3. Capture the results from OpenSSL
 
 If the handshake is successful, it prints **YES**. If the handshake isn't successful, it prints **NO**, followed by the OpenSSL error.
+ 
+ Example of the output of the script:
+>Testing ECDHE-ECDSA-AES256-GCM-SHA384...YES  
+>Testing ECDHE-RSA-AES256-GCM-SHA384...NO (sslv3 alert handshake failure)  
 
 ## How to use
 ```shell
