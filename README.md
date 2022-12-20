@@ -18,7 +18,9 @@ The script has been tested with **TLS 1.2** and T**LS 1.3**.
 It works with **bash** and **zsh** on both macOS and Linux.  
 
 ## Requirements
-Make sure you have the **chain of trust** in the file **`chain.pem`**. It contains ALL the certificates, RootCA, SubRootCA and server certificate, in a PEM file to avoid the anoying error: '21 (unable to verify the first certificate)'. See below for an example:
+Make sure you have the **chain of trust** in the file **`chain.pem`**. It contains ALL the certificates, RootCA, SubRootCA and server certificate, in a PEM file to avoid the anoying error: '21 (unable to verify the first certificate)'.
+
+In the example below, I have a RootCA, an intermediate CA and the server certificate in the file **`chain.pem`**:
 
 ```
 -----BEGIN CERTIFICATE-----
@@ -39,7 +41,7 @@ bXF+iDl8/RxBWFYS9DTE
 ```
 
 ## What it does
-The script simply use OpenSSL to open a TLS connection with the server and specifies the cipher.  
+The script simply use OpenSSL to initiate a TLS connection with the server and specifies the cipher.  
 
 Example of the OpenSSL command to test a cipher against a server with **TLS 1.2**:
 ```shell
@@ -54,4 +56,3 @@ echo "Q" | openssl s_client -ciphersuites TLS_AES_256_GCM_SHA384 -tls1_3 -CAfile
 >**Note**: The cipher argument is different within OpenSSL for TLS 1.2 and TLS 1.3  
 >> `-cipher <value>          Specify TLSv1.2 and below cipher list to be used`  
 >> `-ciphersuites <value>    Specify TLSv1.3 ciphersuites to be used`  
-
