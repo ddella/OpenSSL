@@ -13,6 +13,7 @@ If the handshake is successful, it prints **YES**. If the handshake isn't succes
 >Testing ECDHE-RSA-AES256-GCM-SHA384...NO (sslv3 alert handshake failure)  
 
 ## How to use
+Replace with the hostname, port number and TLS version you want to test.
 ```shell
 ./test_ciphers.sh localhost:8443 tls1_2
 ```
