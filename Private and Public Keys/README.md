@@ -124,7 +124,7 @@ This takes an plain text private key `private-key.pem` and outputs an encrypted 
 ```shell
 openssl rsa -aes256 -in private-key.pem -out private-key.pem.enc
 ```
->An encrypted private key starts with:  
+>An RSA encrypted private key starts with:  
 >```
 >-----BEGIN ENCRYPTED PRIVATE KEY-----
 > [...]
@@ -147,7 +147,7 @@ This takes an plain text ECC Private Key `private-key.pem` and outputs an encryp
 ```shell
 openssl ec -in private-key.pem -aes256 -out private-key.pem.enc
 ```
->An encrypted private key starts with:  
+>An ECC encrypted private key starts with:  
 >```
 >-----BEGIN EC PRIVATE KEY-----
 >Proc-Type: 4,ENCRYPTED
