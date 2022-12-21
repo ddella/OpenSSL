@@ -17,7 +17,7 @@ Only the **Modulus**, **publicExponent** and **privateExponent** are required fo
 | Private Key     | The private key consists of the private exponent (d). For the purist, the modulus is also part of the private key.                                                                                                                                                                                           |
 
 
-![Alt text](/images/priv-pub-key.jpg "Private and Public key")
+![Alt text](/images/rsa-priv-pub-key.jpg "RSA Private and Public key")
 
 The openssl `genpkey` utility has superseded the `genrsa` utility. It is recommended to use `genpkey` going forward.
 
@@ -28,6 +28,8 @@ ECC and RSA both generate a pair of public/private key mathematically tied toget
 
 >`ECC Public Key`: Is the staring and ending point on a curve   
 >`ECC Private Key`: Is the number of hops from start to finish  
+
+![Alt text](/images/ecc-priv-pub-key.jpg "ECC Private and Public key")
 
 ***
 ## Generate an RSA Private Key
