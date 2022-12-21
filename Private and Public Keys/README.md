@@ -160,3 +160,9 @@ This takes an encrypted private key `private-key.pem.enc` and outputs a decrypte
 ```shell
 openssl ec -in private-key.pem.enc -out private-key.pem
 ```
+
+## License
+
+This project is licensed under the [MIT license](/LICENSE).
+
+[_^ back to top_](#OpenSSL-Private-and-Public-Keys)
