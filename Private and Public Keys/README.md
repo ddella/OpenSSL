@@ -19,6 +19,13 @@ Only the **Modulus**, **publicExponent** and **privateExponent** are required fo
 
 The openssl `genpkey` utility has superseded the `genrsa` utility. It is recommended to use `genpkey` going forward.
 
+## Private and Public key with EC keys
+
+ECC and RSA both generate a pair of public/private key mathematically tied together to allow two parties to communicate securely. The main advantage of ECC is that a 256-bit key in ECC offers about the same security as a 3072-bit key using RSA.
+
+>`ECC Public Key`: Is the staring and ending point on a curve   
+>`ECC Private Key`: Is the number of hops from start to finish  
+
 ## Generate an RSA Private Key
 Use this command to create an unencrypted 2048-bit private key `private-key.pem`:
 ```shell
