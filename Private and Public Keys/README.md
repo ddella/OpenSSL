@@ -1,4 +1,21 @@
 # OpenSSL Private and Public Keys
+## Private and Public key fields
+Only the **Modulus**, **publicExponent** and **privateExponent** are required for asymmetric encryption and decryption. The other numbers are helpful for improving the performance of the algorithms.
+
+| Term            | Definition                                                                                                                                                                                                                                       |
+|-----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Modulus         | The result of multiplying p (prime1) and q (prime2) is called n. Its length, expressed in bits, is the key length.                                                                                                                               |
+| publicExponent  | The public exponent used for encryption and decryption is called e. The public key consists of the modulus (n) and the public exponent (e). For big primes, everybody's using e=65537                                                            |
+| privateExponent | The private exponent used for encryption and decryption is called d. The private key consists of the modulus (n) and the private exponent (d). Pick this so d*e=1 mod (p-1)*(q-1). You should shred p and q after picking d, and keep d secret.  |
+| prime1          | The first of two prime numbers that are multiplied together to produce the modulus is called p.                                                                                                                                                  |
+| Prime2          | The second of two prime numbers that are multiplied together to produce the modulus is called q.                                                                                                                                                 |
+| exponent1       | A result stored to improve RSA performance. Refer to the Chinese Remainder Theorem. Calculated from d mod (p – 1).                                                                                                                               |
+| exponent2       | A result stored to improve RSA performance. Refer to the Chinese Remainder Theorem. Calculated from d mod (q – 1).                                                                                                                               |
+| Coefficient     | A result stored to improve RSA performance. Refer to the Chinese Remainder Theorem. Calculated from (inverse of q) mod p.                                                                                                                        |
+| Public Key      | The public key consists of the Modulus (n) and the public exponent (e). Those two numbers are published.                                                                                                                                         |
+| Private Key     | The private key consists of the private exponent (d).*                                                                                                                                                                                           |
+
+
 The openssl `genpkey` utility has superseded the `genrsa` utility. It is recommended to use `genpkey` going forward.
 
 ## Generate an RSA Private Key
