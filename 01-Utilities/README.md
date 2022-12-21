@@ -58,9 +58,3 @@ openssl dgst -sha256 filename
 ```shell
 cat file.bin | openssl dgst -md5 -hmac 'secret'
 ```
-
-## Get the OCSP uri from a certificate file
-## Get the URI, for the OCSP responder, from the certificate we want to test
-```shell
-openssl x509 -noout -ocsp_uri -in www-google-com.pem 	http://ocsp.pki.goog/gts1c3
-```
