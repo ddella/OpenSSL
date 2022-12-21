@@ -50,34 +50,44 @@ Use this command to verify that a private key `private-key.pem` is valid. It wil
 openssl rsa -check -noout -in private-key.pem
 ```
 
-Use this command to get the private key details. This command gives:
+Use this command to get the following private key details:
 1. The modulus (public key)
 2. The public exponent (public key)
 3. The private exponent (private key)
 4. The two large prime numbers that were used to generate the modulus
 5. Other numbers to help improve RSA performance
+
 ```shell
 openssl pkey -text -noout -in private-key.pem
 ```
->Replace `-text` by `-text_pub` to get only the modulus and the public exponent:
+>Replace `-text` by `-text_pub` to get only the public key (modulus and public exponent):
 
 ## Extract the Public Key from an RSA Private Key
-The **Public Key** is the modulus and the public exponent.
+The **Public Key** is composed of the modulus and the public exponent.
 
 Use this command to extract the corresponding public key from the private key:
 ```shell
 openssl pkey -pubout -in private-key.pem -out public-key.pem
 ```
+> This gives the Public key in PEM format
+
+The following two commands gives the same output.
+```shell
+openssl pkey -text_pub -noout -in private-key.pem
+```
+> This gives the modulus and the public exponent in hex format from the **Private** Key PEM file
 
 Use this command to view the public key details:
 ```shell
 openssl pkey -pubin -text -noout -in public-key.pem
 ```
+> This gives the modulus and the public exponent in hex format from the **Public** Key PEM file
 
-Use this command to view the private key modulus. This command is useless since the modulus of the private key is the same as the public key:
+Use this command to view the key modulus:
 ```shell
 openssl rsa -modulus -noout -in private.key.pem
 ```
+>The modulus is the same for both the private and the public key.
 
 ## Generate an Elliptic Curve Private Key
 Use this command to prints a list of all curve 'short names':
