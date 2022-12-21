@@ -7,7 +7,6 @@ All the example below have been tested with OpenSSL 3.x.y on a macOS.
 Throughout the documents, I might used different file extensions. All the files are in PEM format, unless otherwise specified. The extension has no imptact on the file format.
 
 ## Private/Public keys
-The openssl `genpkey` utility has superseded the `genrsa` utility. It is recommended to use `genpkey` going forward.
 
 
 ## OpenSSL Utilities
