@@ -14,9 +14,8 @@ Only the **Modulus**, **publicExponent** and **privateExponent** are required fo
 | exponent2       | A result stored to improve RSA performance. Refer to the Chinese Remainder Theorem. Calculated from d mod (q – 1).                                                                                                                               |
 | Coefficient     | A result stored to improve RSA performance. Refer to the Chinese Remainder Theorem. Calculated from (inverse of q) mod p.                                                                                                                        |
 | Public Key      | The public key consists of the Modulus (n) and the public exponent (e). Those two numbers are published.                                                                                                                                         |
-| Private Key     | The private key consists of the private exponent (d).*                                                                                                                                                                                           |
+| Private Key     | The private key consists of the private exponent (d). For the purist, the modulus is also part of the private key.                                                                                                                                                                                           |
 
-*For the purist, the modulus is also part of the private key.
 
 ![Alt text](/images/priv-pub-key.jpg "Private and Public key")
 
