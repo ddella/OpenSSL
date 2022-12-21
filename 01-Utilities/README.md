@@ -9,10 +9,11 @@ openssl rand -hex 32
 ```
 
 ## Encode to base64
+### Encode a string
 ```shell
 openssl enc -base64 <<< "Hello, World!"
 ```
-
+### Encode a file
 ```shell
 openssl enc -base64 -in text.plain -out text.base64
 ```
