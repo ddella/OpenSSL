@@ -76,3 +76,9 @@ https://superuser.com/questions/109213/how-do-i-list-the-ssl-tls-CIPHER-suites-a
 I added support for:
 1. **zsh** shell on macOS
 2. TLS 1.3
+
+## License
+
+This project is licensed under the [MIT license](LICENSE).
+
+[_^ back to top_](#OpenSSL-Cipher-suite-test)
