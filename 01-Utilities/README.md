@@ -58,3 +58,18 @@ openssl dgst -sha256 filename
 ```shell
 cat file.bin | openssl dgst -md5 -hmac 'secret'
 ```
+
+## To get the list of all the hash supported
+```shell
+openssl dgst -list
+```
+
+## dgst requires a file. You can simulate a file with “<<<”
+```shell
+openssl dgst -md5 <<<"This is a text"
+```
+
+## Print the digest with separating colons
+```shell
+openssl dgst -sha3-512 -c <<<"This is a text"
+```
