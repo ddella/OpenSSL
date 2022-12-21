@@ -18,6 +18,8 @@ Only the **Modulus**, **publicExponent** and **privateExponent** are required fo
 
 *For the purist, the modulus is also part of the private key.
 
+![Alt text](/images/priv-pub-key.jpg "Private and Public key")
+
 The openssl `genpkey` utility has superseded the `genrsa` utility. It is recommended to use `genpkey` going forward.
 
 ***
