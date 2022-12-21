@@ -2,18 +2,27 @@
 ## Generate pseudo-random bytes
 ```shell
 openssl rand -base64 32
+```
+
+```shell
 openssl rand -hex 32
 ```
 
 ## Encode to base64
 ```shell
 openssl enc -base64 <<< "Hello, World!"
+```
+
+```shell
 openssl enc -base64 -in text.plain -out text.base64
 ```
 
 ## Decode from base64
 ```shell
 openssl enc -base64 -d <<< SGVsbG8sIFdvcmxkIQo=
+```
+
+```shell
 openssl enc -d -base64 -in text.base64 -out text.plain
 ```
 
