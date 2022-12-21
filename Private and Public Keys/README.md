@@ -1,6 +1,6 @@
 # OpenSSL Private and Public Keys
-## Private and Public key fields
-Only the **Modulus**, **publicExponent** and **privateExponent** are required for asymmetric encryption and decryption. The other numbers are helpful for improving the performance of the algorithms.
+## Private and Public key fields with RSA keys
+Only the **Modulus**, **publicExponent** and **privateExponent** are required for asymmetric encryption and decryption using RSA. The other numbers are helpful for improving the performance of the RSA algorithm.
 
 | Term            | Definition                                                                                                                                                                                                                                       |
 |-----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -15,6 +15,7 @@ Only the **Modulus**, **publicExponent** and **privateExponent** are required fo
 | Public Key      | The public key consists of the Modulus (n) and the public exponent (e). Those two numbers are published.                                                                                                                                         |
 | Private Key     | The private key consists of the private exponent (d).*                                                                                                                                                                                           |
 
+*For the purist, the modulus is also part of the private key.
 
 The openssl `genpkey` utility has superseded the `genrsa` utility. It is recommended to use `genpkey` going forward.
 
@@ -47,17 +48,19 @@ openssl pkey -text -noout -in private-key.pem
 >Replace `-text` by `-text_pub` to get only the modulus and the public exponent:
 
 ## Extract the Public Key from an RSA Private Key
+The **Public Key** is the modulus and the public exponent.
+
 Use this command to extract the corresponding public key from the private key:
 ```shell
 openssl pkey -pubout -in private-key.pem -out public-key.pem
 ```
 
-View the public key details
+Use this command to view the public key details:
 ```shell
 openssl pkey -pubin -text -noout -in public-key.pem
 ```
 
-View the private key modulus
+Use this command to view the private key modulus. This command is useless since the modulus of the private key is the same as the public key:
 ```shell
 openssl rsa -modulus -noout -in private.key.pem
 ```
