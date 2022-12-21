@@ -1,1 +1,54 @@
+# OpenSSL Utilities
+## Generate pseudo-random bytes
+```shell
+openssl rand -base64 32
+openssl rand -hex 32
+```
 
+## Encode to base64
+```shell
+openssl enc -base64 <<< "Hello, World!"
+openssl enc -base64 -in text.plain -out text.base64
+```
+
+## Decode from base64
+```shell
+openssl enc -base64 -d <<< SGVsbG8sIFdvcmxkIQo=
+openssl enc -d -base64 -in text.base64 -out text.plain
+```
+
+## Generate prime number
+```shell
+openssl prime -generate -safe -bits 64
+```
+
+## Test if a number is prime
+```shell
+openssl prime 17
+```
+
+## Generate a random password
+```shell
+head -c 20 /dev/urandom | openssl enc -base64
+```
+
+## Create an MD5/SHA1/SHA256 digest
+```shell
+openssl dgst -md5 filename
+```shell
+openssl dgst -sha1 filename
+```
+```shell
+openssl dgst -sha256 filename
+```
+
+## Create an HMAC-MD5 on a file:
+```shell
+cat file.bin | openssl dgst -md5 -hmac 'secret'
+```
+
+## Get the OCSP uri from a certificate file
+## Get the URI, for the OCSP responder, from the certificate we want to test
+```shell
+openssl x509 -noout -ocsp_uri -in www-google-com.pem 	http://ocsp.pki.goog/gts1c3
+```
