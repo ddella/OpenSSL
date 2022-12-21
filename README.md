@@ -12,7 +12,7 @@ OpenSSL commands to generate/view/check Private and Public Keys with either RSA 
 
 ## OpenSSL Utilities
 Different utilities with OpenSSL
-[Utilities](/01-Utilities)  
+[Utilities](/Utilities)  
 
 ## OpenSSL Cipher suite test
 Shell script to test ciper suites of a TLS server
