@@ -1,4 +1,5 @@
 # OpenSSL Private and Public Keys
+
 ## Private and Public key fields with RSA keys
 Only the **Modulus**, **publicExponent** and **privateExponent** are required for asymmetric encryption and decryption using RSA. The other numbers are helpful for improving the performance of the RSA algorithm.
 
@@ -167,19 +168,3 @@ This project is licensed under the [MIT license](/LICENSE).
 
 [_^ back to top_](#OpenSSL-Private-and-Public-Keys)  
 [_< back to root_](../../../)
-
-> [!NOTE]
-> Information the user should notice even if skimming.
-
-> [!TIP]
-> Optional information to help a user be more successful.
-
-> [!IMPORTANT]
-> Essential information required for user success.
-
-> [!CAUTION]
-> Negative potential consequences of an action.
-
-> [!WARNING]
-> Dangerous certain consequences of an action.
-
