@@ -64,7 +64,13 @@ Use this command to get the following private key details:
 ```shell
 openssl pkey -text -noout -in private-key.pem
 ```
->Replace `-text` by `-text_pub` to get only the public key (modulus and public exponent):
+>Replace `-text` by `-text_pub` to get only the public key (modulus and public exponent)  
+>This command works with both RSA and ECC private keys  
+
+```shell
+openssl rsa -noout -text -in private-key.pem
+```
+>This command works only with RSA private keys  
 
 ***
 ## Extract the Public Key from an RSA Private Key
@@ -90,7 +96,7 @@ openssl pkey -pubin -text -noout -in public-key.pem
 
 Use this command to view the key modulus:
 ```shell
-openssl rsa -modulus -noout -in private.key.pem
+openssl rsa -modulus -noout -in private-key.pem
 ```
 >The modulus is the same for both the private and the public key.
 
@@ -101,7 +107,7 @@ Use this command to prints a list of all curve 'short names':
 openssl ecparam -list_curves
 ```
 
-Use this command to generate a private key from elliptic curve `private-key.pem`:
+Use this command to generate an elliptic curve private key `private-key.pem`:
 ```shell
 openssl ecparam -name prime256v1 -genkey -noout -out private-key.pem
 ```
@@ -127,6 +133,17 @@ Use this command to extract the public and private key in hex format:
 ```shell
 openssl ec -in private-key.pem -noout -text
 ```
+
+Use this command to get the following private key details:
+1. The public key
+2. The private key
+3. The algorithm used to generate the keys
+
+```shell
+openssl pkey -text -noout -in private-key.pem
+```
+>Replace `-text` by `-text_pub` to get only the public key (modulus and public exponent)  
+>This command works with both RSA and ECC private keys  
 
 Use this command to check key consistency:
 ```shell
