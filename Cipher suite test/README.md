@@ -65,7 +65,7 @@ Example of the OpenSSL command to test a cipher against a server with **TLS 1.3*
 openssl s_client -ciphersuites TLS_AES_256_GCM_SHA384 -tls1_3 -CAfile chain.pem -connect localhost:8443  <<< /dev/null
 ````
 
->**Note**: The cipher argument is different within OpenSSL for TLS 1.2 and TLS 1.3  
+>**Note**: The cipher argument is different within OpenSSL when used for TLS 1.2 and TLS 1.3  
 >> `-cipher <value>          Specify TLSv1.2 and below cipher list to be used`  
 >> `-ciphersuites <value>    Specify TLSv1.3 ciphersuites to be used`  
 
