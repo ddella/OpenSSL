@@ -95,6 +95,8 @@ Use this command to check key consistency:
 ```shell
 openssl ec -in private-key.pem -noout -check
 ```
+>If valid, will return `EC Key valid` else `unable to load Key`.
+
 
 ## Encrypt/Decrypt a Private Key, either RSA or EC
 This takes an unencrypted private key `unencrypted-key.pem` and outputs an encrypted version of it in the file `encrypted-key.pem`:
