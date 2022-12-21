@@ -35,9 +35,12 @@ head -c 20 /dev/urandom | openssl enc -base64
 ## Create an MD5/SHA1/SHA256 digest
 ```shell
 openssl dgst -md5 filename
+```
+
 ```shell
 openssl dgst -sha1 filename
 ```
+
 ```shell
 openssl dgst -sha256 filename
 ```
