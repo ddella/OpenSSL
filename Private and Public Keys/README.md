@@ -166,4 +166,4 @@ openssl ec -in private-key.pem.enc -out private-key.pem
 This project is licensed under the [MIT license](/LICENSE).
 
 [_^ back to top_](#OpenSSL-Private-and-Public-Keys)  
-[_< back to root_](../)
+[_< back to root_](../../)
