@@ -1,4 +1,11 @@
-# OpenSSL 3.0.7 - Nov 2022
+# OpenSSL Cipher suite test
+## Testing Cipher Suite Support
+This is a little script if you wish to use OpenSSL to determine what cipher suite a remote server supports. The cipher configuration string is designed to select which suites you wish to use, but if you specify only one suite and successfully handshake with a server, then you know that the server supports the suite. If the handshake fails, you know the support is not there.
+
+If you want to determine all suites supported by a particular server, start by invoking **openssl ciphers ALL** to obtain a list of all suites supported by your version of OpenSSL. Then submit them to the server one by one to test them individually. This is exactly what this script does.
+
+>P376: BULLETPROOF SSL AND TLS from Ivan Ristić
+
 ## OpenSSL Cipher suite test
 Shell script to test CIPHER suites supported on a TLS server.
 
@@ -23,25 +30,25 @@ The script has been tested with **TLS 1.2** and T**LS 1.3**.
 It works with **bash** and **zsh** on both macOS and Linux.  
 
 ## Requirements
-Make sure you have the **chain of trust** in the file **`chain.pem`**. It contains ALL the certificates, RootCA, SubRootCA and server certificate, in a PEM file to avoid the anoying error: '21 (unable to verify the first certificate)'.
+Make sure you have the **chain of trust** in the file **`chain.pem`**. In this case it must contain ALL the certificates in a PEM file to avoid the anoying error: '21 (unable to verify the first certificate)':
+1. Server certificate
+2. SubRootCA certificate
+3. RootCA certificate
 
-In the example below, I have a RootCA, an intermediate CA and the server certificate in the file **`chain.pem`**:
+In the example below, I have the three certificates in the file **`chain.pem`**:
 
 ```
 -----BEGIN CERTIFICATE-----
 MIIDUTCCAvegAwIBAgIUOmdAyUWsVABpHt2vhB5E7xFnwGcwCgYIKoZIzj0EAwIw
-...
-/DHLAiAvxFsENrLF90pEIpt/NQzBhVxmjMfhA5Pr/E0AXGsv7w==
+[...]
 -----END CERTIFICATE-----
 -----BEGIN CERTIFICATE-----
 MIIDSzCCAvGgAwIBAgIUNykNbc3v611Q/dQPubEmNxbRBzIwCgYIKoZIzj0EAwIw
-...
-usc6SGEGHL4uT0q1AS7zCHuBJFPj4g+z9WkYqLX/zQ==
+[...]
 -----END CERTIFICATE-----
 -----BEGIN CERTIFICATE-----
 MIIDOzCCAuCgAwIBAgIUFnTj4mss+lvg8dQ0jfVH5vUuIW8wCgYIKoZIzj0EAwIw
-...
-bXF+iDl8/RxBWFYS9DTE
+[...]
 -----END CERTIFICATE-----
 ```
 
@@ -50,12 +57,12 @@ The script simply use OpenSSL to initiate a TLS connection with the server and s
 
 Example of the OpenSSL command to test a cipher against a server with **TLS 1.2**:
 ```shell
-echo "Q" | openssl s_client -cipher ECDHE-ECDSA-AES256-CCM8 -tls1_2 -CAfile chain.pem -connect localhost:8443
+openssl s_client -cipher ECDHE-ECDSA-AES256-CCM8 -tls1_2 -CAfile chain.pem -connect localhost:8443 <<< /dev/null
 ```
 
 Example of the OpenSSL command to test a cipher against a server with **TLS 1.3**:
 ```shell
-echo "Q" | openssl s_client -ciphersuites TLS_AES_256_GCM_SHA384 -tls1_3 -CAfile chain.pem -connect localhost:8443
+openssl s_client -ciphersuites TLS_AES_256_GCM_SHA384 -tls1_3 -CAfile chain.pem -connect localhost:8443  <<< /dev/null
 ````
 
 >**Note**: The cipher argument is different within OpenSSL for TLS 1.2 and TLS 1.3  

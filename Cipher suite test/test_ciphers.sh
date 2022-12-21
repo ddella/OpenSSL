@@ -13,8 +13,8 @@
 # If the file 'chaim.pem' is supplied, you will get: 'Verify return code: 0 (ok)'
 
 # Example of the OpenSSL command to test a cipher against a server:
-#   echo "Q" | openssl s_client -cipher ECDHE-ECDSA-AES256-CCM8 -tls1_2 -CAfile chain.pem -connect localhost:8443
-#   echo "Q" | openssl s_client -ciphersuites TLS_AES_256_GCM_SHA384 -tls1_3 -CAfile chain.pem -connect localhost:8443
+#   openssl s_client -cipher ECDHE-ECDSA-AES256-CCM8 -tls1_2 -CAfile chain.pem -connect localhost:8443 <<< /dev/null
+#   openssl s_client -ciphersuites TLS_AES_256_GCM_SHA384 -tls1_3 -CAfile chain.pem -connect localhost:8443 <<< /dev/null
 #         -cipher <value>          Specify TLSv1.2 and below cipher list to be used
 #         -ciphersuites <value>    Specify TLSv1.3 ciphersuites to be used
 
@@ -51,7 +51,7 @@ CIPHERS=$(openssl ciphers -s "$TLS" 'ALL:eNULL' | sed -e 's/:/ /g')
 for CIPHER in ${CIPHERS[@]}
 do
   printf "Testing %s..." "${CIPHER}"
-  RESULT=$(echo "Q" | openssl s_client "$CIPHERARG" "$CIPHER" "$TLS" -CAfile chain.pem -connect "$SERVER" 2>&1)
+  RESULT=$(openssl s_client "$CIPHERARG" "$CIPHER" "$TLS" -CAfile chain.pem -connect "$SERVER" 2>&1 <<< /dev/null)
   if [[ "$RESULT" =~ ":error:" ]] ; then
     error=$(cut -f6 -s -d ":" <<< ${RESULT})
     printf "NO (%s)\n" "${error}"
