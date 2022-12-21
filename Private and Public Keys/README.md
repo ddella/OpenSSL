@@ -20,6 +20,7 @@ Only the **Modulus**, **publicExponent** and **privateExponent** are required fo
 
 The openssl `genpkey` utility has superseded the `genrsa` utility. It is recommended to use `genpkey` going forward.
 
+***
 ## Private and Public key with EC keys
 
 ECC and RSA both generate a pair of public/private key mathematically tied together to allow two parties to communicate securely. The main advantage of ECC is that a 256-bit key in ECC offers about the same security as a 3072-bit key using RSA.
@@ -27,6 +28,7 @@ ECC and RSA both generate a pair of public/private key mathematically tied toget
 >`ECC Public Key`: Is the staring and ending point on a curve   
 >`ECC Private Key`: Is the number of hops from start to finish  
 
+***
 ## Generate an RSA Private Key
 Use this command to create an unencrypted 2048-bit private key `private-key.pem`:
 ```shell
@@ -44,6 +46,7 @@ Use this command to create a password-protected 2048-bit private key `encrypted-
 openssl genpkey -aes256 -algorithm RSA -pkeyopt rsa_keygen_bits:2048 -out encrypted-key.pem
 ```
 
+***
 ## Verify an RSA Private Key
 Use this command to verify that a private key `private-key.pem` is valid. It will only output `RSA key ok`or `Could not read private key from private-key.pem`:
 ```shell
@@ -62,6 +65,7 @@ openssl pkey -text -noout -in private-key.pem
 ```
 >Replace `-text` by `-text_pub` to get only the public key (modulus and public exponent):
 
+***
 ## Extract the Public Key from an RSA Private Key
 The **Public Key** is composed of the modulus and the public exponent.
 
@@ -89,6 +93,7 @@ openssl rsa -modulus -noout -in private.key.pem
 ```
 >The modulus is the same for both the private and the public key.
 
+***
 ## Generate an Elliptic Curve Private Key
 Use this command to prints a list of all curve 'short names':
 ```shell
@@ -128,6 +133,7 @@ openssl ec -in private-key.pem -noout -check
 ```
 >If valid, will return `EC Key valid` else `unable to load Key`.
 
+***
 ## Encrypt/Decrypt an RSA Private Key
 Does only works with **RSA** Private Key.
 
@@ -151,6 +157,7 @@ openssl rsa -in private-key.pem.enc -out private-key.pem
 >Use the `-passin file:mypass` parameter to read the password from a file, when decrypting the key  
 >The first line of `mypass` is the password  
 
+***
 ## Encrypt/Decrypt an ECC Private Key
 Does only works with **ECC** Private Key.
 
@@ -172,6 +179,7 @@ This takes an encrypted private key `private-key.pem.enc` and outputs a decrypte
 openssl ec -in private-key.pem.enc -out private-key.pem
 ```
 
+***
 ## License
 
 This project is licensed under the [MIT license](/LICENSE).
