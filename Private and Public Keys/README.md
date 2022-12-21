@@ -31,7 +31,12 @@ Use this command to create an unencrypted 2048-bit private key `private-key.pem`
 ```shell
 openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048 -out private-key.pem
 ```
->An RSA Private Key starts with: ```-----BEGIN PRIVATE KEY-----```
+>An RSA Private Key starts with:
+>```
+>-----BEGIN PRIVATE KEY-----
+> [...]
+>-----END PRIVATE KEY-----
+>```
 
 Use this command to create a password-protected 2048-bit private key `encrypted-key.pem`:
 ```shell
@@ -83,7 +88,13 @@ Use this command to generate a private key from elliptic curve `private-key.pem`
 ```shell
 openssl ecparam -name prime256v1 -genkey -noout -out private-key.pem
 ```
->An ECC Private Key starts with: ```-----BEGIN EC PRIVATE KEY-----```
+>An ECC Private Key starts with:
+>```
+>-----BEGIN EC PRIVATE KEY-----
+> [...]
+>-----END EC PRIVATE KEY-----
+>```
+
 
 >Use `-noout`  parameter to remove the information parameters used to generate the key from  the file  
 >Use `-prime256v1` for X9.62/SECG curve over a 256-bit prime field  
@@ -113,7 +124,13 @@ This takes an plain text private key `private-key.pem` and outputs an encrypted 
 ```shell
 openssl rsa -aes256 -in private-key.pem -out private-key.pem.enc
 ```
->An encrypted private key starts with: ```-----BEGIN ENCRYPTED PRIVATE KEY-----```
+>An encrypted private key starts with:  
+>```
+>-----BEGIN ENCRYPTED PRIVATE KEY-----
+> [...]
+>-----END ENCRYPTED PRIVATE KEY-----
+>```
+
 
 This takes an encrypted private key `private-key.pem.enc` and outputs a decrypted version of it `private-key.pem`:
 ```shell
@@ -132,9 +149,11 @@ openssl ec -in private-key.pem -aes256 -out private-key.pem.enc
 ```
 >An encrypted private key starts with:  
 >```
->-----BEGIN EC PRIVATE KEY-----  
->Proc-Type: 4,ENCRYPTED  
+>-----BEGIN EC PRIVATE KEY-----
+>Proc-Type: 4,ENCRYPTED
 >DEK-Info: AES-256-CBC,4AB00EF87803C74D6645B3543B174734
+> [...]
+>-----END EC PRIVATE KEY-----
 >```
 
 This takes an encrypted private key `private-key.pem.enc` and outputs a decrypted version of it `private-key.pem`:
