@@ -13,6 +13,12 @@ OpenSSL commands to generate/view/check Private and Public Keys with either RSA 
 [Private and Public Keys](/Private%20and%20Public%20Keys)  
 
 ***
+## Private key breakdown
+OpenSSL RSA Private Key Breakdown
+[Private Key breakdown](/Private%20Key%20Breakdown)  
+
+***
+
 ## OpenSSL Utilities
 Different utilities with OpenSSL
 [Utilities](/Utilities)  
