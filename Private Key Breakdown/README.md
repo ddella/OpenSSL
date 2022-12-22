@@ -17,9 +17,9 @@ The first thing to do is to convert the private key `PEM`file to HEX. The `PEM` 
 >-----END PRIVATE KEY-----
 >```
 
-Check my script `pem2hex.sh` on my Gist [here](https://gist.github.com/ddella/d07d5b827f3638e727bbf3dc1210d4a2) to convert a `PEM` format file to hexadecimal format.
 ## RSA Private Key in Hexadecimal
-Convert the private key `PEM` file to hexadecimal.
+Convert the private key `PEM` file to hexadecimal.  
+Check my script `pem2hex.sh` on my Gist [here](https://gist.github.com/ddella/d07d5b827f3638e727bbf3dc1210d4a2) to convert a `PEM` format file to hexadecimal format.
 ```shell
 ./pem2hex.sh private-key.pem
 ```
