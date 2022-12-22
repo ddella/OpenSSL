@@ -26,7 +26,7 @@ The openssl `genpkey` utility has superseded the `genrsa` utility. It is recomme
 
 ECC and RSA both generate a pair of public/private key mathematically tied together to allow two parties to communicate securely. The main advantage of ECC is that a 256-bit key in ECC offers about the same security as a 3072-bit key using RSA.
 
->`ECC Public Key`: Is the staring and ending point on a curve   
+>`ECC Public Key`: Is the staring and ending points on a curve   
 >`ECC Private Key`: Is the number of hops from start to finish  
 
 ![Alt text](/images/ecc-priv-pub-key.jpg "ECC Private and Public key")
