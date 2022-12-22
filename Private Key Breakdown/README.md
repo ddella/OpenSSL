@@ -1,6 +1,15 @@
 # OpenSSL RSA Private Key Breakdown
-This applies to RSA private key only.  
-Based on [RSA Private Key Breakdown](http://etherhack.co.uk/asymmetric/docs/rsa_key_breakdown.html)
+This will show that the private key file includes the following numbers:
+1. Modulus
+2. Public Exponent
+3. Private Exponent
+4. Prime number 1
+5. Prime number 2
+6. Exponent 1
+7. Exponent 2
+8. Coefficient
+
+This applies to RSA private key only. It's based on [RSA Private Key Breakdown](http://etherhack.co.uk/asymmetric/docs/rsa_key_breakdown.html) and reverse engineering 😀
 ## RSA Private Key in PEM
 The first thing to do is to convert the private key `PEM`file to HEX. The `PEM` file is the base64 representation of the key. For this example, I generated a 512-bit RSA private key.
 >RSA Private Key in Base64 Format (PEM)
