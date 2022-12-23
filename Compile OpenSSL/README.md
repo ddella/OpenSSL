@@ -34,6 +34,15 @@ Just delete the source tree used to compile OpenSSL.
 cd ../..
 rm -rf openssl
 ```
+## Test
+Open a terminal window and type
+```shell
+openssl version
+```
+You should get
+```
+OpenSSL Compiled by <Your name/Cie> 20221101 3.0.7 1 Nov 2022 (Library: OpenSSL Compiled by <Your name/Cie> 20221104 3.0.7 1 Nov 2022)
+```
 ***
 ## License
 This project is licensed under the [MIT license](/LICENSE).
