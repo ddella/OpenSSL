@@ -1,5 +1,5 @@
 # OpenSSL RSA Private Key Anatomy
-This will show that the private key file includes the following numbers:
+This following information is included in the private key file:
 1. Modulus
 2. Public Exponent
 3. Private Exponent
@@ -9,10 +9,10 @@ This will show that the private key file includes the following numbers:
 7. Exponent 2
 8. Coefficient
 
-This applies to RSA private key only. It's based on [RSA Private Key Breakdown](http://etherhack.co.uk/asymmetric/docs/rsa_key_breakdown.html) and reverse engineering 😀
+This applies to RSA private key only. It's based on [RSA Private Key Breakdown](http://etherhack.co.uk/asymmetric/docs/rsa_key_breakdown.html) and a little bit of reverse engineering 😀
 ## RSA Private Key in PEM
-The first thing to do is to convert the private key `PEM`file to HEX. The `PEM` file is the base64 representation of the key. For this example, I generated a 512-bit RSA private key.
->RSA Private Key in Base64 Format (PEM)
+The first thing to do is to convert the private key `PEM`file to haxadecimal. The `PEM` file is the base64 representation of the key. For this example, I generated a 512-bit RSA private key to keep the numbers small but in reality this is insecure.
+>RSA Private Key in Base64 PEM format
 >```
 >-----BEGIN PRIVATE KEY-----
 >MIIBVAIBADANBgkqhkiG9w0BAQEFAASCAT4wggE6AgEAAkEAy+MXMukMjI0i1lKX
@@ -28,7 +28,7 @@ The first thing to do is to convert the private key `PEM`file to HEX. The `PEM` 
 
 ## RSA Private Key in Hexadecimal
 Convert the private key `PEM` file to hexadecimal.  
-Check my script `pem2hex.sh` on my Gist [here](https://gist.github.com/ddella/d07d5b827f3638e727bbf3dc1210d4a2) to convert a `PEM` format file to hexadecimal format.
+Check this script `pem2hex.sh` on my Gist [here](https://gist.github.com/ddella/d07d5b827f3638e727bbf3dc1210d4a2) to convert a `PEM` formatted file to hexadecimal.
 ```shell
 ./pem2hex.sh private-key.pem
 ```
