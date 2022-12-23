@@ -49,10 +49,18 @@ f4 f4 fe a4 ca 5e 4c 38 a4 31 7c 23 cf 2f ee a3 3d 1f 48 52 c9 40 1f 2f 61
 9f 18 42 09 ae cc 03 73 1b 10 79 bb c4 2f 2f bb f6 a7 88
 ```
 ## RSA Private Key in Hexadecimal
+Use this command to get the private key detail:
+```shell
+openssl pkey -text -noout -in private-key.pem
+```
+
 Representation of an RSA 512-bit private key in hexadecimal. This is incomplete for now.   
 ![Alt text](/images/rsa-priv-key-hex.jpg "RSA Private key in hex format")
 ## ???
 ```shell
 openssl asn1parse -inform pem -in private-key.pem -strparse 22
 ```
+## RSA Private Key with a bit of math
+Representation of an RSA 512-bit private key with a bit of math. I wanted to keep this as simple as possible.   
+![Alt text](/images/rsa-priv-key.jpg "RSA Private key")
 
