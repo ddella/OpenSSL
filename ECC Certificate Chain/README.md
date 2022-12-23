@@ -80,9 +80,46 @@ authorityInfoAccess = caIssuers;URI:http://localhost:8000/Intermediate-CA.cer,OC
 crlDistributionPoints = URI:http://localhost:8000/crl/Root-CA.crl,URI:http://localhost:8000/crl/Intermediate-CA.crl" \
 -out server-crt.pem
 ```
-## Files created
-If everything worked, you should have the follwoing files in your directory:
+## Making the chain of trust
+The chain of trust, is a `PEM` file that includes all the certificates. It's usually not necessary to have **all** the certificates. You will almost never need the RootCA certificate as usually it's included in your trusted store with your OS or Firefox, as an example.  
+In the case of OpenSSL, you need all certificates because it doesn't read any trust store by default.
+```shell
+cat int-crt.pem ca-crt.pem > ca-chain.pem
 ```
+The file `ca-chain.pem` looks like:
+```
+-----BEGIN CERTIFICATE-----
+MIIDSzCCAvGgAwIBAgIUNykNbc3v611Q/dQPubEmNxbRBzIwCgYIKoZIzj0EAwIw
+...
+usc6SGEGHL4uT0q1AS7zCHuBJFPj4g+z9WkYqLX/zQ==
+-----END CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+MIIDOzCCAuCgAwIBAgIUFnTj4mss+lvg8dQ0jfVH5vUuIW8wCgYIKoZIzj0EAwIw
+...
+bXF+iDl8/RxBWFYS9DTE
+-----END CERTIFICATE-----
+```
+## Verification
+Verfying IntermediateCA via RootCA
+```shell
+openssl verify -CAfile ca-crt.pem int-crt.pem
+```
+Verfying Partial Chain with Server cert via IntermediateCA
+```shell
+openssl verify -no-CAfile -no-CApath -partial_chain -trusted int-crt.pem server-crt.pem
+```
+Verfying Server cert via IntermediateCA via RootCA
+```shell
+openssl verify -CAfile ca-crt.pem -untrusted int-crt.pem server-crt.pem
+```
+Verfying Server via CA and SubCA Chain
+```shell
+openssl verify -CAfile ca-chain.pem server-crt.pem
+```
+## Files created
+If everything worked, you should have the following files in your directory:
+```
+-rw-r--r--    2384 01 Jan 00:00 ca-chain.pem
 -rw-r--r--@   1180 01 Jan 00:00 ca-crt.pem
 -rw-------     302 01 Jan 00:00 ca-key.pem
 -rw-r--r--@   1204 01 Jan 00:00 int-crt.pem
