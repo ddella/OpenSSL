@@ -9,7 +9,7 @@ Just to give you an idea of how large is a 512-bit number, it would look like:
 If `n` is the number of digits, in base 10, you have to solve the equation 10<sup>n</sup> = 2<sup>512</sup>
 
 Accoring to the **Laws of Exponents**
->log<sub>b</sub>(m<sup>r</sup>) = b ( log<sub>b</sub>m ) :: the log of m with an exponent r is r times the log of m  
+>log<sub>b</sub>(m<sup>r</sup>) = r ( log<sub>b</sub>m ) :: the log of m with an exponent r is r times the log of m  
 
 10<sup>n</sup> = 2<sup>512</sup>  
 n = log<sub>10(</sub>2<sup>512</sup>)  
