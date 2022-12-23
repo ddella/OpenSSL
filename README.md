@@ -13,15 +13,15 @@ OpenSSL commands to generate/view/check Private and Public Keys with either RSA 
 [Private and Public Keys](/Private%20and%20Public%20Keys)  
 
 ***
-## Private key breakdown
-OpenSSL RSA Private Key Breakdown
-[Private Key breakdown](/Private%20Key%20Breakdown)  
+## Private key anatomy
+OpenSSL RSA Private Key anatomy
+[Private Key anatomy](/Private%20Key%20Breakdown)  
 
 ***
 
-## PPublic key breakdown
-OpenSSL RSA Public Key Breakdown
-[Public Key breakdown](/Public%20Key%20Breakdown)  
+## Public key anatomy
+OpenSSL RSA Public Key anatomy
+[Public Key anatomy](/Public%20Key%20Breakdown)  
 
 ***
 ## OpenSSL Utilities
