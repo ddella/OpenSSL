@@ -8,7 +8,7 @@ Use this command to generate the private/public key of the RootCA.
 ```shell
 openssl ecparam -name secp521r1 -genkey -out ca-key.pem
 ```
-Use this command to generate a self-signed certificate for the RootCA. We don't generate a CSR (certificate signing request) for the RootCA since it's a self-signed certificate.
+Use this command to generate a self-signed certificate for the RootCA. We don't generate a CSR (certificate signing request) for the RootCA since it's a self-signed certificate. The certificate will be valid for ~20 years (not couting leap year).
 ```shell
 openssl req -new -sha256 -x509 -key ca-key.pem -days 7300 \
 -subj "/C=CA/ST=QC/L=Montreal/O=RootCA/OU=IT/CN=RootCA.com" \
@@ -38,9 +38,9 @@ openssl req -new -sha256 -key int-key.pem \
 -addext "crlDistributionPoints = URI:http://localhost:8000/crl/Root-CA.crl,URI:http://localhost:8080/crl/Intermediate-CA.crl" \
 -out int-csr.pem
 ```
-Use this command to generate a certificate for the intermediate CA and have it signed by our RootCA.
+Use this command to generate a certificate for the intermediate CA and have it signed by our RootCA. The certificate will be valid for ~10 years (not couting leap year).
 ```shell
-openssl x509 -req -sha256 -days 365 -in int-csr.pem -CA ca-crt.pem -CAkey ca-key.pem -CAcreateserial \
+openssl x509 -req -sha256 -days 3650 -in int-csr.pem -CA ca-crt.pem -CAkey ca-key.pem -CAcreateserial \
 -extfile - <<<"subjectAltName = DNS:localhost,DNS:*.localhost,DNS:SubRootCA.com,IP:127.0.0.1
 basicConstraints = critical, CA:TRUE, pathlen:0
 subjectKeyIdentifier = hash
@@ -81,7 +81,7 @@ crlDistributionPoints = URI:http://localhost:8000/crl/Root-CA.crl,URI:http://loc
 -out server-crt.pem
 ```
 ## Making the chain of trust
-The chain of trust, is a `PEM` file that includes all the certificates. It's usually not necessary to have **all** the certificates. You will almost never need the RootCA certificate as usually it's included in your trusted store with your OS or Firefox, as an example.  
+The chain of trust, is a `PEM` file that includes all the Root/Intermediate certificates. It's usually not necessary to have **all** the certificates. You will almost never need the RootCA certificate as it's usually included in your trusted store with your OS or Firefox, as an example.  
 In the case of OpenSSL, you need all certificates because it doesn't read any trust store by default.
 ```shell
 cat int-crt.pem ca-crt.pem > ca-chain.pem
@@ -117,7 +117,7 @@ Verfying Server via CA and SubCA Chain. Returns `server-crt.pem: OK`, if everyth
 openssl verify -CAfile ca-chain.pem server-crt.pem
 ```
 ## Files created
-If everything worked, you should have the following files in your directory:
+If everything worked, you should have the following files in your local directory:
 ```
 -rw-r--r--    2384 01 Jan 00:00 ca-chain.pem
 -rw-r--r--@   1180 01 Jan 00:00 ca-crt.pem
