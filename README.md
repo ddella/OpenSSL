@@ -19,6 +19,11 @@ OpenSSL RSA Private Key Breakdown
 
 ***
 
+## PPublic key breakdown
+OpenSSL RSA Public Key Breakdown
+[Public Key breakdown](/Public%20Key%20Breakdown)  
+
+***
 ## OpenSSL Utilities
 Different utilities with OpenSSL
 [Utilities](/Utilities)  
