@@ -71,7 +71,7 @@ openssl asn1parse -inform pem -in public-key.pem -strparse 20
 ```
  0:d=0  hl=2 l=  72 cons: SEQUENCE
  2:d=1  hl=2 l=  65 prim: INTEGER       :CBE31732E90C8C8D22D65297455BF166714DB5247E28E960DC3DF0A9E2106D0A215E071D16B99450CA0354FAE77C5722723C45B65055A969136E2F314757FFC9
-69:d=1  hl=2 l=   3 prim: INTEGER           :010001
+69:d=1  hl=2 l=   3 prim: INTEGER       :010001
 ```
 ![Alt text](/images/rsa-pub-key-asn.jpg "RSA Private key in ASN.1")
 ## RSA Public Key with a bit of math
