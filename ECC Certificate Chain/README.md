@@ -100,19 +100,19 @@ bXF+iDl8/RxBWFYS9DTE
 -----END CERTIFICATE-----
 ```
 ## Verification
-Verfying IntermediateCA via RootCA
+Verfying IntermediateCA via RootCA. Returns `int-crt.pem: OK`, if everything is fine.
 ```shell
 openssl verify -CAfile ca-crt.pem int-crt.pem
 ```
-Verfying Partial Chain with Server cert via IntermediateCA
+Verfying Partial Chain with Server cert via IntermediateCA. Returns `server-crt.pem: OK`, if everything is fine.
 ```shell
 openssl verify -no-CAfile -no-CApath -partial_chain -trusted int-crt.pem server-crt.pem
 ```
-Verfying Server cert via IntermediateCA via RootCA
+Verfying Server cert via IntermediateCA via RootCA. Returns `server-crt.pem: OK`, if everything is fine.
 ```shell
 openssl verify -CAfile ca-crt.pem -untrusted int-crt.pem server-crt.pem
 ```
-Verfying Server via CA and SubCA Chain
+Verfying Server via CA and SubCA Chain. Returns `server-crt.pem: OK`, if everything is fine.
 ```shell
 openssl verify -CAfile ca-chain.pem server-crt.pem
 ```
