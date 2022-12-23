@@ -20,6 +20,7 @@ If the handshake is successful, it prints **YES**. If the handshake isn't succes
 >Testing ECDHE-RSA-AES256-GCM-SHA384...NO (sslv3 alert handshake failure)  
 
 ## How to use
+Check this script `test_cipher.sh` on my Gist [here](https://gist.github.com/ddella/d3fe330551f5f4e7037de0a51a953372) to test the ciphers supported by a TLS server.  
 Replace with the hostname, port number and TLS version you want to test.
 ```shell
 ./test_ciphers.sh localhost:8443 tls1_2
@@ -78,7 +79,7 @@ I added support for:
 2. TLS 1.3
 
 ## License
-
 This project is licensed under the [MIT license](/LICENSE).
 
 [_^ back to top_](#OpenSSL-Cipher-suite-test)
+[_< back to root_](../../../)
