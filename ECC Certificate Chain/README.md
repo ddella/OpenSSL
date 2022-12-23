@@ -80,7 +80,18 @@ authorityInfoAccess = caIssuers;URI:http://localhost:8000/Intermediate-CA.cer,OC
 crlDistributionPoints = URI:http://localhost:8000/crl/Root-CA.crl,URI:http://localhost:8000/crl/Intermediate-CA.crl" \
 -out server-crt.pem
 ```
-
+## Files created
+If everything worked, you should have the follwoing files in your directory:
+```
+-rw-r--r--@   1180 01 Jan 00:00 ca-crt.pem
+-rw-------     302 01 Jan 00:00 ca-key.pem
+-rw-r--r--@   1204 01 Jan 00:00 int-crt.pem
+-rw-r--r--     976 01 Jan 00:00 int-csr.pem
+-rw-------     302 01 Jan 00:00 int-key.pem
+-rw-r--r--@   1212 01 Jan 00:00 server-crt.pem
+-rw-r--r--     968 01 Jan 00:00 server-csr.pem
+-rw-------     302 01 Jan 00:00 server-key.pem
+```
 ***
 ## License
 This project is licensed under the [MIT license](/LICENSE).
