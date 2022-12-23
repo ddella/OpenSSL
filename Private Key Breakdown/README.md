@@ -11,12 +11,12 @@ Just to give you an idea of how large is a 512-bit number, it would look like:
 If `n` is the number of digits, in base 10, you have to solve the equation 10<sup>n</sup> = 2<sup>512</sup>
 
 Accoring to the **Laws of Exponents**
->log<sub>b</sub>(m<sup>r</sup>) = r ( log<sub>b</sub>m ) :: the log of m with an exponent r is r times the log of m  
+>log<sub>b</sub>(m<sup>r</sup>) = r ( log<sub>b</sub>m ) :: the log of `m` exponent `r` is `r` times the `log of m`  
 
 10<sup>n</sup> = 2<sup>512</sup>  
 n = log<sub>10(</sub>2<sup>512</sup>)  
 n = 512 * log<sub>10</sub>2  
-n ~ 154  
+n ≈ 154  
 ### How many hexadecimal digits
 If `n` is the number of digits, in base 16, just divide the number of bits by 4, since every hexadeciaml digit is exactly 4 bits or do the same math as for decimal execpt that the base is 16 instead of 10.    
 If `n` is the number of digits in base 16, you have to solve the equation 16<sup>n</sup> = 2<sup>512</sup>
@@ -81,28 +81,28 @@ Use this command to get the private key detail:
 ```shell
 openssl pkey -text -noout -in private-key.pem
 ```
+The left side of the table is the output of the poreceding command. The righ side of the table is the hexadecimal representation of the base64 PEM file.  
 
 Representation of an RSA 512-bit private key in hexadecimal. This is incomplete for now.   
 ![Alt text](/images/rsa-priv-key-hex.jpg "RSA Private key in hex format")
 ## OpenSSL ASN.1 Parser
-OpenSSL includes an ASN.1 parser. The numbers is the first column are in hexadecimal. The reference the position in the binary private key file.
+OpenSSL includes an ASN.1 parser. The numbers is the first column are in hexadecimal. They represent the byte offset of the binary private key file.
 ```shell
 openssl asn1parse -inform pem -in private-key.pem -strparse 22
 ```
 ```
     0:d=0  hl=4 l= 314 cons: SEQUENCE          
-    4:d=1  hl=2 l=   1 prim: INTEGER           :00
-    7:d=1  hl=2 l=  65 prim: INTEGER           :CBE31732E90C8C8D22D65297455BF166714DB5247E28E960DC3DF0A9E2106D0A215E071D16B99450CA0354FAE77C5722723C45B65055A969136E2F314757FFC9
-   74:d=1  hl=2 l=   3 prim: INTEGER           :010001
-   79:d=1  hl=2 l=  64 prim: INTEGER           :7CA63AB1AA5F3CB2B0C0BD3FB46CD0BA23BD3168BD24C001B2C4BF94ED1BC3BD1D47E6E31C9D8238F767498ED8AD7BCCCCEC67A1BEB29A21442513F4FA59AF71
-  145:d=1  hl=2 l=  33 prim: INTEGER           :EBF4F4FEA4CA5E4C38A4317C23CF2FEEA33D1F4852C9401F2F610E15C5435085
-  180:d=1  hl=2 l=  33 prim: INTEGER           :DD34C10ECD042B3FB404E8C38E71ED7C6CBA5C00C1C2F87940C05C7B9B8B5775
-  215:d=1  hl=2 l=  32 prim: INTEGER           :4EFEDA8AEA36CA2D30855FFFD4A947BDD82EDD6B443416609A671EE510FEC155
-  249:d=1  hl=2 l=  32 prim: INTEGER           :480F1858DEF65DB459CB439BF8BA2A37DF1F723B18E38F97C83D21A36E8F1CC5
-  283:d=1  hl=2 l=  33 prim: INTEGER           :DD19C8602E9ADC5BCFCFCDA15D9F184209AECC03731B1079BBC42F2FBBF6A788
+4:d=1  hl=2 l=   1 prim: INTEGER    :00
+7:d=1  hl=2 l=  65 prim: INTEGER    :CBE31732E90C8C8D22D65297455BF166714DB5247E28E960DC3DF0A9E2106D0A215E071D16B99450CA0354FAE77C5722723C45B65055A969136E2F314757FFC9
+74:d=1  hl=2 l=   3 prim: INTEGER    :010001
+79:d=1  hl=2 l=  64 prim: INTEGER    :7CA63AB1AA5F3CB2B0C0BD3FB46CD0BA23BD3168BD24C001B2C4BF94ED1BC3BD1D47E6E31C9D8238F767498ED8AD7BCCCCEC67A1BEB29A21442513F4FA59AF71
+145:d=1  hl=2 l=  33 prim: INTEGER    :EBF4F4FEA4CA5E4C38A4317C23CF2FEEA33D1F4852C9401F2F610E15C5435085
+180:d=1  hl=2 l=  33 prim: INTEGER    :DD34C10ECD042B3FB404E8C38E71ED7C6CBA5C00C1C2F87940C05C7B9B8B5775
+215:d=1  hl=2 l=  32 prim: INTEGER    :4EFEDA8AEA36CA2D30855FFFD4A947BDD82EDD6B443416609A671EE510FEC155
+249:d=1  hl=2 l=  32 prim: INTEGER    :480F1858DEF65DB459CB439BF8BA2A37DF1F723B18E38F97C83D21A36E8F1CC5
+283:d=1  hl=2 l=  33 prim: INTEGER    :DD19C8602E9ADC5BCFCFCDA15D9F184209AECC03731B1079BBC42F2FBBF6A788
 ```
 ![Alt text](/images/rsa-priv-key-asn.jpg "RSA Private key in ASN.1")
 ## RSA Private Key with a bit of math
-Representation of an RSA 512-bit private key with a bit of math. I wanted to keep this as simple as possible.   
+Representation of an RSA 512-bit private key with a bit of math. I wanted to keep this as simple as possible. It gives an idea of how those numbers are calculated. In reality there's way more than what you see here.  
 ![Alt text](/images/rsa-priv-key.jpg "RSA Private key")
-
