@@ -1,36 +1,36 @@
 # OpenSSL 3.0.7 - Nov 2022
-
 ## OpenSSL Cheat Sheet
 OpenSSL is a versatile command line tool that can be used for a large variety of tasks related to Public Key Infrastructure (PKI). This cheat sheet provides a quick reference to OpenSSL commands that are useful in everyday scenarios. This includes **OpenSSL** examples for generating private/public keys, certificate signing requests, and certificate format conversion.
 
 All the example below have been tested with OpenSSL 3.x.y on a macOS but shoukld work without any problems on Linux or Windows.
 
 Throughout the documents, I might used different file extensions. All the files are in `PEM` format, unless otherwise specified. The extension has no imptact on the file format.
-
 ***
-## Private/Public keys
-OpenSSL commands to generate/view/check Private and Public Keys with either RSA or ECC
-[Private and Public Keys](/Private%20and%20Public%20Keys)  
-
+## Private/Public keys (RSA and ECC)
+OpenSSL commands to generate/view/check Private and Public Keys with either RSA or ECC  
+[Private and Public Keys](/Private%20and%20Public%20Keys)
 ***
-## Private key anatomy
-OpenSSL RSA Private Key anatomy
-[Private Key anatomy](/Private%20Key%20Breakdown)  
-
+## Private key anatomy (RSA)
+OpenSSL RSA Private Key anatomy  
+[Private Key anatomy](/Private%20Key%20Anatomy)
 ***
+## Public key anatomy (RSA)
+OpenSSL RSA Public Key anatomy  
+[Public Key anatomy](/Public%20Key%20Anatomy)
+***
+## Generate Certificate Chain with Elleptic Curve keys
+In this section we will generate a full certificate chain.
+1. RootCA certificate
+2. Intermediate CA certificate
+3. Server certificate  
 
-## Public key anatomy
-OpenSSL RSA Public Key anatomy
-[Public Key anatomy](/Public%20Key%20Breakdown)  
-
+[ECC Certificate Chain](/ECC%20Certificate%20Chain)
 ***
 ## OpenSSL Utilities
-Different utilities with OpenSSL
-[Utilities](/Utilities)  
-
-****
-## OpenSSL Cipher suite test
-Shell script to test ciper suites of a TLS server
-[Cipher Suite Test](/Cipher%20suite%20test)  
-
+Different utilities with OpenSSL  
+[Utilities](/Utilities)
+***
+## OpenSSL Cipher suite test on TLS servers
+Shell script to test ciper suites of a TLS server  
+[Cipher Suite Test](/Cipher%20suite%20test)
 ***

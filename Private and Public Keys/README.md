@@ -1,5 +1,4 @@
 # OpenSSL Private and Public Keys
-
 ## Private and Public key fields with RSA keys
 Only the **Modulus**, **publicExponent** and **privateExponent** are required for asymmetric encryption and decryption using RSA. The other numbers are helpful for improving the performance of the RSA algorithm.
 
@@ -223,15 +222,15 @@ openssl req -in server-csr.pem -pubkey -noout | openssl dgst -sha256 -r | cut -d
 We know that an ECC Private key contains the Public Key. To verify that both keys are related, just hash them and if the value is the same, they **are** related.  
 If you have the public and private key in a separate files, hash both public key and make sure the results matches.  
 ```shell
-openssl ec -in ecc-private-key.pem -pubout | openssl dgst -sha256 -r | cut -d' ' -f1
-openssl sha256 -r ecc-public-key.pem | cut -d' ' -f1
+openssl ec -in private-key.pem -pubout | openssl dgst -sha256 -r | cut -d' ' -f1
+openssl sha256 -r public-key.pem | cut -d' ' -f1
 ```
 >`MD5` could have been used instead of `SHA256`  
 ***
 ## Verify an ECC Private Key matches a Certificate and a CSR
 To verify that a private key matches a certificate and it's CSR, just hash the public key of all three and if the value is the same, they **are** related.  
 ```shell
-openssl ec -in ecc-private-key.pem -pubout | openssl dgst -sha256 -r | cut -d' ' -f1
+openssl ec -in private-key.pem -pubout | openssl dgst -sha256 -r | cut -d' ' -f1
 openssl x509 -in server-crt.pem -pubkey -noout | openssl dgst -sha256 -r | cut -d' ' -f1
 openssl req -in server-csr.pem -pubkey -noout | openssl dgst -sha256 -r | cut -d' ' -f1
 ```
