@@ -198,10 +198,47 @@ This takes an encrypted private key `private-key.pem.enc` and outputs a decrypte
 ```shell
 openssl ec -in private-key.pem.enc -out private-key.pem
 ```
-
+***
+## Verify an RSA Private Key matches a Public Key
+We know that an RSA Private key contains the Public Key. To verify that both keys are related, just hash them and if the value is the same, they **are** related.  
+If you have the public and private key in a separate files, hash both public key and make sure the results matches.  
+```shell
+openssl pkey -pubout -in private-key.pem | openssl dgst -sha256 -r | cut -d' ' -f1
+openssl sha256 -r public-key.pem | cut -d' ' -f1
+```
+>`MD5` could have been used instead of `SHA256`  
+>The public key is a key pair of the public exponent `e` and the modulus `n` and is present as follow: `(e,n)`
+***
+## Verify an RSA Private Key matches a Certificate and a CSR
+To verify that a private key matches a certificate and it's CSR, just hash the public key of all three and if the value is the same, they **are** related.  
+```shell
+openssl pkey -pubout -in private-key.pem | openssl dgst -sha256 -r | cut -d' ' -f1
+openssl x509 -in server-crt.pem -pubkey -noout | openssl dgst -sha256 -r | cut -d' ' -f1
+openssl req -in server-csr.pem -pubkey -noout | openssl dgst -sha256 -r | cut -d' ' -f1
+```
+>`MD5` could have been used instead of `SHA256`  
+>The public key is included in the private key, the server certificate and the CSR and is the **same**.
+***
+## Verify an ECC Private Key matches a Public Key
+We know that an ECC Private key contains the Public Key. To verify that both keys are related, just hash them and if the value is the same, they **are** related.  
+If you have the public and private key in a separate files, hash both public key and make sure the results matches.  
+```shell
+openssl ec -in ecc-private-key.pem -pubout | openssl dgst -sha256 -r | cut -d' ' -f1
+openssl sha256 -r ecc-public-key.pem | cut -d' ' -f1
+```
+>`MD5` could have been used instead of `SHA256`  
+***
+## Verify an ECC Private Key matches a Certificate and a CSR
+To verify that a private key matches a certificate and it's CSR, just hash the public key of all three and if the value is the same, they **are** related.  
+```shell
+openssl ec -in ecc-private-key.pem -pubout | openssl dgst -sha256 -r | cut -d' ' -f1
+openssl x509 -in server-crt.pem -pubkey -noout | openssl dgst -sha256 -r | cut -d' ' -f1
+openssl req -in server-csr.pem -pubkey -noout | openssl dgst -sha256 -r | cut -d' ' -f1
+```
+>`MD5` could have been used instead of `SHA256`  
+>The public key is included in the private key, the server certificate and the CSR and is the **same**.
 ***
 ## License
-
 This project is licensed under the [MIT license](/LICENSE).
 
 [_^ back to top_](#OpenSSL-Private-and-Public-Keys)  

@@ -109,7 +109,6 @@ Representation of an RSA 512-bit private key with a bit of math. I wanted to kee
 ![Alt text](/images/rsa-priv-key.jpg "RSA Private key")
 ***
 ## License
-
 This project is licensed under the [MIT license](/LICENSE).
 
 [_^ back to top_](#OpenSSL-RSA-Private-Key-Anatomy)  
