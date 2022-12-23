@@ -1,7 +1,7 @@
 # OpenSSL RSA Public Key Anatomy
-**This applies to RSA keys only**. In this example I'm using a 512-bit private key. This is consider very insecure and should **never** be used in production.  
+**This applies to RSA keys only**. In this example I'm using a 512-bit public key. This is consider very insecure and should **never** be used in production.  
 When we say a *512-bit public key*, it's the size of modulus.  
-The RSA Public Key is derived frim the Private Key.
+The RSA Public Key is derived from the Private Key. We never generate a public key. We always generate a private key and that private key has the public key. They are both mathematically related.
 ## How big is a 512-bit key
 Just to give you an idea of how large is a 512-bit number, it would look like:
 1. ~154 decimal digits
@@ -43,7 +43,7 @@ The first thing to do is to convert the public key `PEM`file to haxadecimal. The
 >```
 
 ## RSA Public Key in Hexadecimal
-Convert the private key `PEM` file to hexadecimal.  
+Convert the public key `PEM` file to hexadecimal.  
 Check this script `pem2hex.sh` on my Gist [here](https://gist.github.com/ddella/d07d5b827f3638e727bbf3dc1210d4a2) to convert a `PEM` formatted file to hexadecimal.
 ```shell
 ./pem2hex.sh public-key.pem
@@ -55,9 +55,9 @@ Check this script `pem2hex.sh` on my Gist [here](https://gist.github.com/ddella/
 03 01 00 01
 ```
 ## RSA Public Key in Hexadecimal
-Use this command to get the private key detail:
+Use this command to get the public key detail:
 ```shell
-openssl pkey -text -noout -in private-key.pem
+openssl pkey -text -noout -in public-key.pem
 ```
 The left side of the table is the output of the poreceding command. The righ side of the table is the hexadecimal representation of the base64 PEM file.  
 

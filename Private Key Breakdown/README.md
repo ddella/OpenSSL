@@ -1,7 +1,7 @@
 # OpenSSL RSA Private Key Anatomy
 **This applies to RSA keys only**. In this example I'm using a 512-bit private key. This is consider very insecure and should **never** be used in production.  
 When we say a *512-bit private key*, it's the size of modulus.  
-An RSA Private Key, includes the Public Key.
+An RSA Private Key, includes the Public Key. We never generate a public key. We always generate a private key and that private key has the public key. They are both mathematically related.
 ## How big is a 512-bit key
 Just to give you an idea of how large is a 512-bit number, it would look like:
 1. ~154 decimal digits
