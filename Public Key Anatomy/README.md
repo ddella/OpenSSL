@@ -78,3 +78,9 @@ openssl asn1parse -inform pem -in public-key.pem -strparse 20
 Representation of an RSA 512-bit public key with a bit of math. I wanted to keep this as simple as possible. It gives an idea of how those numbers are calculated. In reality, there's way more than what you see here.  
 
 ![Alt text](/images/rsa-priv-key.jpg "RSA Private key")
+## License
+
+This project is licensed under the [MIT license](/LICENSE).
+
+[_^ back to top_](#OpenSSL-RSA-Public-Key-Anatomy)  
+[_< back to root_](../../../)
