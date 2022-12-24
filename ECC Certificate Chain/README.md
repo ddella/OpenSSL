@@ -133,6 +133,9 @@ If everything worked, you should have the following files in your local director
 -rw-r--r--     968 01 Jan 00:00 server-csr.pem
 -rw-------     302 01 Jan 00:00 server-key.pem
 ```
+## Generate certificates
+I made a small `quick and dirty` script to generate certificates for testing purposes only. This script assume to many things starting by the file naming convention. It assumes you followed this procedure to create your certificate chain.   
+The script to generate standard TLS server certificates is on my Gist [here](https://gist.github.com/ddella/a2296ec756d28574caaed9ae62285b89).
 ***
 ## License
 This project is licensed under the [MIT license](/LICENSE).
