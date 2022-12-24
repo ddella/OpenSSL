@@ -1,10 +1,10 @@
 # OpenSSL ECC Certificate Chain
-This section will generate a full certificate chain using Elleptic Curve Cryptography.
+This section will generate a full certificate chain using Elliptic Curve Cryptography.
 1. RootCA certificate (self-signed)
 2. Intermediate CA certificate
 3. Server certificate  
 
-All the scripts in this tutorial have been tested on macOS with `zsh`.  
+All the scripts in this tutorial have been tested on macOS with `zsh`. They should work on any version of Linux with `bash`.  
 One very important thing to remember is that **extensions in certificate signing requests (CSR) are not transferred to certificates**.  
 The full script to generate this certificate chain is on my Gist [here](https://gist.github.com/ddella/c2bc100a091bc59f51b740a4f3663b75).
 ## ECC Root CA - Private/Public Key and certificate
