@@ -13,7 +13,7 @@ cd openssl
 ```
 # define OPENSSL_VERSION_TEXT "OpenSSL Compiled by <Your name/Cie> 20221101 {- "$config{full_version} $config{release_date}" -}"
 ```
-Compile OpenSSL. Make sure you have the compiler installed. For macOS, you need `Xcode cli` tools. Be patient, that will take some time. I choosed to have the binaries in `~/bin/openssl`.
+Compile OpenSSL. Make sure you have all the tools to compile from source installed. For macOS, you need `Command Line Tools for Xcode`. Compiling OpenSSL will take some time, be patient. I choosed to have the binaries `~/bin/openssl`.
 ```shell
 mkdir build
 cd build
