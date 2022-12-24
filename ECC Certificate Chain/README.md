@@ -3,6 +3,7 @@ This section will generate a full certificate chain using Elleptic Curve Cryptog
 1. RootCA certificate (self-signed)
 2. Intermediate CA certificate
 3. Server certificate
+One very important thing to remember is that **Extensions in certificate signing requests (CSR) are not transferred to certificates and vice versa**.
 ## ECC Root CA - Private/Public Key and certificate
 Use this command to generate the private/public key of the RootCA.
 ```shell
