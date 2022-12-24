@@ -4,7 +4,9 @@ This section will generate a full certificate chain using Elleptic Curve Cryptog
 2. Intermediate CA certificate
 3. Server certificate  
 
-One very important thing to remember is that **Extensions in certificate signing requests (CSR) are not transferred to certificates and vice versa**.
+All the scripts in this tutorial have been tested on macOS with `zsh`.  
+One very important thing to remember is that **extensions in certificate signing requests (CSR) are not transferred to certificates**.  
+The full script to generate this certificate chain is on my Gist [here](https://gist.github.com/ddella/c2bc100a091bc59f51b740a4f3663b75).
 ## ECC Root CA - Private/Public Key and certificate
 Use this command to generate the private/public key of the RootCA.
 ```shell
