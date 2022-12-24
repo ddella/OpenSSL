@@ -21,22 +21,46 @@ Use this command to view the subject of the certificate `server-crt.pem`:
 ```shell
 openssl x509 -noout -in server-crt.pem -subject
 ```
+![Alt text](/images/crt-subject.jpg "subject")
 
 Use this command to view the dates of the certificate `server-crt.pem`:
 ```shell
 openssl x509 -noout -in server-crt.pem -dates
 ```
+>use `-startdate` to print the **Not Before** field only  
+>use `-enddate` to print the **Not After** field only  
 
-Use this command to see if the certificate `server-crt.pem` is a self-signed certificate:
+Use this command to see if the certificate `server-crt.pem` is a self-signed certificate. This will print a hash of the issuer and subject field. If both values are identical, then it's a self signed certificate.:
 ```shell
 openssl x509 -noout -in server-crt.pem -issuer_hash
 openssl x509 -noout -in server-crt.pem -subject_hash
 ```
->If both output are identical, it's a self signed certificate.
 
 Use this command to see the purpose of the certificate:
 ```shell
 openssl x509 -noout -in server-crt.pem -purpose
+```
+Output is:
+```
+Certificate purposes:
+SSL client : No
+SSL client CA : No
+SSL server : Yes
+SSL server CA : No
+Netscape SSL server : Yes
+Netscape SSL server CA : No
+S/MIME signing : No
+S/MIME signing CA : No
+S/MIME encryption : No
+S/MIME encryption CA : No
+CRL signing : No
+CRL signing CA : No
+Any Purpose : Yes
+Any Purpose CA : Yes
+OCSP helper : Yes
+OCSP helper CA : No
+Time Stamp signing : No
+Time Stamp signing CA : No
 ```
 
 Use this command to print the public key of the certificate `server-crt.pem`, in PEM format:
@@ -48,10 +72,17 @@ Use this command to print the public key of the certificate `server-crt.pem`, in
 ```shell
 openssl x509 -noout -in server-crt.pem -pubkey | openssl pkey -pubin -noout -text
 ```
+![Alt text](/images/crt-pub.jpg "public key in hex")
 
 The above all at once:
 ```shell
 openssl x509 -noout -in server-crt.pem -issuer -subject -dates
+```
+```
+issuer=C = CA, ST = QC, L = Montreal, O = IntermediateCA, OU = IT, CN = SubRootCA.com
+subject=C = CA, ST = QC, L = Montreal, O = Server, OU = IT, CN = Server.com
+notBefore=Nov 17 03:40:24 2022 GMT
+notAfter=Nov 17 03:40:24 2023 GMT
 ```
 
 Use this command to view the hash value of the certificate `server-crt.pem`:
@@ -62,11 +93,6 @@ openssl x509 -noout -in server-crt.pem -hash
 Use this command to view the MD5 fingerprint of the certificate `server-crt.pem`:
 ```shell
 openssl x509 -noout -in server-crt.pem -fingerprint
-```
-
-Use this command to view the SAN of the certificate `server-crt.pem`:
-```shell
-echo|openssl s_client -connect example.com:443 2>/dev/null | openssl x509 -noout -text | grep "Subject Alternative Name" -A2 | grep -Eo "DNS:[a-zA-Z 0-9.*-]*" | sed "s/DNS://g"
 ```
 ***
 ## License
