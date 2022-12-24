@@ -5,7 +5,7 @@ Use this command to view the contents of a certificate `server-crt.pem`:
 ```shell
 openssl x509 -text -noout -in server-crt.pem
 ```
-![Alt text](/images/pem-crt.jpg "X.509 Certificate")
+![Alt text](/images/crt-pem.jpg "X.509 Certificate")
 Use this command to display the certificate information in Abstract Syntax Notation One (ASN.1)
 ```shell
 openssl asn1parse -in server-crt.pem
