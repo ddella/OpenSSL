@@ -29,8 +29,9 @@ openssl x509 -noout -in server-crt.pem -dates
 ```
 >use `-startdate` to print the **Not Before** field only  
 >use `-enddate` to print the **Not After** field only  
+![Alt text](/images/crt-dates.jpg "dates")
 
-Use this command to see if the certificate `server-crt.pem` is a self-signed certificate. This will print a hash of the issuer and subject field. If both values are identical, then it's a self signed certificate.:
+Use this command to see if the certificate `server-crt.pem` is a self-signed certificate. This will print a hash of the issuer and subject field. If both values are identical, then it's a self signed certificate.
 ```shell
 openssl x509 -noout -in server-crt.pem -issuer_hash
 openssl x509 -noout -in server-crt.pem -subject_hash
@@ -66,6 +67,13 @@ Time Stamp signing CA : No
 Use this command to print the public key of the certificate `server-crt.pem`, in PEM format:
 ```shell
 openssl x509 -noout -in server-crt.pem -pubkey
+```
+Output is the equivalent of the public key `PEM` file:
+```
+-----BEGIN PUBLIC KEY-----
+MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAECF1LmbobFvgyc3ZpE3pEbiUpOaKI
+gO4zaQTR/4Z3OwdK8anx7CaXln4wTa5bo/IMVAhNrglqe2KuYNSqcdWKtw==
+-----END PUBLIC KEY-----
 ```
 
 Use this command to print the public key of the certificate `server-crt.pem`, in HEX format:
