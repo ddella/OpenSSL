@@ -35,6 +35,6 @@ Shell script to test ciper suites of a TLS server
 [Cipher Suite Test](/Cipher%20suite%20test)
 ***
 ## Compile OpenSSL on macOS
-macOS comes with an old version of OpenSSL. Follow these steps to have the newest version without erase the stock one.  
+macOS comes with an old version of OpenSSL. Follow these steps to have the newest version without erasing the stock one.  
 [Compile OpenSSL](/Compile%20OpenSSL)
 ***

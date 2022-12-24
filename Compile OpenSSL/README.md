@@ -35,7 +35,7 @@ cd ../..
 rm -rf openssl
 ```
 ## Test
-Open a terminal window and type
+Open a terminal window and type:
 ```shell
 openssl version
 ```

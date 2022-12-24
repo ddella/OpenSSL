@@ -2,14 +2,15 @@
 This section will generate a full certificate chain using Elleptic Curve Cryptography.
 1. RootCA certificate (self-signed)
 2. Intermediate CA certificate
-3. Server certificate
+3. Server certificate  
+
 One very important thing to remember is that **Extensions in certificate signing requests (CSR) are not transferred to certificates and vice versa**.
 ## ECC Root CA - Private/Public Key and certificate
 Use this command to generate the private/public key of the RootCA.
 ```shell
 openssl ecparam -name secp521r1 -genkey -out ca-key.pem
 ```
-Use this command to generate a self-signed certificate for the RootCA. We don't generate a CSR (certificate signing request) for the RootCA since it's a self-signed certificate. The certificate will be valid for ~20 years (not couting leap year).
+Use this command to generate a self-signed certificate for the RootCA. We don't generate a CSR (certificate signing request) for the RootCA since it's a self-signed certificate. The certificate will be valid for ~20 years (not couting leap years). You can customize it for your needs.
 ```shell
 openssl req -new -sha256 -x509 -key ca-key.pem -days 7300 \
 -subj "/C=CA/ST=QC/L=Montreal/O=RootCA/OU=IT/CN=RootCA.com" \
@@ -39,7 +40,7 @@ openssl req -new -sha256 -key int-key.pem \
 -addext "crlDistributionPoints = URI:http://localhost:8000/crl/Root-CA.crl,URI:http://localhost:8080/crl/Intermediate-CA.crl" \
 -out int-csr.pem
 ```
-Use this command to generate a certificate for the intermediate CA and have it signed by our RootCA. The certificate will be valid for ~10 years (not couting leap year).
+Use this command to generate a certificate for the intermediate CA and have it signed by our RootCA. The certificate will be valid for ~10 years (not couting leap years).
 ```shell
 openssl x509 -req -sha256 -days 3650 -in int-csr.pem -CA ca-crt.pem -CAkey ca-key.pem -CAcreateserial \
 -extfile - <<<"subjectAltName = DNS:localhost,DNS:*.localhost,DNS:SubRootCA.com,IP:127.0.0.1
