@@ -6,11 +6,11 @@ This section will generate a full certificate chain using RSA Cryptography. If y
 
 All the scripts in this tutorial have been tested on macOS with `zsh`. They should work on any version of Linux with `bash`.  
 One very important thing to remember is that **extensions in certificate signing requests (CSR) are not transferred to certificates**.  
-The full script to generate this certificate chain is on my Gist [here](https://gist.github.com/ddella/xxxx).
+The full script to generate this certificate chain is on my Gist [here](https://gist.github.com/ddella/be7957780782962a7014dd2ad0610733).
 
 ## Generate certificates
 I made a small `quick and dirty` script to generate certificates for testing purposes only. This script assume to many things starting by the file naming convention. It assumes you followed this procedure to create your certificate chain.   
-The script to generate standard TLS server certificates is on my Gist [here](https://gist.github.com/ddella/xxxx).
+The script to generate standard TLS server certificates is on my Gist [here](https://gist.github.com/ddella/7594f5ade82cf9a0b628c89e5b364812).
 ***
 ## License
 This project is licensed under the [MIT license](/LICENSE).
