@@ -32,7 +32,7 @@ This following information are always included in the public key file and in thi
 
 This applies to RSA public key only. It's based on a little bit of reverse engineering 😀
 ## RSA Public Key in PEM
-The first thing to do is to convert the public key `PEM`file to haxadecimal. The `PEM` file is the base64 representation of the key. For this example, I generated a 512-bit RSA private key to keep the numbers small but in reality this is insecure.
+The first thing to do is to convert the public key `PEM`file to haxadecimal. The `PEM` file is the base64 representation of the key. For this example, I generated a 512-bit RSA private key (you never generate a public key) to keep the numbers small but in reality this is insecure.
 >RSA Public Key in Base64 PEM format
 >```
 >-----BEGIN PUBLIC KEY-----
@@ -59,7 +59,8 @@ openssl pkey -text -noout -in public-key.pem
 ```
 The top left side of the table is the output of the preceding command. The top righ side of the table is the hexadecimal representation of the base64 PEM file.  
 The bottom portion of the table represents the decoded values of every fields in an RSA public key.  
-Representation of an RSA 512-bit public key in hexadecimal.  
+Representation of an RSA 512-bit public key in hexadecimal.
+
 ![Alt text](/images/rsa-pub-key-hex.jpg "RSA Public key in hex format")  
 To get the OID value from hexadecimal, I used the simple script made by Matthias Gaertner found [here](https://www.rtner.de/software/oid.html)  
 To compile, just use GCC/Apple clang:
@@ -84,7 +85,7 @@ openssl asn1parse -inform pem -in public-key.pem -strparse 20
  2:d=1  hl=2 l=  65 prim: INTEGER       :CBE31732E90C8C8D22D65297455BF166714DB5247E28E960DC3DF0A9E2106D0A215E071D16B99450CA0354FAE77C5722723C45B65055A969136E2F314757FFC9
 69:d=1  hl=2 l=   3 prim: INTEGER       :010001
 ```
-![Alt text](/images/rsa-pub-key-asn.jpg "RSA Private key in ASN.1")
+![Alt text](/images/rsa-pub-key-asn.jpg "RSA Public key in ASN.1")
 ## RSA Public Key with a bit of math
 Representation of an RSA 512-bit public key with a bit of math. I wanted to keep this as simple as possible. It gives an idea of how those numbers are calculated. In reality, there's way more than what you see here.  
 ## OID values
