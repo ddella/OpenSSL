@@ -1,7 +1,11 @@
 # ECC Private Public Key Anatomy
 **This applies to ECC key only**. In this example I'm using a 256-bit ECC key.  
-The public keys in the ECC are EC points - pairs of integer coordinates {x, y}, laying on a curve. Due to their special properties, EC points can be compressed to just one coordinate + 1 bit (odd or even). Thus, the compressed public key, corresponding to a 256-bit ECC private key, is a 257-bit integer. In this format the public key actually takes 33 bytes (66 hex digits), which can be optimized to exactly 257 bits.  
-The ECC Public Key is derived from the Private Key. We never generate a public key. We always generate a private key and that private key has the public key. They are both mathematically related.
+The public key in ECC are EC points - pairs of integer coordinates {x, y}, laying on a curve.  
+1.	Starting point on a curve
+2.	Ending point on a curve  
+
+The private key represents the number of hops on a curve to go from start to end.  
+The ECC Public Key is derived from the Private Key. We never generate a public key. We always generate a private key and that private key has the public key. They are both mathematically related.  
 ## How big is a 256-bit key
 Just to give you an idea of how large is a 256-bit number, it would look like:
 1. ~77 decimal digits
@@ -72,7 +76,7 @@ To get the OID value, just type:
 ```shell
 ./oid -x 06082a8648ce3d030107 
 ```
->This is wnat I meant when I said a bit of reverse engineering. I was left with some fields and I tried the get the OID value 😀
+>This is what I meant when I said *a bit of reverse engineering*. I was left with some fields and I tried the get the OID value and found a match 😀
 The ouput should be:
 ```
 UNIVERSAL OID.1.2.840.10045.3.1.7
