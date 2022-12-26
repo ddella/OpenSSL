@@ -76,6 +76,9 @@ The ouput should be:
 ```
 UNIVERSAL OID.1.2.840.113549.1.1.1
 ```
+## OID value representation
+The representation of the OID was taken from Microsoft [here](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-gpnap/ff1a8675-0008-408c-ba5f-686a10389adc)
+![Alt text](/images/key-oid-rsa.jpg "Key pair OID")
 ## OpenSSL ASN.1 Parser
 OpenSSL includes an ASN.1 parser. The numbers is the first column are in hexadecimal. They represent the byte offset of the binary public key file.
 ```shell
@@ -87,9 +90,6 @@ openssl asn1parse -inform pem -in public-key.pem -strparse 20
 69:d=1  hl=2 l=   3 prim: INTEGER       :010001
 ```
 ![Alt text](/images/rsa-pub-key-asn.jpg "RSA Public key in ASN.1")
-## OID value representation
-The representation of the OID was taken from Microsoft [here](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-gpnap/ff1a8675-0008-408c-ba5f-686a10389adc)
-![Alt text](/images/key-oid.jpg "Key pair OID")
 ## License
 This project is licensed under the [MIT license](/LICENSE).
 
