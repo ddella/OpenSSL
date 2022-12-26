@@ -70,7 +70,7 @@ The hexadeciaml representation of the `PEM` file:
 7b be 93 c2 ff b8 b1 2a b3 57 89 d4 7f ba 3e 24 9a ba 14 dc ae 7e 8b 3b 1a 56 36 ce 36 1c 
 51
 ```
-I've colored the private and public key to show that the public key is included in the private key. This is exactly like the RSA private key..  
+I've colored the private and public key to show that the public key is included in the private key. This is exactly like the RSA private key.  
 ![Alt text](/images/ecc-key-pair-hex.jpg "ECC key pair in hex format")  
 ## ECC Private Key detail
 Use this command to get the ECC private key details:
