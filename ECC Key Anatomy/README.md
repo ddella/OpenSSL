@@ -67,7 +67,7 @@ openssl ec -in ecc-private-key.pem -noout -text
 The top left side of the table is the output of the preceding command. The top righ side of the table is the hexadecimal representation of the base64 PEM file.  
 The bottom portion of the table represents the decoded values of every fields in an ECC private key.  
 ![Alt text](/images/ecc-key-pair-detail.jpg "ECC key-pair detail")  
-To get the OID value from hexadecimal, I used a simple script made by Matthias Gaertner found [here](https://www.rtner.de/software/oid.html)  
+To get the OID value from hexadecimal, I used a simple script made by Matthias Gaertner found [here](https://www.rtner.de/software/oid.html) or on my Gist [here](https://gist.github.com/ddella/2c716646125912a6ef8bed6273f647f2)  
 To compile, just use GCC/Apple clang:
 ```shell
 gcc -Wall oid.c -o oid

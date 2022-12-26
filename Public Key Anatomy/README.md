@@ -15,7 +15,7 @@ n = log<sub>10(</sub>2<sup>512</sup>)
 n = 512 * log<sub>10</sub>2  
 n ≈ 154  
 >Accoring to the **Laws of Exponents**:  
->log<sub>b</sub>(m<sup>r</sup>) = r ( log<sub>b</sub>m ) :: the log of `m` exponent `r` is `r` times the `log of m`  
+>log<sub>b</sub>(m<sup>r</sup>) = r ( log<sub>b</sub>m ) => log of `m` exponent `r` is `r` times `log of m`   
 
 ### How many hexadecimal digits
 If `n` is the number of digits in base 16, you have to solve the equation 16<sup>n</sup> = 2<sup>512</sup>
@@ -63,7 +63,7 @@ The bottom portion of the table represents the decoded values of every fields in
 Representation of an RSA 512-bit public key in hexadecimal.
 
 ![Alt text](/images/rsa-pub-key-hex.jpg "RSA Public key in hex format")  
-To get the OID value from hexadecimal, I used simple script made by Matthias Gaertner found [here](https://www.rtner.de/software/oid.html)  
+To get the OID value from hexadecimal, I used a simple script made by Matthias Gaertner found [here](https://www.rtner.de/software/oid.html) or on my Gist [here](https://gist.github.com/ddella/2c716646125912a6ef8bed6273f647f2)  
 To compile, just use GCC/Apple clang:
 ```shell
 gcc -Wall oid.c -o oid
