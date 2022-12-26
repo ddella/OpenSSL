@@ -98,7 +98,7 @@ UNIVERSAL OID.1.2.840.10045.3.1.7
 The representation of the OID was taken from Microsoft [here](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-gpnap/ff1a8675-0008-408c-ba5f-686a10389adc)
 ![Alt text](/images/key-oid-ecc.jpg "Key pair OID")
 ## OpenSSL ASN.1 Parser
-OpenSSL includes an ASN.1 parser. The numbers is the first column represent the byte offset of the binary private key file.
+OpenSSL includes an ASN.1 parser. The numbers in the first column represent the byte offset of the binary private key file.
 ```shell
 openssl asn1parse -inform pem -in ecc-private-key.pem
 ```
@@ -111,6 +111,7 @@ openssl asn1parse -inform pem -in ecc-private-key.pem
 51:d=1  hl=2 l=  68 cons: cont [ 1 ]
 53:d=2  hl=2 l=  66 prim: BIT STRING
 ```
+> Check [X.690 on Wikipedia](https://en.wikipedia.org/wiki/X.690) for the ASN.1 tags
 ## Files
 The file `ecc-private-key.pem` is the ECC private key.  
 ```shell
