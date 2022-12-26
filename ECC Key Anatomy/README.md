@@ -1,12 +1,19 @@
-# ECC Private Public Key Anatomy
-**This applies to ECC key only**. In this example I'm using a 256-bit ECC key. This is considered very secure. It correspont to an RSA 3072-bit key.  
+# ECC Private and Public Key Anatomy
+**This applies to ECC key only**. In this example I'm using a 256-bit ECC key. This is considered very secure. It's the equivalent to an 3072-bit RSA key.  
 The public key in ECC are EC points - pairs of integer coordinates {x, y}, laying on a curve.  
 1.	Starting point on a curve
 2.	Ending point on a curve  
 
-The private key represents the number of hops on a curve to go from start to end.  
+The private key represents the number of hops on a curve to go from start to end. This number is almost impossible to guess.  
 
 The ECC Public Key is derived from the Private Key. We never generate a public key. We always generate a private key and that private key has the public key. They are both mathematically related.  
+## Advantages of ECC
+1. With ECC you get equivalent cryptographic strength with significantly smaller key size
+2. A smaller key size enable stronger security with faster TSL handshakes, which translates to better user experiance
+3. Smaller certificate size translates to less information transfer on TLS negociation, lowering network overhead
+4. Low on CPU consumption and memory usage for both client and server
+
+The shorter key lengths mean devices require less processing power to encrypt and decrypt data, making ECC a good fit for mobile devices, Internet of Things, and other use cases with more limited computing power.
 ## How big is a 256-bit key
 Just to give you an idea of how large is a 256-bit number, it would look like:
 1. ~77 decimal digits
@@ -33,12 +40,14 @@ n = 64
 ## Fields
 There's way less information in an ECC key-pair than with RSA. The only information included are the Private, Public Keys and the OID to identify the type of keys.  
 >This might not be accurate. Everything is based on a lots of reading and a bit of reverse engineering 😀  
-## ECC Key-Pair in PEM
-The first thing to do is to convert the private key `PEM`file to haxadecimal. The `PEM` file is the base64 representation of the keys. For this example, I generated a 256-bit ECC private key, you never generate a public key.
->ECC Key-pair in PEM format
+## ECC Private Key - PEM format
+The first thing to do is to convert the private key `PEM`file to haxadecimal. The `PEM` file is the base64 representation of the key. For this example, I generated a 256-bit ECC private key.
+>you never generate a public key  
+To view the ECC Private Key in PEM (base64) format, just type:
 ```shell
 cat ecc-private-key.pem
 ```
+The output will look like this:
 >```
 >-----BEGIN EC PRIVATE KEY-----
 >MHcCAQEEIKioNIShCCQg9DHzRfhfg/YpdklefcfMYguTy6Rb/sbooAoGCCqGSM49
@@ -46,7 +55,7 @@ cat ecc-private-key.pem
 >sSqzV4nUf7o+JJq6FNyufos7GlY2zjYcUQ==
 >-----END EC PRIVATE KEY-----
 >```
-## ECC Private Key in Hexadecimal
+## ECC Private Key - Hexadecimal format
 Convert the private key `PEM` file to hexadecimal.  
 Check this script `pem2hex.sh` on my Gist [here](https://gist.github.com/ddella/d07d5b827f3638e727bbf3dc1210d4a2) to convert a `PEM` formatted file to hexadecimal.
 ```shell
@@ -60,7 +69,7 @@ Check this script `pem2hex.sh` on my Gist [here](https://gist.github.com/ddella/
 51
 ```
 ![Alt text](/images/ecc-key-pair-hex.jpg "ECC key pair in hex format")  
-## ECC Key-Pair detail
+## ECC Private Key detail
 Use this command to get the ECC private key details:
 ```shell
 openssl ec -in ecc-private-key.pem -noout -text
