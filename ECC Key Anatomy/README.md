@@ -133,5 +133,5 @@ The binary file is 121 bytes. According to the header in the hexadecimal dump of
 ## License
 This project is licensed under the [MIT license](/LICENSE).
 
-[_^ back to top_](#ECC-Private-Public-Key-Anatomy)  
+[_^ back to top_](#ECC-Private-and-Public-Key-Anatomy)  
 [_< back to root_](../../../)
