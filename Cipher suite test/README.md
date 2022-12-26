@@ -4,7 +4,7 @@ This is a little script if you wish to use OpenSSL to determine what cipher suit
 
 If you want to determine all suites supported by a particular server, start by invoking **openssl ciphers ALL** to obtain a list of all suites supported by your version of OpenSSL. Then submit them to the server one by one to test them individually. This is exactly what this script does.
 
->P376: BULLETPROOF SSL AND TLS from Ivan Ristić
+>P376: [BULLETPROOF SSL AND TLS from Ivan Ristić](https://www.feistyduck.com/books/bulletproof-tls-and-pki/)
 
 ## OpenSSL Cipher suite test
 Shell script to test CIPHER suites supported on a TLS server.
@@ -54,7 +54,7 @@ MIIDOzCCAuCgAwIBAgIUFnTj4mss+lvg8dQ0jfVH5vUuIW8wCgYIKoZIzj0EAwIw
 ```
 
 ## What it does
-The script simply use OpenSSL to initiate a TLS connection with the server and specifies the cipher.  
+The script simply use OpenSSL to initiate a TLS connection with the server and specifies the cipher. It then checks for the response from the server to tell if the cipher is supported or not.  
 
 Example of the OpenSSL command to test a cipher against a server with **TLS 1.2**:
 ```shell
