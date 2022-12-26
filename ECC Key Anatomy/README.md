@@ -1,4 +1,4 @@
-# ECC Private/Public Key Anatomy
+# ECC Private Public Key Anatomy
 **This applies to ECC key only**. In this example I'm using a 256-bit ECC key.  
 The public keys in the ECC are EC points - pairs of integer coordinates {x, y}, laying on the curve. Due to their special properties, EC points can be compressed to just one coordinate + 1 bit (odd or even). Thus, the compressed public key, corresponding to a 256-bit ECC private key, is a 257-bit integer. In this format the public key actually takes 33 bytes (66 hex digits), which can be optimized to exactly 257 bits.  
 The ECC Public Key is derived from the Private Key. We never generate a public key. We always generate a private key and that private key has the public key. They are both mathematically related.
