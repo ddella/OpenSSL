@@ -61,8 +61,8 @@ The top left side of the table is the output of the preceding command. The top r
 The bottom portion of the table represents the decoded values of every fields in an RSA public key.  
 Representation of an RSA 512-bit public key in hexadecimal.  
 ![Alt text](/images/rsa-pub-key-hex.jpg "RSA Public key in hex format")  
-To get the OID value from hexadecimal, I used the simple script made by Matthias Gaertner found [here](https://www.rtner.de/software/oid.html)
-To compile, just use GCC/Apple clang (works on both macOS and Linux):
+To get the OID value from hexadecimal, I used the simple script made by Matthias Gaertner found [here](https://www.rtner.de/software/oid.html)  
+To compile, just use GCC/Apple clang:
 ```shell
 gcc -Wall oid.c -o oid
 ```
@@ -72,7 +72,7 @@ To get the OID value, just type:
 ```
 The ouput should be:
 ```
-   UNIVERSAL OID.1.2.840.113549.1.1.1
+UNIVERSAL OID.1.2.840.113549.1.1.1
 ```
 ## OpenSSL ASN.1 Parser
 OpenSSL includes an ASN.1 parser. The numbers is the first column are in hexadecimal. They represent the byte offset of the binary public key file.
@@ -88,7 +88,7 @@ openssl asn1parse -inform pem -in public-key.pem -strparse 20
 ## RSA Public Key with a bit of math
 Representation of an RSA 512-bit public key with a bit of math. I wanted to keep this as simple as possible. It gives an idea of how those numbers are calculated. In reality, there's way more than what you see here.  
 ## OID values
-The representation of the OID was taken from Microsoft, [here](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-gpnap/ff1a8675-0008-408c-ba5f-686a10389adc)
+The representation of the OID was taken from Microsoft [here](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-gpnap/ff1a8675-0008-408c-ba5f-686a10389adc)
 ![Alt text](/images/key-oid.jpg "Key pair OID")
 ## License
 This project is licensed under the [MIT license](/LICENSE).
