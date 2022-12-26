@@ -89,25 +89,25 @@ To get the OID value, just type:
 ```shell
 ./oid -x 06082a8648ce3d030107 
 ```
->This is what I meant when I said *a bit of reverse engineering*. I was left with some fields and I tried the get the OID value and found a match 😀
 The ouput should be:
 ```
 UNIVERSAL OID.1.2.840.10045.3.1.7
 ```
+>This is what I meant when I said *a bit of reverse engineering*. When decoding the file, I was left with some fields. I tried some numbers the get the OID value and found a match 😀  
 ## OID value representation
 The representation of the OID was taken from Microsoft [here](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-gpnap/ff1a8675-0008-408c-ba5f-686a10389adc)
 ![Alt text](/images/key-oid-ecc.jpg "Key pair OID")
 ## OpenSSL ASN.1 Parser
-OpenSSL includes an ASN.1 parser. The numbers is the first column are in hexadecimal. They represent the byte offset of the binary private key file.
+OpenSSL includes an ASN.1 parser. The numbers is the first column represent the byte offset of the binary private key file.
 ```shell
 openssl asn1parse -inform pem -in ecc-private-key.pem
 ```
 ```
  0:d=0  hl=2 l= 119 cons: SEQUENCE
- 2:d=1  hl=2 l=   1 prim: INTEGER           :01
- 5:d=1  hl=2 l=  32 prim: OCTET STRING      [HEX DUMP]:A8A83484A1082420F431F345F85F83F62976495E7DC7CC620B93CBA45BFEC6E8
+ 2:d=1  hl=2 l=   1 prim: INTEGER       :01
+ 5:d=1  hl=2 l=  32 prim: OCTET STRING  [HEX DUMP]:A8A83484A1082420F431F345F85F83F62976495E7DC7CC620B93CBA45BFEC6E8
 39:d=1  hl=2 l=  10 cons: cont [ 0 ]
-41:d=2  hl=2 l=   8 prim: OBJECT            :prime256v1
+41:d=2  hl=2 l=   8 prim: OBJECT        :prime256v1
 51:d=1  hl=2 l=  68 cons: cont [ 1 ]
 53:d=2  hl=2 l=  66 prim: BIT STRING
 ```
