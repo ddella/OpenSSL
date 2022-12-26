@@ -80,8 +80,6 @@ Representation of an RSA 512-bit public key with a bit of math. I wanted to keep
 ## OID values
 The representation of the OID was taken from Microsoft, [here](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-gpnap/ff1a8675-0008-408c-ba5f-686a10389adc)
 ![Alt text](/images/key-oid.jpg "Key pair OID")
-
-![Alt text](/images/rsa-priv-key.jpg "RSA Private key")
 ## License
 This project is licensed under the [MIT license](/LICENSE).
 
