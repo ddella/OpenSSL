@@ -24,7 +24,7 @@ If `n` is the number of digits in base 16, you have to solve the equation 16<sup
 n = log<sub>16(</sub>2<sup>512</sup>)  
 n = 512 * log<sub>16</sub>2  
 n = 128  
->If `n` is the number of digits, in base 16, just divide the number of bits by 4, since every hexadeciaml digit is exactly 4 bits.  
+>If `n` is the number of digits in base 16, just divide the number of bits by 4, since every hexadeciaml digit is exactly 4 bits.  
 ## Fields
 This following information are always included in the public key file and in this order:
 1. Modulus
@@ -40,7 +40,6 @@ The first thing to do is to convert the public key `PEM`file to haxadecimal. The
 >YNw98KniEG0KIV4HHRa5lFDKA1T653xXInI8RbZQValpE24vMUdX/8kCAwEAAQ==
 >-----END PUBLIC KEY-----
 >```
-
 ## RSA Public Key in Hexadecimal
 Convert the public key `PEM` file to hexadecimal.  
 Check this script `pem2hex.sh` on my Gist [here](https://gist.github.com/ddella/d07d5b827f3638e727bbf3dc1210d4a2) to convert a `PEM` formatted file to hexadecimal.
@@ -60,9 +59,7 @@ openssl pkey -text -noout -in public-key.pem
 ```
 The top left side of the table is the output of the preceding command. The top righ side of the table is the hexadecimal representation of the base64 PEM file.  
 The bottom portion of the table represents the decoded values of every fields in an RSA public key.  
-
-
-Representation of an RSA 512-bit public key in hexadecimal. This is incomplete for now.   
+Representation of an RSA 512-bit public key in hexadecimal.  
 ![Alt text](/images/rsa-pub-key-hex.jpg "RSA Public key in hex format")
 ## OpenSSL ASN.1 Parser
 OpenSSL includes an ASN.1 parser. The numbers is the first column are in hexadecimal. They represent the byte offset of the binary public key file.
