@@ -58,7 +58,9 @@ Use this command to get the public key detail:
 ```shell
 openssl pkey -text -noout -in public-key.pem
 ```
-The left side of the table is the output of the poreceding command. The righ side of the table is the hexadecimal representation of the base64 PEM file.  
+The top left side of the table is the output of the preceding command. The top righ side of the table is the hexadecimal representation of the base64 PEM file.  
+The bottom portion of the table represents the decoded values of every fields in an RSA public key.  
+
 
 Representation of an RSA 512-bit public key in hexadecimal. This is incomplete for now.   
 ![Alt text](/images/rsa-pub-key-hex.jpg "RSA Public key in hex format")
@@ -75,6 +77,9 @@ openssl asn1parse -inform pem -in public-key.pem -strparse 20
 ![Alt text](/images/rsa-pub-key-asn.jpg "RSA Private key in ASN.1")
 ## RSA Public Key with a bit of math
 Representation of an RSA 512-bit public key with a bit of math. I wanted to keep this as simple as possible. It gives an idea of how those numbers are calculated. In reality, there's way more than what you see here.  
+## OID values
+The representation of the OID was taken from Microsoft, [here](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-gpnap/ff1a8675-0008-408c-ba5f-686a10389adc)
+![Alt text](/images/key-oid.jpg "Key pair OID")
 
 ![Alt text](/images/rsa-priv-key.jpg "RSA Private key")
 ## License
