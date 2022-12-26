@@ -102,6 +102,13 @@ Use this command to view the MD5 fingerprint of the certificate `server-crt.pem`
 ```shell
 openssl x509 -noout -in server-crt.pem -fingerprint
 ```
+
+Use this command to view the modulus of certificate `server-crt.pem`:
+```shell
+openssl x509 -noout -in server-crt.pem -fingerprint
+```
+>Note:
+>Valid only for RSA key pair
 ***
 ## License
 This project is licensed under the [MIT license](/LICENSE).
