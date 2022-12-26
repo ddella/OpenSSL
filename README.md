@@ -20,7 +20,7 @@ OpenSSL RSA Public Key anatomy
 ***
 ## Private and Public key anatomy (ECC)
 OpenSSL ECC Private and Public Key anatomy  
-[Public Key anatomy](/ECC%20Key%20Anatomy)
+[Private and Public key anatomy](/ECC%20Key%20Anatomy)
 ***
 ## Generate Certificate Chain with Elliptic Curve keys
 In this section we will generate a full certificate chain.
