@@ -81,7 +81,7 @@ The top left side of the table is the output of the preceding command. The top r
 The bottom portion of the table represents the decoded values of every fields in an ECC private key.  
 ![Alt text](/images/ecc-key-pair-detail.jpg "ECC key-pair detail")  
 To get the OID value from hexadecimal, I used a simple script made by Matthias Gaertner found [here](https://www.rtner.de/software/oid.html) or on my Gist [here](https://gist.github.com/ddella/2c716646125912a6ef8bed6273f647f2)  
-To compile, just use GCC/Apple clang:
+To compile, just use **GCC or Apple clang**:
 ```shell
 gcc -Wall oid.c -o oid
 ```
@@ -93,7 +93,7 @@ The ouput should be:
 ```
 UNIVERSAL OID.1.2.840.10045.3.1.7
 ```
->This is what I meant when I said *a bit of reverse engineering*. When decoding the file, I was left with some fields. I tried some numbers the get the OID value and found a match 😀  
+>This is what I meant when I said *a bit of reverse engineering*. When decoding the file, I was left with some fields. I tried some numbers the get the OID value and found a match 😉  
 ## OID value representation
 The representation of the OID was taken from Microsoft [here](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-gpnap/ff1a8675-0008-408c-ba5f-686a10389adc)
 ![Alt text](/images/key-oid-ecc.jpg "Key pair OID")
@@ -124,7 +124,7 @@ The file `ecc-public-key.pem` is the ECC public key extracted from the private k
 ```shell
 openssl ec -in ecc-private-key.pem -pubout -out ecc-public-key.pem
 ```
-The binary file is 121 bytes. According to the header in the hexadecimal dump of the private key `PEM` file, the size is 0x77 bytes plus 2 bytes for the header and that equals to 121 bytes.  
+The binary file is 121 bytes. According to the header in the hexadecimal dump of the private key `PEM` file, the size is 0x77 (119) bytes plus 2 bytes for the header and that equals to 121 bytes.  
 ```
 -rw-r--r--  1 username  staff  121 01 Jan 00:00 ecc-private-key.bin  
 -rw-------@ 1 username  staff  227 01 Jan 00:00 ecc-private-key.pem  
