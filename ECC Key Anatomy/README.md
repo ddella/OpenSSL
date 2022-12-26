@@ -75,7 +75,7 @@ UNIVERSAL OID.1.2.840.10045.3.1.7
 ```
 ## OID value representation
 The representation of the OID was taken from Microsoft [here](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-gpnap/ff1a8675-0008-408c-ba5f-686a10389adc)
-![Alt text](/images/key-oid.jpg "Key pair OID")
+![Alt text](/images/key-oid-ecc.jpg "Key pair OID")
 ## OpenSSL ASN.1 Parser
 OpenSSL includes an ASN.1 parser. The numbers is the first column are in hexadecimal. They represent the byte offset of the binary public key file.
 ```shell
