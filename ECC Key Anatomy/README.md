@@ -5,6 +5,7 @@ The public key in ECC are EC points - pairs of integer coordinates {x, y}, layin
 2.	Ending point on a curve  
 
 The private key represents the number of hops on a curve to go from start to end.  
+
 The ECC Public Key is derived from the Private Key. We never generate a public key. We always generate a private key and that private key has the public key. They are both mathematically related.  
 ## How big is a 256-bit key
 Just to give you an idea of how large is a 256-bit number, it would look like:
