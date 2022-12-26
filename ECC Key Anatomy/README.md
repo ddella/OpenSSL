@@ -93,5 +93,5 @@ openssl asn1parse -inform pem -in ecc-private-key.pem
 ## License
 This project is licensed under the [MIT license](/LICENSE).
 
-[_^ back to top_](#OpenSSL-RSA-Public-Key-Anatomy)  
+[_^ back to top_](#ECC Private/Public-Key-Anatomy)  
 [_< back to root_](../../../)
