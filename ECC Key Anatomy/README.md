@@ -1,6 +1,6 @@
 # ECC Private Public Key Anatomy
 **This applies to ECC key only**. In this example I'm using a 256-bit ECC key.  
-The public keys in the ECC are EC points - pairs of integer coordinates {x, y}, laying on the curve. Due to their special properties, EC points can be compressed to just one coordinate + 1 bit (odd or even). Thus, the compressed public key, corresponding to a 256-bit ECC private key, is a 257-bit integer. In this format the public key actually takes 33 bytes (66 hex digits), which can be optimized to exactly 257 bits.  
+The public keys in the ECC are EC points - pairs of integer coordinates {x, y}, laying on a curve. Due to their special properties, EC points can be compressed to just one coordinate + 1 bit (odd or even). Thus, the compressed public key, corresponding to a 256-bit ECC private key, is a 257-bit integer. In this format the public key actually takes 33 bytes (66 hex digits), which can be optimized to exactly 257 bits.  
 The ECC Public Key is derived from the Private Key. We never generate a public key. We always generate a private key and that private key has the public key. They are both mathematically related.
 ## How big is a 256-bit key
 Just to give you an idea of how large is a 256-bit number, it would look like:
@@ -26,11 +26,14 @@ n = 256 * log<sub>16</sub>2
 n = 64  
 >If `n` is the number of digits in base 16, just divide the number of bits by 4, since every hexadeciaml digit is exactly 4 bits.  
 ## Fields
-There's way less information in an ECC key-pair. The only information included are the Private and Public Key.  
-It's based on a lot of readings and a little bit of reverse engineering 😀  
+There's way less information in an ECC key-pair than with RSA. The only information included are the Private, Public Keys and the OID to identify the type of keys.  
+>This might not be accurate. Everything is based on a lots of reading and a bit of reverse engineering 😀  
 ## ECC Key-Pair in PEM
-The first thing to do is to convert the public key `PEM`file to haxadecimal. The `PEM` file is the base64 representation of the keys. For this example, I generated a 256-bit ECC private key (you never generate a public key) to keep the numbers small but in reality this is insecure.
+The first thing to do is to convert the private key `PEM`file to haxadecimal. The `PEM` file is the base64 representation of the keys. For this example, I generated a 256-bit ECC private key, you never generate a public key.
 >ECC Key-pair in PEM format
+```shell
+cat ecc-private-key.pem
+```
 >```
 >-----BEGIN EC PRIVATE KEY-----
 >MHcCAQEEIKioNIShCCQg9DHzRfhfg/YpdklefcfMYguTy6Rb/sbooAoGCCqGSM49
@@ -38,8 +41,8 @@ The first thing to do is to convert the public key `PEM`file to haxadecimal. The
 >sSqzV4nUf7o+JJq6FNyufos7GlY2zjYcUQ==
 >-----END EC PRIVATE KEY-----
 >```
-## ECC Key-Pair in Hexadecimal
-Convert the public key `PEM` file to hexadecimal.  
+## ECC Private Key in Hexadecimal
+Convert the private key `PEM` file to hexadecimal.  
 Check this script `pem2hex.sh` on my Gist [here](https://gist.github.com/ddella/d07d5b827f3638e727bbf3dc1210d4a2) to convert a `PEM` formatted file to hexadecimal.
 ```shell
 ./pem2hex.sh ecc-private-key.pem
@@ -53,14 +56,14 @@ Check this script `pem2hex.sh` on my Gist [here](https://gist.github.com/ddella/
 ```
 ![Alt text](/images/ecc-key-pair-hex.jpg "ECC key pair in hex format")  
 ## ECC Key-Pair detail
-Use this command to get the ECC private/public key details:
+Use this command to get the ECC private key details:
 ```shell
 openssl ec -in ecc-private-key.pem -noout -text
 ```
 The top left side of the table is the output of the preceding command. The top righ side of the table is the hexadecimal representation of the base64 PEM file.  
-The bottom portion of the table represents the decoded values of every fields in an ECC key-pair.  
+The bottom portion of the table represents the decoded values of every fields in an ECC private key.  
 ![Alt text](/images/ecc-key-pair-detail.jpg "ECC key-pair detail")  
-To get the OID value from hexadecimal, I used the simple script made by Matthias Gaertner found [here](https://www.rtner.de/software/oid.html)  
+To get the OID value from hexadecimal, I used a simple script made by Matthias Gaertner found [here](https://www.rtner.de/software/oid.html)  
 To compile, just use GCC/Apple clang:
 ```shell
 gcc -Wall oid.c -o oid
@@ -69,6 +72,7 @@ To get the OID value, just type:
 ```shell
 ./oid -x 06082a8648ce3d030107 
 ```
+>This is wnat I meant when I said a bit of reverse engineering. I was left with some fields and I tried the get the OID value 😀
 The ouput should be:
 ```
 UNIVERSAL OID.1.2.840.10045.3.1.7
@@ -77,7 +81,7 @@ UNIVERSAL OID.1.2.840.10045.3.1.7
 The representation of the OID was taken from Microsoft [here](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-gpnap/ff1a8675-0008-408c-ba5f-686a10389adc)
 ![Alt text](/images/key-oid-ecc.jpg "Key pair OID")
 ## OpenSSL ASN.1 Parser
-OpenSSL includes an ASN.1 parser. The numbers is the first column are in hexadecimal. They represent the byte offset of the binary public key file.
+OpenSSL includes an ASN.1 parser. The numbers is the first column are in hexadecimal. They represent the byte offset of the binary private key file.
 ```shell
 openssl asn1parse -inform pem -in ecc-private-key.pem
 ```

@@ -63,7 +63,7 @@ The bottom portion of the table represents the decoded values of every fields in
 Representation of an RSA 512-bit public key in hexadecimal.
 
 ![Alt text](/images/rsa-pub-key-hex.jpg "RSA Public key in hex format")  
-To get the OID value from hexadecimal, I used the simple script made by Matthias Gaertner found [here](https://www.rtner.de/software/oid.html)  
+To get the OID value from hexadecimal, I used simple script made by Matthias Gaertner found [here](https://www.rtner.de/software/oid.html)  
 To compile, just use GCC/Apple clang:
 ```shell
 gcc -Wall oid.c -o oid
