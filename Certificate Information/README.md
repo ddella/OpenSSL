@@ -1,7 +1,7 @@
 # Extract information from a certificate
 Commands to view the multiple fields in a TLS certificate.
 ## TLS certificate in PEM format
-Use this command to view the contents of a certificate `server-crt.pem`:
+Use this command to view the contents of certificate `server-crt.pem`:
 ```shell
 openssl x509 -text -noout -in server-crt.pem
 ```
@@ -11,19 +11,19 @@ Use this command to display the certificate information in Abstract Syntax Notat
 openssl asn1parse -in server-crt.pem
 ```
 
-Use this command to view who issued the certificate `server-crt.pem`:
+Use this command to view who issued certificate `server-crt.pem`:
 ```shell
 openssl x509 -noout -in server-crt.pem -issuer
 ```
 ![Alt text](/images/crt-issuer.jpg "issuer")
 
-Use this command to view the subject of the certificate `server-crt.pem`:
+Use this command to view the subject of certificate `server-crt.pem`:
 ```shell
 openssl x509 -noout -in server-crt.pem -subject
 ```
 ![Alt text](/images/crt-subject.jpg "subject")
 
-Use this command to view the dates of the certificate `server-crt.pem`:
+Use this command to view the dates of certificate `server-crt.pem`:
 ```shell
 openssl x509 -noout -in server-crt.pem -dates
 ```
@@ -37,7 +37,7 @@ openssl x509 -noout -in server-crt.pem -issuer_hash
 openssl x509 -noout -in server-crt.pem -subject_hash
 ```
 
-Use this command to see the purpose of the certificate:
+Use this command to see the purpose of certificate:
 ```shell
 openssl x509 -noout -in server-crt.pem -purpose
 ```
@@ -64,7 +64,7 @@ Time Stamp signing : No
 Time Stamp signing CA : No
 ```
 
-Use this command to print the public key of the certificate `server-crt.pem`, in PEM format:
+Use this command to print the public key of certificate `server-crt.pem`, in PEM format:
 ```shell
 openssl x509 -noout -in server-crt.pem -pubkey
 ```
@@ -76,7 +76,7 @@ gO4zaQTR/4Z3OwdK8anx7CaXln4wTa5bo/IMVAhNrglqe2KuYNSqcdWKtw==
 -----END PUBLIC KEY-----
 ```
 
-Use this command to print the public key of the certificate `server-crt.pem`, in HEX format:
+Use this command to print the public key of certificate `server-crt.pem`, in HEX format:
 ```shell
 openssl x509 -noout -in server-crt.pem -pubkey | openssl pkey -pubin -noout -text
 ```
@@ -93,22 +93,38 @@ notBefore=Nov 17 03:40:24 2022 GMT
 notAfter=Nov 17 03:40:24 2023 GMT
 ```
 
-Use this command to view the hash value of the certificate `server-crt.pem`:
+Use this command to view the hash value of certificate `server-crt.pem`:
 ```shell
 openssl x509 -noout -in server-crt.pem -hash
 ```
 
-Use this command to view the MD5 fingerprint of the certificate `server-crt.pem`:
+Use this command to view the MD5 fingerprint of certificate `server-crt.pem`:
 ```shell
 openssl x509 -noout -in server-crt.pem -fingerprint
 ```
 
 Use this command to view the modulus of certificate `server-crt.pem`:
 ```shell
-openssl x509 -noout -in server-crt.pem -fingerprint
+openssl x509 -noout -in server-crt.pem -modulus
 ```
 >**Note**: Valid only for **RSA** key pair. If you try it on **ECC**, you'll get the following message:
 >>Modulus=No modulus for this public key type
+Use this command to view the SAN of certificate `server-crt.pem`:
+```shell
+openssl x509 -noout -in server-crt.pem -ext subjectAltName
+```
+Use this command to view the basic constraints of certificate `server-crt.pem`:
+```shell
+openssl x509 -noout -in server-crt.pem -ext basicConstraints
+```
+Use this command to view the authority infor access of certificate `server-crt.pem`:
+```shell
+openssl x509 -noout -in server-crt.pem -ext authorityInfoAccess
+```
+Use this command to view the key usage of certificate `server-crt.pem`:
+```shell
+openssl x509 -noout -in server-crt.pem -ext keyUsage
+```
 ***
 ## License
 This project is licensed under the [MIT license](/LICENSE).
