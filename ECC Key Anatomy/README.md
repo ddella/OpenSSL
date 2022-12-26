@@ -19,7 +19,7 @@ n = log<sub>10(</sub>2<sup>256</sup>)
 n = 256 * log<sub>10</sub>2  
 n ≈ 77  
 >Accoring to the **Laws of Exponents**:  
->log<sub>b</sub>(m<sup>r</sup>) = r ( log<sub>b</sub>m ) :: the log of `m` exponent `r` is `r` times the `log of m`  
+>log<sub>b</sub>(m<sup>r</sup>) = r ( log<sub>b</sub>m ) => log of `m` exponent `r` is `r` times the `log of m`  
 
 ### How many hexadecimal digits
 If `n` is the number of digits in base 16, you have to solve the equation 16<sup>n</sup> = 2<sup>512</sup>
