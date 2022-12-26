@@ -90,7 +90,6 @@ openssl asn1parse -inform pem -in ecc-private-key.pem
 51:d=1  hl=2 l=  68 cons: cont [ 1 ]
 53:d=2  hl=2 l=  66 prim: BIT STRING
 ```
-![Alt text](/images/rsa-pub-key-asn.jpg "RSA Public key in ASN.1")
 ## License
 This project is licensed under the [MIT license](/LICENSE).
 
