@@ -108,9 +108,7 @@ Use this command to view the modulus of certificate `server-crt.pem`:
 openssl x509 -noout -in server-crt.pem -fingerprint
 ```
 >**Note**: Valid only for RSA key pair. If you try it on ECC, you'll get the following message:
-`
 >>Modulus=No modulus for this public key type
-`
 ***
 ## License
 This project is licensed under the [MIT license](/LICENSE).
