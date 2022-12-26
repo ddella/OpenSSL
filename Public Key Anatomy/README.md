@@ -86,9 +86,7 @@ openssl asn1parse -inform pem -in public-key.pem -strparse 20
 69:d=1  hl=2 l=   3 prim: INTEGER       :010001
 ```
 ![Alt text](/images/rsa-pub-key-asn.jpg "RSA Public key in ASN.1")
-## RSA Public Key with a bit of math
-Representation of an RSA 512-bit public key with a bit of math. I wanted to keep this as simple as possible. It gives an idea of how those numbers are calculated. In reality, there's way more than what you see here.  
-## OID values
+## OID value representation
 The representation of the OID was taken from Microsoft [here](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-gpnap/ff1a8675-0008-408c-ba5f-686a10389adc)
 ![Alt text](/images/key-oid.jpg "Key pair OID")
 ## License
