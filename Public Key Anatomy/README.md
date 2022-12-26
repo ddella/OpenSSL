@@ -1,6 +1,6 @@
 # OpenSSL RSA Public Key Anatomy
-**This applies to RSA keys only**. In this example I'm using a 512-bit public key. This is consider very insecure and should **never** be used in production.  
-When we say a *512-bit public key*, it's the size of modulus, which is one component of the public key.  
+**This applies to RSA key only**. In this example I'm using a 512-bit public key. This is consider very insecure and should **never** be used in production.  
+For RSA, when we say a *512-bit key*, it's the size of modulus, which is one component of the public and private key.  
 The RSA Public Key is derived from the Private Key. We never generate a public key. We always generate a private key and that private key has the public key. They are both mathematically related.
 ## How big is a 512-bit key
 Just to give you an idea of how large is a 512-bit number, it would look like:
@@ -10,13 +10,13 @@ Just to give you an idea of how large is a 512-bit number, it would look like:
 ### How many decimal digits
 If `n` is the number of digits, in base 10, you have to solve the equation 10<sup>n</sup> = 2<sup>512</sup>
 
-Accoring to the **Laws of Exponents**
->log<sub>b</sub>(m<sup>r</sup>) = r ( log<sub>b</sub>m ) :: the log of `m` exponent `r` is `r` times the `log of m`  
-
 10<sup>n</sup> = 2<sup>512</sup>  
 n = log<sub>10(</sub>2<sup>512</sup>)  
 n = 512 * log<sub>10</sub>2  
 n ≈ 154  
+>Accoring to the **Laws of Exponents**:  
+>log<sub>b</sub>(m<sup>r</sup>) = r ( log<sub>b</sub>m ) :: the log of `m` exponent `r` is `r` times the `log of m`  
+
 ### How many hexadecimal digits
 If `n` is the number of digits in base 16, you have to solve the equation 16<sup>n</sup> = 2<sup>512</sup>
 
@@ -26,11 +26,12 @@ n = 512 * log<sub>16</sub>2
 n = 128  
 >If `n` is the number of digits in base 16, just divide the number of bits by 4, since every hexadeciaml digit is exactly 4 bits.  
 ## Fields
-This following information are always included in the public key file and in this order:
+This following information are always included in the RSA public key file and in this order:
 1. Modulus
 2. Public Exponent
 
-This applies to RSA public key only. It's based on a little bit of reverse engineering 😀
+This applies to RSA public key only. It's based on a lot of readings, especially this [site](https://www.cem.me/20141221-cert-binaries.html) and a little bit of reverse engineering 😀  
+
 ## RSA Public Key in PEM
 The first thing to do is to convert the public key `PEM`file to haxadecimal. The `PEM` file is the base64 representation of the key. For this example, I generated a 512-bit RSA private key (you never generate a public key) to keep the numbers small but in reality this is insecure.
 >RSA Public Key in Base64 PEM format
