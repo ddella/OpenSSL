@@ -41,8 +41,9 @@ n = 64
 There's way less information in an ECC key-pair than with RSA. The only information included are the Private, Public Keys and the OID to identify the type of keys.  
 >This might not be accurate. Everything is based on a lots of reading and a bit of reverse engineering 😀  
 ## ECC Private Key - PEM format
-The first thing to do is to convert the private key `PEM`file to haxadecimal. The `PEM` file is the base64 representation of the key. For this example, I generated a 256-bit ECC private key.
+The first thing to do is to convert the private key `PEM`file to hexadecimal. The `PEM` file is the base64 representation of the key. For this example, I generated a 256-bit ECC private key.
 >you never generate a public key  
+
 To view the ECC Private Key in PEM (base64) format, just type:
 ```shell
 cat ecc-private-key.pem
@@ -61,6 +62,7 @@ Check this script `pem2hex.sh` on my Gist [here](https://gist.github.com/ddella/
 ```shell
 ./pem2hex.sh ecc-private-key.pem
 ```
+The hexadeciaml representation of the `PEM` file:
 ```
 30 77 02 01 01 04 20 a8 a8 34 84 a1 08 24 20 f4 31 f3 45 f8 5f 83 f6 29 76 49 5e 7d c7 cc 
 62 0b 93 cb a4 5b fe c6 e8 a0 0a 06 08 2a 86 48 ce 3d 03 01 07 a1 44 03 42 00 04 5e 1a db 
@@ -68,6 +70,7 @@ Check this script `pem2hex.sh` on my Gist [here](https://gist.github.com/ddella/
 7b be 93 c2 ff b8 b1 2a b3 57 89 d4 7f ba 3e 24 9a ba 14 dc ae 7e 8b 3b 1a 56 36 ce 36 1c 
 51
 ```
+I've colored the private and public key to show that the public key is included in the private key. This is exactly like the RSA private key..  
 ![Alt text](/images/ecc-key-pair-hex.jpg "ECC key pair in hex format")  
 ## ECC Private Key detail
 Use this command to get the ECC private key details:
