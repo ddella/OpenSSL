@@ -1,5 +1,5 @@
 # ECC Private Public Key Anatomy
-**This applies to ECC key only**. In this example I'm using a 256-bit ECC key.  
+**This applies to ECC key only**. In this example I'm using a 256-bit ECC key. This is considered very secure. It correspont to an RSA 3072-bit key.  
 The public key in ECC are EC points - pairs of integer coordinates {x, y}, laying on a curve.  
 1.	Starting point on a curve
 2.	Ending point on a curve  
@@ -19,7 +19,7 @@ n = log<sub>10(</sub>2<sup>256</sup>)
 n = 256 * log<sub>10</sub>2  
 n ≈ 77  
 >Accoring to the **Laws of Exponents**:  
->log<sub>b</sub>(m<sup>r</sup>) = r ( log<sub>b</sub>m ) => log of `m` exponent `r` is `r` times the `log of m`  
+>log<sub>b</sub>(m<sup>r</sup>) = r ( log<sub>b</sub>m ) => log of `m` exponent `r` is `r` times `log of m`  
 
 ### How many hexadecimal digits
 If `n` is the number of digits in base 16, you have to solve the equation 16<sup>n</sup> = 2<sup>512</sup>
