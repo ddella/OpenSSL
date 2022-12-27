@@ -1,6 +1,9 @@
 # OpenSSL RSA Public Key Anatomy
 **This applies to RSA key only**. In this example I'm using a 512-bit public key. This is consider very insecure and should **never** be used in production.  
-For RSA, when we say a *512-bit key*, it's the size of modulus, which is one component of the public and private key.  
+For RSA, when we say a *512-bit key*, it's the size of the modulus, which is one component of the public and private key. An RSA public key is a tupel made of:
+1. Modulus (the product of 2 large prime numbers)
+2. Public exponent (Usually the number 65537)  
+  
 The RSA Public Key is derived from the Private Key. We never generate a public key. We always generate a private key and that private key has the public key. They are both mathematically related.
 ## How big is a 512-bit key
 Just to give you an idea of how large is a 512-bit number, it would look like:
