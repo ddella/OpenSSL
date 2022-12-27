@@ -123,6 +123,7 @@ openssl asn1parse -inform pem -in private-key.pem -strparse 22
 249:d=1  hl=2 l=  32 prim: INTEGER    :480F1858DEF65DB459CB439BF8BA2A37DF1F723B18E38F97C83D21A36E8F1CC5
 283:d=1  hl=2 l=  33 prim: INTEGER    :DD19C8602E9ADC5BCFCFCDA15D9F184209AECC03731B1079BBC42F2FBBF6A788
 ```
+The next graphic is the same output as the above but with each components colored.  
 ![Alt text](/images/rsa-priv-key-asn.jpg "RSA Private key in ASN.1")
 ## RSA Private Key with a bit of math
 Representation of an RSA 512-bit private key with a bit of math. I wanted to keep this as simple as possible. It gives an idea of how those numbers are calculated. In reality, it's way more complicated than what you see here.  
