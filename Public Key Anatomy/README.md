@@ -98,9 +98,9 @@ To get the OID value, just type:
 ./oid -x 06092a864886f70d010101
 ```
 The ouput should be:
-```
-UNIVERSAL OID.1.2.840.113549.1.1.1
-```
+>```
+>UNIVERSAL OID.1.2.840.113549.1.1.1
+>```
 The representation of the OID was taken from Microsoft [here](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-gpnap/ff1a8675-0008-408c-ba5f-686a10389adc)
 ![Alt text](/images/key-oid-rsa.jpg "Key pair OID")
 ## OpenSSL ASN.1 Parser
