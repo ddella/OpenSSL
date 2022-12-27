@@ -32,9 +32,12 @@ This following information are always included in the RSA public key file and in
 
 This applies to RSA public key only. It's based on a lot of readings, especially this [site](https://www.cem.me/20141221-cert-binaries.html) and a little bit of reverse engineering 😀  
 
-## RSA Public Key in PEM
-The first thing to do is to convert the public key `PEM`file to haxadecimal. The `PEM` file is the base64 representation of the key. For this example, I generated a 512-bit RSA private key (you never generate a public key) to keep the numbers small but in reality this is insecure.
->RSA Public Key in Base64 PEM format
+## Extract the Public Key from the Private Key
+Use this command to extract the RSA public key from the private key:
+```shell
+openssl pkey -pubout -in private-key.pem -out public-key.pem
+```
+The file `public-key.pem` has the public key in `PEM` format. You can open it with any text editor.
 >```
 >-----BEGIN PUBLIC KEY-----
 >MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAMvjFzLpDIyNItZSl0Vb8WZxTbUkfijp
@@ -42,22 +45,39 @@ The first thing to do is to convert the public key `PEM`file to haxadecimal. The
 >-----END PUBLIC KEY-----
 >```
 ## RSA Public Key in Hexadecimal
-Convert the public key `PEM` file to hexadecimal.  
-Check this script `pem2hex.sh` on my Gist [here](https://gist.github.com/ddella/d07d5b827f3638e727bbf3dc1210d4a2) to convert a `PEM` formatted file to hexadecimal.
+Lets convert the public key `PEM` file to hexadecimal. The `PEM` file is the base64 representation of the key. The idea is to convert the base64 file to binary and then convert the binary to readable hexadeciaml. Take a look at this script `pem2hex.sh` on my Gist [here](https://gist.github.com/ddella/d07d5b827f3638e727bbf3dc1210d4a2) to convert a `PEM` formatted file to hexadecimal.
+Use the command to convert the file. The output is on stdout.
 ```shell
 ./pem2hex.sh public-key.pem
 ```
+The public key in hexadecimal.
 ```
 30 5c 30 0d 06 09 2a 86 48 86 f7 0d 01 01 01 05 00 03 4b 00 30 48 02 41 00 cb e3 17 32 e9 
 0c 8c 8d 22 d6 52 97 45 5b f1 66 71 4d b5 24 7e 28 e9 60 dc 3d f0 a9 e2 10 6d 0a 21 5e 07 
 1d 16 b9 94 50 ca 03 54 fa e7 7c 57 22 72 3c 45 b6 50 55 a9 69 13 6e 2f 31 47 57 ff c9 02 
 03 01 00 01
 ```
-## RSA Public Key in Hexadecimal
+## RSA Public Key detail
+
 Use this command to get the public key detail:
 ```shell
-openssl pkey -text -noout -in public-key.pem
+openssl pkey -pubin -text -noout -in public-key.pem
 ```
+This command will output the same results as the preceding command but with the private key:
+```shell
+openssl pkey -text_pub -noout -in private-key.pem
+```
+The ouput of both commands is:
+````
+Public-Key: (512 bit)
+Modulus:
+    00:cb:e3:17:32:e9:0c:8c:8d:22:d6:52:97:45:5b:
+    f1:66:71:4d:b5:24:7e:28:e9:60:dc:3d:f0:a9:e2:
+    10:6d:0a:21:5e:07:1d:16:b9:94:50:ca:03:54:fa:
+    e7:7c:57:22:72:3c:45:b6:50:55:a9:69:13:6e:2f:
+    31:47:57:ff:c9
+Exponent: 65537 (0x10001)
+````
 The top left side of the table is the output of the preceding command. The top righ side of the table is the hexadecimal representation of the base64 PEM file.  
 The bottom portion of the table represents the decoded values of every fields in an RSA public key.  
 Representation of an RSA 512-bit public key in hexadecimal.
