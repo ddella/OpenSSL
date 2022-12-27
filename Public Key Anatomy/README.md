@@ -3,8 +3,8 @@
 For RSA, when we say a *512-bit key*, it's the size of the modulus, which is one component of the public and private key.  
 The public key is a key pair of the public exponent (**e**) and the modulus (**n**). It is presented as follow: (**e,n**)
 
-1.	The public exponent (e) (almost always 65537)
-2.	The modulus (n) is the product of two large prime numbers  
+1.	The public exponent **e** (almost always 65537)
+2.	The modulus **n** is the product of two large prime numbers  
 
 The RSA Public Key is derived from the Private Key. We never generate a public key. We always generate a private key and that private key has the public key. They are both mathematically related.
 ## How big is a 512-bit key
