@@ -106,6 +106,22 @@ Each field of the private key.
 ASN.1 format. I used the value `0x3082` as an example.  
 ![Alt text](/images/asn-1-tag.jpg "X.690 ASN.1 tags")
 >For more information on the X.690 specification, take a look on [Wikipedia](https://en.wikipedia.org/wiki/X.690)
+## OID value representation
+To get the OID value from hexadecimal, I used a simple script by Matthias Gaertner found [here](https://www.rtner.de/software/oid.html) or on my Gist [here](https://gist.github.com/ddella/2c716646125912a6ef8bed6273f647f2)  
+To compile, just use GCC/Apple clang:
+```shell
+gcc -Wall oid.c -o oid
+```
+To get the OID value, just type:
+```shell
+./oid -x 06092a864886f70d010101
+```
+The ouput should be:
+```
+UNIVERSAL OID.1.2.840.113549.1.1.1
+```
+The representation of the OID was taken from Microsoft [here](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-gpnap/ff1a8675-0008-408c-ba5f-686a10389adc)
+![Alt text](/images/key-oid-rsa.jpg "Key pair OID")
 ## OpenSSL ASN.1 Parser
 OpenSSL includes an ASN.1 parser. The numbers is the first column are in hexadecimal. They represent the byte offset of the binary private key file.
 ```shell

@@ -115,7 +115,7 @@ The output is:
 >69:d=1  hl=2 l=   3 prim: INTEGER    :010001
 >```
 1. The second line is the modulus
-2. The last line is the public exponent
+2. The last line is the public exponent: 65537 (0x10001)
 ## License
 This project is licensed under the [MIT license](/LICENSE).
 
