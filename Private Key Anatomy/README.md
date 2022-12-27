@@ -1,7 +1,14 @@
 # OpenSSL RSA Private Key Anatomy
 **This applies to RSA keys only**. In this example I'm using a 512-bit private key. This is consider very insecure and should **never** be used in production.  
-When we say a *512-bit private key*, it's the size of modulus.  
-An RSA Private Key, includes the Public Key. We never generate a public key. We always generate a private key and that private key has the public key. They are both mathematically related.
+For RSA, when we say a 512-bit key, it's the size of the modulus, which is one component of the public and private key.
+The private key is a key pair of the private exponent (**d**) and the modulus (**n**). It is presented as follow: (**d,n**)
+
+1. The private exponent **d**
+2. The modulus **n** is the product of two large prime numbers
+>**Note:** The modulus (**n**) is the same number for the private and public key  
+
+The RSA Public Key is derived from the Private Key. We never generate a public key. We always generate a private key and that private key has the public key. They are both mathematically related.
+
 ## How big is a 512-bit key
 Just to give you an idea of how large is a 512-bit number, it would look like:
 1. ~154 decimal digits

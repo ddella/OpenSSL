@@ -5,6 +5,7 @@ The public key is a key pair of the public exponent (**e**) and the modulus (**n
 
 1.	The public exponent **e** (almost always 65537)
 2.	The modulus **n** is the product of two large prime numbers  
+>**Note:** The modulus (**n**) is the same number for the private and public key  
 
 The RSA Public Key is derived from the Private Key. We never generate a public key. We always generate a private key and that private key has the public key. They are both mathematically related.
 ## How big is a 512-bit key
