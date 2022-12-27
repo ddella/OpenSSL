@@ -99,8 +99,10 @@ openssl pkey -text -noout -in private-key.pem
 ```
 The left side of the table is the output of the poreceding command. The righ side of the table is the hexadecimal representation of the base64 PEM file.  
 
-Representation of an RSA 512-bit private key in hexadecimal. This is incomplete for now.   
+Representation of an RSA 512-bit private key in hexadecimal.  
 ![Alt text](/images/rsa-priv-key-hex.jpg "RSA Private key in hex format")
+Definition of each fields in the private key.  
+![Alt text](/images/rsa-priv-key-tags.jpg "RSA Private key tags")
 ## OpenSSL ASN.1 Parser
 OpenSSL includes an ASN.1 parser. The numbers is the first column are in hexadecimal. They represent the byte offset of the binary private key file.
 ```shell
