@@ -11,10 +11,10 @@ The RSA Public Key is derived from the Private Key. We never generate a public k
 ## How big is a 512-bit key
 Just to give you an idea of how large is a 512-bit number, it would look like:
 1. ~154 decimal digits
-2. 128 hexadeciaml digits
+2. 128 hexadecimal digits
 
 ### How many decimal digits
-If `n` is the number of digits, in base 10, you have to solve the equation 10<sup>n</sup> = 2<sup>512</sup>
+If `n` is the number of digits in base 10, you have to solve the equation 10<sup>n</sup> = 2<sup>512</sup>
 
 10<sup>n</sup> = 2<sup>512</sup>  
 n = log<sub>10(</sub>2<sup>512</sup>)  
@@ -30,7 +30,7 @@ If `n` is the number of digits in base 16, you have to solve the equation 16<sup
 n = log<sub>16(</sub>2<sup>512</sup>)  
 n = 512 * log<sub>16</sub>2  
 n = 128  
->If `n` is the number of digits in base 16, just divide the number of bits by 4, since every hexadeciaml digit is exactly 4 bits.  
+>If `n` is the number of digits in base 16, just divide the number of bits by 4, since every hexadecimal digit is exactly 4 bits.  
 ## Fields
 This following information are always included in the RSA public key file and in this order:
 1. Modulus
@@ -51,7 +51,7 @@ The file `public-key.pem` has the public key in `PEM` format. You can open it wi
 >-----END PUBLIC KEY-----
 >```
 ## RSA Public Key in Hexadecimal
-Lets convert the public key `PEM` file to hexadecimal. The `PEM` file is the base64 representation of the key. The idea is to convert the base64 file to binary and then convert the binary to readable hexadeciaml. Take a look at this script `pem2hex.sh` on my Gist [here](https://gist.github.com/ddella/d07d5b827f3638e727bbf3dc1210d4a2) to convert a `PEM` formatted file to hexadecimal.
+Lets convert the public key `PEM` file to hexadecimal. The `PEM` file is the base64 representation of the key. The idea is to convert the base64 file to binary and then convert the binary to readable hexadecimal. Take a look at this script `pem2hex.sh` on my Gist [here](https://gist.github.com/ddella/d07d5b827f3638e727bbf3dc1210d4a2) to convert a `PEM` formatted file to hexadecimal.
 Use the command to convert the file. The output is on stdout.
 ```shell
 ./pem2hex.sh public-key.pem
