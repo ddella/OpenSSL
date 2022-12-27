@@ -101,11 +101,11 @@ The left side of the table is the output of the poreceding command. The righ sid
 
 Representation of an RSA 512-bit private key in hexadecimal.  
 ![Alt text](/images/rsa-priv-key-hex.jpg "RSA Private key in hex format")
-Definition of each fields in the private key.  
+Each fields in the private key.  
 ![Alt text](/images/rsa-priv-key-tags.jpg "RSA Private key tags")
 ASN.1 format.  
 ![Alt text](/images/asn-1-tag.jpg "X.690 ASN.1 tags")
->For more information, read the specs [here](https://en.wikipedia.org/wiki/X.690)
+>For more information on the X.690 specification, read it [here](https://en.wikipedia.org/wiki/X.690)
 ## OpenSSL ASN.1 Parser
 OpenSSL includes an ASN.1 parser. The numbers is the first column are in hexadecimal. They represent the byte offset of the binary private key file.
 ```shell
