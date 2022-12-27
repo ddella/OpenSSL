@@ -5,7 +5,7 @@ The private key is a key pair of the private exponent (**d**) and the modulus (*
 
 1. The private exponent **d**
 2. The modulus **n** is the product of two large prime numbers
->**Note:** The modulus (**n**) is the same number for the private and public key  
+>**Note**: The modulus (**n**) is the same number for the private and public key  
 
 The RSA Public Key is derived from the Private Key. We never generate a public key. We always generate a private key and that private key has the public key. They are both mathematically related.
 
