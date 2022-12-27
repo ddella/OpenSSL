@@ -143,7 +143,7 @@ The file `public-key.pem` is the RSA public key extracted from the private key `
 ```shell
 openssl pkey -in private-key.pem -pubout -out public-key.pem
 ```
-The binary file is 344 bytes. According to the header in the hexadecimal dump of the private key `PEM` file, the size is 0x0154 (340) bytes plus 4 bytes for the header and that equals to 344 bytes.  
+The binary file is 344 octets. According to the header in the hexadecimal dump of the private key, the size is 0x0154 (340) octets plus the 4 octets for the header. That equals to 344 octets of the binary file.  
 ```
 -rw-r--r--   1 username  staff   344 01 Jan 00:00 private-key.bin
 -rw-------   1 username  staff   522 01 Jan 00:00 private-key.pem
