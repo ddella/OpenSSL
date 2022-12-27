@@ -124,6 +124,25 @@ Representation of an RSA 512-bit private key with a bit of math. I wanted to kee
 
 ![Alt text](/images/rsa-priv-key.jpg "RSA Private key")
 ***
+## Files
+The file `private-key.pem` is the RSA private key.  
+```shell
+openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:512 -out private-key.pem
+```
+The file `private-key.bin` is the binary representation of the RSA private key `PEM` file.  
+```shell
+openssl enc -d -base64 -in private-key.pem -out private-key.bin
+```
+The file `public-key.pem` is the RSA public key extracted from the private key `PEM` file.  
+```shell
+openssl pkey -in private-key.pem -pubout -out public-key.pem
+```
+The binary file is 344 bytes. According to the header in the hexadecimal dump of the private key `PEM` file, the size is 0x0154 (340) bytes plus 4 bytes for the header and that equals to 344 bytes.  
+```
+-rw-r--r--   1 username  staff   344 01 Jan 00:00 private-key.bin
+-rw-------   1 username  staff   522 01 Jan 00:00 private-key.pem
+-rw-r--r--   1 username  staff   182 01 Jan 00:00 public-key.pem
+```
 ## License
 This project is licensed under the [MIT license](/LICENSE).
 
