@@ -125,6 +125,10 @@ Use this command to view the key usage of certificate `server-crt.pem`:
 ```shell
 openssl x509 -noout -in server-crt.pem -ext keyUsage
 ```
+>~~~
+>X509v3 Key Usage: 
+>    Digital Signature, Non Repudiation, Key Encipherment, Data Encipherment, Key Agreement
+>~~~
 ***
 ## License
 This project is licensed under the [MIT license](/LICENSE).
