@@ -34,7 +34,7 @@ n = 512 * log<sub>16</sub>2
 n = 128  
   
 ## Fields
-This following information are always included in the private key file and in this order:
+This following information are always included in the private key and in this order:
 1. Modulus
 2. Public Exponent
 3. Private Exponent
@@ -46,7 +46,15 @@ This following information are always included in the private key file and in th
 
 This applies to RSA private key only. It's based on [RSA Private Key Breakdown](http://etherhack.co.uk/asymmetric/docs/rsa_key_breakdown.html) and a little bit of reverse engineering 😀
 ## RSA Private Key in PEM
-The first thing to do is to convert the private key `PEM`file to haxadecimal. The `PEM` file is the base64 representation of the key. For this example, I generated a 512-bit RSA private key to keep the numbers small but in reality this is insecure.
+The first thing to do is to convert the private key `PEM` file to hexadecimal. The `PEM` file is a base64 representation of the key. For this example, I generated a 512-bit RSA private key to keep the numbers small but in reality this is insecure.
+Use this command to generate an RSA 512-bit private key:
+```shell
+openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:512 -out private-key.pem
+```
+To view the RSA Private Key in PEM (base64) format, just type:
+```shell
+cat private-key.pem
+```
 >RSA Private Key in Base64 PEM format
 >```
 >-----BEGIN PRIVATE KEY-----
@@ -67,22 +75,23 @@ Check this script `pem2hex.sh` on my Gist [here](https://gist.github.com/ddella/
 ```shell
 ./pem2hex.sh private-key.pem
 ```
-```
-30 82 01 54 02 01 00 30 0d 06 09 2a 86 48 86 f7 0d 01 01 01 05 00 04 82 01 
-3e 30 82 01 3a 02 01 00 02 41 00 cb e3 17 32 e9 0c 8c 8d 22 d6 52 97 45 5b 
-f1 66 71 4d b5 24 7e 28 e9 60 dc 3d f0 a9 e2 10 6d 0a 21 5e 07 1d 16 b9 94 
-50 ca 03 54 fa e7 7c 57 22 72 3c 45 b6 50 55 a9 69 13 6e 2f 31 47 57 ff c9 
-02 03 01 00 01 02 40 7c a6 3a b1 aa 5f 3c b2 b0 c0 bd 3f b4 6c d0 ba 23 bd 
-31 68 bd 24 c0 01 b2 c4 bf 94 ed 1b c3 bd 1d 47 e6 e3 1c 9d 82 38 f7 67 49 
-8e d8 ad 7b cc cc ec 67 a1 be b2 9a 21 44 25 13 f4 fa 59 af 71 02 21 00 eb 
-f4 f4 fe a4 ca 5e 4c 38 a4 31 7c 23 cf 2f ee a3 3d 1f 48 52 c9 40 1f 2f 61 
-0e 15 c5 43 50 85 02 21 00 dd 34 c1 0e cd 04 2b 3f b4 04 e8 c3 8e 71 ed 7c 
-6c ba 5c 00 c1 c2 f8 79 40 c0 5c 7b 9b 8b 57 75 02 20 4e fe da 8a ea 36 ca 
-2d 30 85 5f ff d4 a9 47 bd d8 2e dd 6b 44 34 16 60 9a 67 1e e5 10 fe c1 55 
-02 20 48 0f 18 58 de f6 5d b4 59 cb 43 9b f8 ba 2a 37 df 1f 72 3b 18 e3 8f 
-97 c8 3d 21 a3 6e 8f 1c c5 02 21 00 dd 19 c8 60 2e 9a dc 5b cf cf cd a1 5d 
-9f 18 42 09 ae cc 03 73 1b 10 79 bb c4 2f 2f bb f6 a7 88
-```
+The hexadeciaml representation of the `PEM` file:
+>```
+>30 82 01 54 02 01 00 30 0d 06 09 2a 86 48 86 f7 0d 01 01 01 05 00 04 82 01 
+>3e 30 82 01 3a 02 01 00 02 41 00 cb e3 17 32 e9 0c 8c 8d 22 d6 52 97 45 5b 
+>f1 66 71 4d b5 24 7e 28 e9 60 dc 3d f0 a9 e2 10 6d 0a 21 5e 07 1d 16 b9 94 
+>50 ca 03 54 fa e7 7c 57 22 72 3c 45 b6 50 55 a9 69 13 6e 2f 31 47 57 ff c9 
+>02 03 01 00 01 02 40 7c a6 3a b1 aa 5f 3c b2 b0 c0 bd 3f b4 6c d0 ba 23 bd 
+>31 68 bd 24 c0 01 b2 c4 bf 94 ed 1b c3 bd 1d 47 e6 e3 1c 9d 82 38 f7 67 49 
+>8e d8 ad 7b cc cc ec 67 a1 be b2 9a 21 44 25 13 f4 fa 59 af 71 02 21 00 eb 
+>f4 f4 fe a4 ca 5e 4c 38 a4 31 7c 23 cf 2f ee a3 3d 1f 48 52 c9 40 1f 2f 61 
+>0e 15 c5 43 50 85 02 21 00 dd 34 c1 0e cd 04 2b 3f b4 04 e8 c3 8e 71 ed 7c 
+>6c ba 5c 00 c1 c2 f8 79 40 c0 5c 7b 9b 8b 57 75 02 20 4e fe da 8a ea 36 ca 
+>2d 30 85 5f ff d4 a9 47 bd d8 2e dd 6b 44 34 16 60 9a 67 1e e5 10 fe c1 55 
+>02 20 48 0f 18 58 de f6 5d b4 59 cb 43 9b f8 ba 2a 37 df 1f 72 3b 18 e3 8f 
+>97 c8 3d 21 a3 6e 8f 1c c5 02 21 00 dd 19 c8 60 2e 9a dc 5b cf cf cd a1 5d 
+>9f 18 42 09 ae cc 03 73 1b 10 79 bb c4 2f 2f bb f6 a7 88
+>```
 ## RSA Private Key in Hexadecimal
 Use this command to get the private key detail:
 ```shell
