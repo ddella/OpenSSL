@@ -12,7 +12,7 @@ The RSA Public Key is derived from the Private Key. We never generate a public k
 ## How big is a 512-bit key
 Just to give you an idea of how large is a 512-bit number, it would look like:
 1. ~154 decimal digits
-2. 128 hexadeciaml digits
+2. 128 hexadecimal digits
 
 ### How many decimal digits
 If `n` is the number of digits, in base 10, you have to solve the equation 10<sup>n</sup> = 2<sup>512</sup>
@@ -25,7 +25,7 @@ n = log<sub>10(</sub>2<sup>512</sup>)
 n = 512 * log<sub>10</sub>2  
 n ≈ 154  
 ### How many hexadecimal digits
-If `n` is the number of digits, in base 16, just divide the number of bits by 4, since every hexadeciaml digit is exactly 4 bits or do the same math as for decimal execpt that the base is 16 instead of 10.    
+If `n` is the number of digits, in base 16, just divide the number of bits by 4, since every hexadecimal digit is exactly 4 bits or do the same math as for decimal execpt that the base is 16 instead of 10.    
 If `n` is the number of digits in base 16, you have to solve the equation 16<sup>n</sup> = 2<sup>512</sup>
 
 16<sup>n</sup> = 2<sup>512</sup>  
@@ -75,7 +75,7 @@ Check this script `pem2hex.sh` on my Gist [here](https://gist.github.com/ddella/
 ```shell
 ./pem2hex.sh private-key.pem
 ```
-The hexadeciaml representation of the `PEM` file:
+The hexadecimal representation of the `PEM` file:
 >```
 >30 82 01 54 02 01 00 30 0d 06 09 2a 86 48 86 f7 0d 01 01 01 05 00 04 82 01 
 >3e 30 82 01 3a 02 01 00 02 41 00 cb e3 17 32 e9 0c 8c 8d 22 d6 52 97 45 5b 
@@ -92,20 +92,20 @@ The hexadeciaml representation of the `PEM` file:
 >97 c8 3d 21 a3 6e 8f 1c c5 02 21 00 dd 19 c8 60 2e 9a dc 5b cf cf cd a1 5d 
 >9f 18 42 09 ae cc 03 73 1b 10 79 bb c4 2f 2f bb f6 a7 88
 >```
-## RSA Private Key in Hexadecimal
+## RSA Private Key in detail
 Use this command to get the private key detail:
 ```shell
 openssl pkey -text -noout -in private-key.pem
 ```
-The left side of the table is the output of the poreceding command. The righ side of the table is the hexadecimal representation of the base64 PEM file.  
+The left side of the table is the output of the preceding command. The righ side of the table is the hexadecimal representation of the base64 PEM file.  
 
 Representation of an RSA 512-bit private key in hexadecimal.  
 ![Alt text](/images/rsa-priv-key-hex.jpg "RSA Private key in hex format")
-Each fields in the private key.  
+Each field of the private key.  
 ![Alt text](/images/rsa-priv-key-tags.jpg "RSA Private key tags")
-ASN.1 format.  
+ASN.1 format. I used the value `0x3082` as an example.  
 ![Alt text](/images/asn-1-tag.jpg "X.690 ASN.1 tags")
->For more information on the X.690 specification, read it [here](https://en.wikipedia.org/wiki/X.690)
+>For more information on the X.690 specification, take a look on [Wikipedia](https://en.wikipedia.org/wiki/X.690)
 ## OpenSSL ASN.1 Parser
 OpenSSL includes an ASN.1 parser. The numbers is the first column are in hexadecimal. They represent the byte offset of the binary private key file.
 ```shell
@@ -125,7 +125,7 @@ openssl asn1parse -inform pem -in private-key.pem -strparse 22
 ```
 ![Alt text](/images/rsa-priv-key-asn.jpg "RSA Private key in ASN.1")
 ## RSA Private Key with a bit of math
-Representation of an RSA 512-bit private key with a bit of math. I wanted to keep this as simple as possible. It gives an idea of how those numbers are calculated. In reality, there's way more than what you see here.  
+Representation of an RSA 512-bit private key with a bit of math. I wanted to keep this as simple as possible. It gives an idea of how those numbers are calculated. In reality, it's way more complicated than what you see here.  
 
 ![Alt text](/images/rsa-priv-key.jpg "RSA Private key")
 ***
