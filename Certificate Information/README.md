@@ -113,22 +113,35 @@ Use this command to view the SAN of certificate `server-crt.pem`:
 ```shell
 openssl x509 -noout -in server-crt.pem -ext subjectAltName
 ```
+```
+    X509v3 Subject Alternative Name: 
+        DNS:localhost, DNS:*.localhost, DNS:Server.com, IP Address:127.0.0.1
+```
 Use this command to view the basic constraints of certificate `server-crt.pem`:
 ```shell
 openssl x509 -noout -in server-crt.pem -ext basicConstraints
+```
+```
+    X509v3 Basic Constraints: 
+        CA:FALSE
 ```
 Use this command to view the authority infor access of certificate `server-crt.pem`:
 ```shell
 openssl x509 -noout -in server-crt.pem -ext authorityInfoAccess
 ```
+```
+    Authority Information Access: 
+        CA Issuers - URI:http://localhost:8000/Intermediate-CA.cer
+        OCSP - URI:http://localhost:8000/ocsp
+```
 Use this command to view the key usage of certificate `server-crt.pem`:
 ```shell
 openssl x509 -noout -in server-crt.pem -ext keyUsage
 ```
->~~~
->X509v3 Key Usage: 
->    Digital Signature, Non Repudiation, Key Encipherment, Data Encipherment, Key Agreement
->~~~
+```
+    X509v3 Key Usage: 
+        Digital Signature, Non Repudiation, Key Encipherment, Data Encipherment, Key Agreement
+```
 ***
 ## License
 This project is licensed under the [MIT license](/LICENSE).
