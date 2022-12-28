@@ -2,6 +2,8 @@
 **Certificate Chain** or **Chain of Trust** is made up of a list of certificates that start from the end-user certificate and terminate with the root certificate. The **chain of trust** is an ordered list of certificates, containing an end-user (server) certificate, one or more intermediate certificate.s and a RootCA certificate.
 
 If your end-user certificate is to be trusted, its signature has to be traceable back to its root CA. In the certificate chain, every certificate is signed by the entity that is identified by the next certified along the chain, except the RootCA which is a self-signed certificate.
+
+The certificates used for this example.
 ![Alt text](/images/chain-of-trust.jpg "Chain of trust")
 ## Retreive remote server certificate
 The `s_client` option with OpenSSL is very helpful to retreive information from servers.
