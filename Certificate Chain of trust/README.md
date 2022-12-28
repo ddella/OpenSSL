@@ -2,6 +2,7 @@
 **Certificate Chain** or **Chain of Trust** is made up of a list of certificates that start from the end-user certificate and terminate with the root certificate. The **chain of trust** is an ordered list of certificates, containing an end-user (server) certificate, one or more intermediate certificate.s and a RootCA certificate.
 
 If your end-user certificate is to be trusted, its signature has to be traceable back to its root CA. In the certificate chain, every certificate is signed by the entity that is identified by the next certified along the chain, except the RootCA which is a self-signed certificate.
+![Alt text](/images/chain-of-trust.jpg "Chain of trust")
 ## Retreive remote server certificate
 The `s_client` option with OpenSSL is very helpful to retreive information from servers.
 Use this command to initiate a connection on a TLS server.
@@ -46,9 +47,16 @@ openssl verify -CAfile ca-crt.pem -untrusted int-crt.pem server-crt.pem
 
 Use this command to verfy the server certificate via CA and SubCA Chain (same as above):
 ```shell
-openssl verify -CAfile ca-chain.pem server-crt.pem
+openssl verify -show_chain -CAfile ca-chain.pem server-crt.pem
 ```
-
+Output:
+>```
+>server-crt.pem: OK
+>Chain:
+>depth=0: C = CA, ST = QC, L = Montreal, O = Server, OU = IT, CN = Server.com (untrusted)
+>depth=1: C = CA, ST = QC, L = Montreal, O = IntermediateCA, OU = IT, CN = SubRootCA.com
+>depth=2: C = CA, ST = QC, L = Montreal, O = RootCA, OU = IT, CN = RootCA.com
+>```
 Use this command to verfy the partial chain with Client cert via IntermediateCA
 ```shell
 openssl verify -no-CAfile -no-CApath -partial_chain -trusted int-crt.pem client-crt.pem
