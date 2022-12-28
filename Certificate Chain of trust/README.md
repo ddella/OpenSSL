@@ -5,7 +5,7 @@ If your end-user certificate is to be trusted, its signature has to be traceable
 
 The certificates used for this example.
 ![Alt text](/images/chain-of-trust.jpg "Chain of trust")
-## Retreive remote server certificate
+## Retrieve remote server certificate
 The `s_client` option with OpenSSL is very helpful to retreive information from servers.
 Use this command to initiate a connection on a TLS server.
 ```shell
