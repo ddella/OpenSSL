@@ -91,7 +91,7 @@ The output is the signature, in hexadecimal, without any punctuation and line fe
 ### Extract the signature algorithm from the certificate
 I don't use it for now but it will be usefull is future version of my script.
 ```shell
-openssl x509 -in server-crt.pem -text -noout -certopt ca_default -certopt no_validity -certopt no_serial certopt no_subject -certopt no_extensions -certopt no_signame | grep 'Signature Algorithm:' | sed 's/Signature Algorithm://g' | tr -d '[:space:]' > sig_algo.txt
+openssl x509 -in server-crt.pem -text -noout -certopt ca_default -certopt no_validity -certopt no_serial -certopt no_subject -certopt no_extensions -certopt no_signame | grep 'Signature Algorithm:' | sed 's/Signature Algorithm://g' | tr -d '[:space:]' > sig_algo.txt
 ```
 The output should look like this:
 >```
