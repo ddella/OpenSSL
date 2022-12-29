@@ -79,7 +79,7 @@ openssl verify -CAfile ca-chain.pem client-crt.pem
 The best way to understand the signature verification process is to do it manually, aka the hard way 😀
 
 ### Extract the signature value from the certificate
-I didn't find a cleaner way to get the signature from a certificate. I print the whole X.509 certificate and grab the last portion which is the signature.
+I didn't find a cleaner way to get the signature from a certificate. I print the whole X.509 certificate and grab the last portion of it, which is the signature.
 ```shell
 openssl x509 -in server-crt.pem -text -noout -certopt ca_default -certopt no_validity -certopt no_serial -certopt no_subject -certopt no_extensions -certopt no_signame | grep -v 'Signature Algorithm' | sed 's/Signature Value//g' | tr -d '[:space:] [:punct:]' > signature.hex
 ```
@@ -89,7 +89,7 @@ The output is the signature, in hexadecimal, without any punctuation and line fe
 >```
 
 ### Extract the signature algorithm from the certificate
-I don't use it for now but it will be usefull is future version of my script.
+I don't use it for now but it will be usefull in future version of my script.
 ```shell
 openssl x509 -in server-crt.pem -text -noout -certopt ca_default -certopt no_validity -certopt no_serial -certopt no_subject -certopt no_extensions -certopt no_signame | grep 'Signature Algorithm:' | sed 's/Signature Algorithm://g' | tr -d '[:space:]' > sig_algo.txt
 ```
@@ -99,7 +99,7 @@ The output should look like this:
 >```
 
 ### Convert the hexadecimal signature and dump it as a binary file
-At this point the signature is in hexadecimal and encrypted with the private of the issuer. The following command creates a binary file with the encrypted certificate signature.
+At this point the signature is in hexadecimal and encrypted with the private key of the issuer. The following command creates a binary file with the encrypted certificate signature. It just convert ascii character, representing an hexadecimal value, in binary format.
 ```shell
 xxd -r -p signature.hex > sig_encrypted.bin
 ```
@@ -127,25 +127,15 @@ See what's inside file `sig_decrypted.bin` with the command:
 ```shell
 openssl asn1parse -inform der -in sig_decrypted.bin
 ```
-The output:
-```
- 0:d=0  hl=2 l=  49 cons: SEQUENCE          
- 2:d=1  hl=2 l=  13 cons: SEQUENCE          
- 4:d=2  hl=2 l=   9 prim: OBJECT         :sha256
-15:d=2  hl=2 l=   0 prim: NULL              
-17:d=1  hl=2 l=  32 prim: OCTET STRING   [HEX DUMP]:89C49CF762F2133FEA6D9495111B0BF7F899B846A55618061FA0AFB906D34B6C
-```
-Use this command to get the hash in hex:
-```shell
-openssl asn1parse -inform der -in sig_decrypted_x690.bin -offset 17 | sed 's/.*\[HEX DUMP\]://'
-```
 The output is:
 >```
->89C49CF762F2133FEA6D9495111B0BF7F899B846A55618061FA0AFB906D34B6C
+> 0:d=0  hl=2 l=  49 cons: SEQUENCE          
+> 2:d=1  hl=2 l=  13 cons: SEQUENCE          
+> 4:d=2  hl=2 l=   9 prim: OBJECT         :sha256
+>15:d=2  hl=2 l=   0 prim: NULL              
+>17:d=1  hl=2 l=  32 prim: OCTET STRING   [HEX DUMP]>:89C49CF762F2133FEA6D9495111B0BF7F899B846A55618061FA0AFB906D34B6C
 >```
-X
-X
-Extract the decrypted signature hash value in X.609 format and save it to a binary file.
+Use this command to extract the decrypted signature hash value in X.609 format and save it to a binary file:
 ```shell
 openssl asn1parse -inform der -in sig_decrypted_x690.bin -offset 17 | sed 's/.*\[HEX DUMP\]://' | xxd -r -p > sig_decrypted.bin
 ```
