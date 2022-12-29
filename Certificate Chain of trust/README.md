@@ -119,10 +119,37 @@ This will create a `PEM` file with the public key that looks like this:
 >```
 
 ### Decrypt the RSA signature from a binary encrypted signature
-It takes the issuer public key to decrypt the signature from previous step. The output is a binary file with the decrypted certificate signature.
+It takes the issuer public key to decrypt the signature from previous step. The output is an X.690 binary file with the decrypted certificate signature.
 ```shell
-openssl pkeyutl -verifyrecover -pubin -inkey int-pubkey.pem -in sig_encrypted.bin -out sig_decrypted.bin
+openssl pkeyutl -verifyrecover -pubin -inkey int-pubkey.pem -in sig_encrypted.bin -out sig_decrypted_x690.bin
 ```
+See what's inside file `sig_decrypted.bin` with the command:
+```shell
+openssl asn1parse -inform der -in sig_decrypted.bin
+```
+The output:
+```
+ 0:d=0  hl=2 l=  49 cons: SEQUENCE          
+ 2:d=1  hl=2 l=  13 cons: SEQUENCE          
+ 4:d=2  hl=2 l=   9 prim: OBJECT         :sha256
+15:d=2  hl=2 l=   0 prim: NULL              
+17:d=1  hl=2 l=  32 prim: OCTET STRING   [HEX DUMP]:89C49CF762F2133FEA6D9495111B0BF7F899B846A55618061FA0AFB906D34B6C
+```
+Use this command to get the hash in hex:
+```shell
+openssl asn1parse -inform der -in sig_decrypted_x690.bin -offset 17 | sed 's/.*\[HEX DUMP\]://'
+```
+The output is:
+>```
+>89C49CF762F2133FEA6D9495111B0BF7F899B846A55618061FA0AFB906D34B6C
+>```
+X
+X
+Extract the decrypted signature hash value in X.609 format and save it to a binary file.
+```shell
+openssl asn1parse -inform der -in sig_decrypted_x690.bin -offset 17 | sed 's/.*\[HEX DUMP\]://' | xxd -r -p > sig_decrypted.bin
+```
+
 At this point we:
 1. Downloaded the end-user certificate
 2. Downloaded the issuer certificate
@@ -142,12 +169,14 @@ The output creates a bin file `cert_body.bin` that is the binary version of the 
 ```shell
 openssl dgst -sha256 -binary -out sig_calculated.bin cert_body.bin
 ```
+The output is the binary representation of the `sha256` of the certificate.
 
 ### Lets compare the files
 Lets compare the file `sig_decrypted.bin` and `sig_calculated.bin`. If they match, issuer signed the end-user certificate.
 ```shell
 cmp -bl sig_calculated.bin sig_decrypted.bin
 ```
+No output means files are identical. You could also verify the shell variable `$?` inside a script.
 
 ## Shell Script to automate the verification
 I made a very simple script to automate the verification. It takes an end-user certificte, an issuer certificate and verify is the issuer really signed the certificate. You can find it [here](https://gist.github.com/ddella/bff877bc4929c5872bf06e9ddcf8ca4c). Remember this is for educational purposes **ONLY**.
