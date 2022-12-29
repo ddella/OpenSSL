@@ -181,8 +181,14 @@ No output means files are identical. You could also verify the shell variable `$
 | sig_encrypted.bin      | The encrypted hash of the end-user certificate                  |
 | signature.hex          | The encrypted hash in hexadecimal                               |
 
+### Easier way to do with OpenSSL
+There's an easier way to do the verification by letting `openssl` do the job for us with this command:
+```shell
+openssl dgst -sha256 -verify int-pubkey.pem -signature sig_encrypted.bin cert_body.bin
+```
+
 ## Shell Script to automate the verification
-I made a very simple script to automate the verification. It takes an end-user certificte, an issuer certificate and verify is the issuer really signed the certificate. You can find it [here](https://gist.github.com/ddella/bff877bc4929c5872bf06e9ddcf8ca4c). Remember this is for educational purposes **ONLY**.
+I made a very simple script to automate the verification. It takes an end-user certificte, an issuer certificate and verify if the issuer really signed the end-user certificate. You can find it [here](https://gist.github.com/ddella/bff877bc4929c5872bf06e9ddcf8ca4c). Remember this is for educational purposes **ONLY**.
 ## License
 This project is licensed under the [MIT license](/LICENSE).
 
