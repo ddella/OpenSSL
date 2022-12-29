@@ -1,5 +1,7 @@
 # Certificate Chain of trust
-**Certificate Chain** or **Chain of Trust** is made up of a list of certificates that start from the end-user certificate and terminate with the root certificate. The **chain of trust** is an ordered list of certificates, containing an end-user (server) certificate, one or more intermediate certificate.s and a RootCA certificate.
+**Certificate Chain** or **Chain of Trust** is made up of an ordered list of certificates that start from the end-user certificate and terminate with the Certificate Authority (CA) certificate. It may contain one or more intermediate certificate.s in between. The **Certificate Chain** enables the receiver to verify that the sender and all CA's are trustworthy. 
+
+The Intermediate Certificate.s is any certificate.s that sits between the end-use certificate and the Root Certificate. The Intermediate Certificate is the signer/issuer of the end-user Certificate. The Root CA Certificate is the signer/issuer of the Intermediate Certificate. If the Intermediate Certificate is not installed on the server,  where the end-user certificate is installed, it may prevent some browsers from trusting the end-user certificate.
 
 If your end-user certificate is to be trusted, its signature has to be traceable back to its root CA. In the certificate chain, every certificate is signed by the entity that is identified by the next certified along the chain, except the RootCA which is a self-signed certificate.
 
