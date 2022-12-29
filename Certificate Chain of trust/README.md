@@ -81,10 +81,7 @@ The best way to understand the signature verification process is to do it manual
 ### Extract the signature value from the certificate
 I didn't find a cleaner way to get the signature from a certificate. I print the whole X.509 certificate and grab the last portion which is the signature.
 ```shell
-openssl x509 -in server-crt.pem -text -noout -certopt ca_default \ 
--certopt no_validity -certopt no_serial -certopt no_subject \
--certopt no_extensions -certopt no_signame | grep -v 'Signature Algorithm' | \
-sed 's/Signature Value//g' | tr -d '[:space:] [:punct:]' > signature.hex
+openssl x509 -in server-crt.pem -text -noout -certopt ca_default -certopt no_validity -certopt no_serial -certopt no_subject -certopt no_extensions -certopt no_signame | grep -v 'Signature Algorithm' | sed 's/Signature Value//g' | tr -d '[:space:] [:punct:]' > signature.hex
 ```
 The output is the signature, in hexadecimal, without any punctuation and line feeds. It's a plain text file.
 ```
