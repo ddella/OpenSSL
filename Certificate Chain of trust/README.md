@@ -121,7 +121,7 @@ This will create a `PEM` file with the public key that looks like this:
 ### Decrypt the RSA signature from a binary encrypted signature
 It takes the issuer public key to decrypt the signature from previous step. The output is a binary file with the decrypted certificate signature.
 ```shell
-openssl pkeyutl -verifyrecover -pubin -inkey int-pubkey.pem -in sig-encrypted.bin -out sig-decrypted.bin
+openssl pkeyutl -verifyrecover -pubin -inkey int-pubkey.pem -in sig-encrypted.bin -out sig_decrypted.bin
 ```
 At this point we:
 1. Downloaded the end-user certificate
@@ -132,21 +132,21 @@ At this point we:
 We have the decrypted signature of the end-user certificate. Lets see if this signature equals the one we calculate.
 
 ### Extract the body part of certificate without RSA signature part
-This command extract the body part of the end-user certificate without the signatire. We will use the body part to calculate the signature and compare it to the decrypted one we calculated earlier. If they match then the issuer signed the end-user certificate.
+This command extract the body part of the end-user certificate without the signature. We will use the body part to do our own calculation on the signature and compare it to the decrypted one we calculated earlier. If they match, then the issuer signed the end-user certificate.
 ```shell
-openssl asn1parse -in server-crt.pem -noout -strparse 4 -out cert-body.bin
+openssl asn1parse -in server-crt.pem -noout -strparse 4 -out cert_body.bin
 ```
-The output creates a bin file cert-body.bin of a certificate without signature.
+The output creates a bin file `cert_body.bin` that is the binary version of the server certificate without the signature hash.
 
 ### Calculate the hash of certificate body
 ```shell
-openssl dgst -sha256 cert-body.bin -out sig_calculated.bin
+openssl dgst -sha256 -binary -out sig_calculated.bin cert_body.bin
 ```
 
 ### Lets compare the files
-Lets compare the file `sig-decrypted.bin` and `sig_calculated.bin`. If they match, issuer signed the end-user certificate.
+Lets compare the file `sig_decrypted.bin` and `sig_calculated.bin`. If they match, issuer signed the end-user certificate.
 ```shell
-cmp -bl sig_calculated.bin sig-decrypted.bin
+cmp -bl sig_calculated.bin sig_decrypted.bin
 ```
 
 ## Shell Script to automate the verification
