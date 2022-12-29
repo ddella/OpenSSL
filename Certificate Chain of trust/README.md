@@ -123,9 +123,9 @@ It takes the issuer public key to decrypt the signature from previous step. The 
 ```shell
 openssl pkeyutl -verifyrecover -pubin -inkey int-pubkey.pem -in sig_encrypted.bin -out sig_decrypted_x690.bin
 ```
-See what's inside file `sig_decrypted.bin` with the command:
+See what's inside file `sig_decrypted_x690.bin` with the command:
 ```shell
-openssl asn1parse -inform der -in sig_decrypted.bin
+openssl asn1parse -inform der -in sig_decrypted_x690.bin
 ```
 The output is:
 >```
