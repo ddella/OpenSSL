@@ -182,7 +182,7 @@ No output means files are identical. You could also verify the shell variable `$
 | signature.hex          | The encrypted hash in hexadecimal                               |
 
 ### Easier way to do with OpenSSL
-There's an easier way to do the verification by letting `openssl` do the job for us with this command:
+There's an easier way to do the verification by letting `openssl` do the work for us with this command:
 ```shell
 openssl dgst -sha256 -verify int-pubkey.pem -signature sig_encrypted.bin cert_body.bin
 ```
