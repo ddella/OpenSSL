@@ -78,8 +78,41 @@ openssl verify -CAfile ca-chain.pem client-crt.pem
 ## Verify the chain of trust manually
 The best way to understand the signature verification process is to do it manually, aka the hard way 😀
 
-### Extract the public key from issuer certificate.
-The signature of the end-user certificate has been encrypted with the private key of the issuer, so the public key is neede to decrypt it.
+### Extract the signature value from the certificate
+I didn't find a cleaner way to get the signature from a certificate. I print the whole X.509 certificate and grab the last portion which is the signature.
+```shell
+openssl x509 -in server-crt.pem -text -noout -certopt ca_default \ 
+-certopt no_validity -certopt no_serial -certopt no_subject \
+-certopt no_extensions -certopt no_signame | grep -v 'Signature Algorithm' | \
+sed 's/Signature Value//g' | tr -d '[:space:] [:punct:]' > signature.hex
+```
+The output is the signature, in hexadecimal, without any punctuation and line feeds. It's a plain text file.
+```
+68f449bf50 ... d3b561160a1d0b4a01a80ff79
+```
+
+### Extract the signature algorithm from the certificate
+I don't use it for now but it will be usefull is future version of my script.
+```shell
+openssl x509 -in server-crt.pem -text -noout -certopt ca_default \
+-certopt no_validity -certopt no_serial -certopt no_subject \
+-certopt no_extensions -certopt no_signame | \
+grep 'Signature Algorithm:' | sed 's/Signature Algorithm://g' | \
+tr -d '[:space:]' > sig_algo.txt
+```
+The output should look like this:
+>```
+>sha256WithRSAEncryption
+>```
+
+### Convert the hexadecimal signature and dump it as a binary file
+At this point the signature is in hexadecimal and encrypted with the private of the issuer. The following command creates a binary file with the encrypted certificate signature.
+```shell
+xxd -r -p signature.hex > sig-encrypted.bin
+```
+
+### Extract the public key from issuer certificate
+The signature of the end-user certificate has been encrypted with the private key of the issuer, so the public key is needed to decrypt it.
 ```shell
 openssl x509 -in int-crt.pem -noout -pubkey -out int-pubkey.pem
 ```
@@ -88,10 +121,42 @@ This will create a `PEM` file with the public key that looks like this:
 >-----BEGIN PUBLIC KEY-----
 >MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAowiUKapbpqHprklG2jje
 >...
->-----END PUBLIC KEY-----
 >JWDluXDg19ZZqRNyhZ7qydMCAwEAAQ==
+>-----END PUBLIC KEY-----
 >```
 
+### Decrypt the RSA signature from a binary encrypted signature
+It takes the issuer public key to decrypt the signature from previous step. The output is a binary file with the decrypted certificate signature.
+```shell
+openssl pkeyutl -verifyrecover -pubin -inkey int-pubkey.pem -in sig-encrypted.bin -out sig-decrypted.bin
+```
+At this point we:
+1. Downloaded the end-user certificate
+2. Downloaded the issuer certificate
+3. Extracted the issuer public key from its certificate
+4. Decrypted the signature from the end-user certificate with the public key from the issuer
+
+We have the decrypted signature of the end-user certificate. Lets see if this signature equals the one we calculate.
+
+### Extract the body part of certificate without RSA signature part
+This command extract the body part of the end-user certificate without the signatire. We will use the body part to calculate the signature and compare it to the decrypted one we calculated earlier. If they match then the issuer signed the end-user certificate.
+```shell
+openssl asn1parse -in server-crt.pem -noout -strparse 4 -out cert-body.bin
+```
+The output creates a bin file cert-body.bin of a certificate without signature.
+
+### Calculate the hash of certificate body
+```shell
+openssl dgst -sha256 cert-body.bin -out sig_calculated.bin
+```
+
+### Lets compare the files
+Lets compare the file `sig-decrypted.bin` and `sig_calculated.bin`. If they match, issuer signed the end-user certificate.
+```shell
+cmp -bl sig_calculated.bin sig-decrypted.bin
+```
+
+## Shell Script to automate the verification
 I made a very simple script to automate the verification. It takes an end-user certificte, an issuer certificate and verify is the issuer really signed the certificate. You can find it [here](https://gist.github.com/ddella/bff877bc4929c5872bf06e9ddcf8ca4c). Remember this is for educational purposes **ONLY**.
 ## License
 This project is licensed under the [MIT license](/LICENSE).
