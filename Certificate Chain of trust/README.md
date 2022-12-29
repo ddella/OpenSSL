@@ -101,7 +101,7 @@ The output should look like this:
 ### Convert the hexadecimal signature and dump it as a binary file
 At this point the signature is in hexadecimal and encrypted with the private of the issuer. The following command creates a binary file with the encrypted certificate signature.
 ```shell
-xxd -r -p signature.hex > sig-encrypted.bin
+xxd -r -p signature.hex > sig_encrypted.bin
 ```
 
 ### Extract the public key from issuer certificate
@@ -121,7 +121,7 @@ This will create a `PEM` file with the public key that looks like this:
 ### Decrypt the RSA signature from a binary encrypted signature
 It takes the issuer public key to decrypt the signature from previous step. The output is a binary file with the decrypted certificate signature.
 ```shell
-openssl pkeyutl -verifyrecover -pubin -inkey int-pubkey.pem -in sig-encrypted.bin -out sig_decrypted.bin
+openssl pkeyutl -verifyrecover -pubin -inkey int-pubkey.pem -in sig_encrypted.bin -out sig_decrypted.bin
 ```
 At this point we:
 1. Downloaded the end-user certificate
