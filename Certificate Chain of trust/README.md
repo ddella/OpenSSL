@@ -168,6 +168,19 @@ cmp -bl sig_calculated.bin sig_decrypted.bin
 ```
 No output means files are identical. You could also verify the shell variable `$?` if you're in a script.
 
+### Files
+| **File**               | **Description**                                                 |
+|------------------------|-----------------------------------------------------------------|
+| int-crt.pem            | Issuer X.509 certificate                                        |
+| server-crt.pem         | End-user X.509 certificate                                      |
+| cert_body.bin          | The end-user certificate in binary without the signature        |
+| int-pubkey.pem         | Public key of intermediate certificate in PEM                   |
+| sig_calculated.bin     | Hash of the end-user certificate body                           |
+| sig_decrypted.bin      | The decrypted hash of the end-user certificate in binary format |
+| sig_decrypted_x690.bin | The decrypted hash of the end-user certificate in X.690 format  |
+| sig_encrypted.bin      | The encrypted hash of the end-user certificate                  |
+| signature.hex          | The encrypted hash in hexadecimal                               |
+
 ## Shell Script to automate the verification
 I made a very simple script to automate the verification. It takes an end-user certificte, an issuer certificate and verify is the issuer really signed the certificate. You can find it [here](https://gist.github.com/ddella/bff877bc4929c5872bf06e9ddcf8ca4c). Remember this is for educational purposes **ONLY**.
 ## License
