@@ -123,11 +123,11 @@ It takes the issuer public key to decrypt the signature from previous step. The 
 ```shell
 openssl pkeyutl -verifyrecover -pubin -inkey int-pubkey.pem -in sig_encrypted.bin -out sig_decrypted_x690.bin
 ```
-See what's inside file `sig_decrypted_x690.bin` with the command:
+USe this commande ti view what's inside the file `sig_decrypted_x690.bin`:
 ```shell
 openssl asn1parse -inform der -in sig_decrypted_x690.bin
 ```
-The output is:
+The output is the decoded version of the X.690 file. The signature is at offset 17:
 >```
 > 0:d=0  hl=2 l=  49 cons: SEQUENCE          
 > 2:d=1  hl=2 l=  13 cons: SEQUENCE          
@@ -135,7 +135,7 @@ The output is:
 >15:d=2  hl=2 l=   0 prim: NULL              
 >17:d=1  hl=2 l=  32 prim: OCTET STRING   [HEX DUMP]>:89C49CF762F2133FEA6D9495111B0BF7F899B846A55618061FA0AFB906D34B6C
 >```
-Use this command to extract the decrypted signature hash value in X.609 format and save it to a binary file:
+Use this command to extract the decrypted signature hash value from the X.690 file and save it to a binary file:
 ```shell
 openssl asn1parse -inform der -in sig_decrypted_x690.bin -offset 17 | sed 's/.*\[HEX DUMP\]://' | xxd -r -p > sig_decrypted.bin
 ```
@@ -162,11 +162,11 @@ openssl dgst -sha256 -binary -out sig_calculated.bin cert_body.bin
 The output is the binary representation of the `sha256` of the certificate.
 
 ### Lets compare the files
-Lets compare the file `sig_decrypted.bin` and `sig_calculated.bin`. If they match, issuer signed the end-user certificate.
+Lets compare the file `sig_decrypted.bin` and `sig_calculated.bin`. If they match, issuer signed the end-user certificate. They should both represent the binary value of the hash signature of the end-user certificate.
 ```shell
 cmp -bl sig_calculated.bin sig_decrypted.bin
 ```
-No output means files are identical. You could also verify the shell variable `$?` inside a script.
+No output means files are identical. You could also verify the shell variable `$?` if you're in a script.
 
 ## Shell Script to automate the verification
 I made a very simple script to automate the verification. It takes an end-user certificte, an issuer certificate and verify is the issuer really signed the certificate. You can find it [here](https://gist.github.com/ddella/bff877bc4929c5872bf06e9ddcf8ca4c). Remember this is for educational purposes **ONLY**.
