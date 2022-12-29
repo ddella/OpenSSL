@@ -83,10 +83,10 @@ I didn't find a cleaner way to get the signature from a certificate. I print the
 ```shell
 openssl x509 -in server-crt.pem -text -noout -certopt ca_default -certopt no_validity -certopt no_serial -certopt no_subject -certopt no_extensions -certopt no_signame | grep -v 'Signature Algorithm' | sed 's/Signature Value//g' | tr -d '[:space:] [:punct:]' > signature.hex
 ```
-The output is the signature, in hexadecimal, without any punctuation and line feeds. It's a plain text file.
-```
-68f449bf50 ... d3b561160a1d0b4a01a80ff79
-```
+The output is the signature, in hexadecimal, without any punctuation and line feeds. It's a plain text file of ascii characters representing a large hexadecimal number.
+>```
+>68f449bf50 ... d3b561160a1d0b4a01a80ff79
+>```
 
 ### Extract the signature algorithm from the certificate
 I don't use it for now but it will be usefull is future version of my script.
