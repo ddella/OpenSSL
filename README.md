@@ -6,6 +6,10 @@ All the example below have been tested with OpenSSL 3.x.y on a macOS but shoukld
 
 Throughout the documents, I might used different file extensions. All the files are in `PEM` format, unless otherwise specified. The extension has no imptact on the file format.
 ***
+## Certificate Chain of trust with RSA and ECC
+OpenSSL commands to verify certificate signature with either RSA or ECC  
+[Certificate Chain of trust](/Certificate%20Chain%20of%20trust)
+***
 ## Private/Public keys (RSA and ECC)
 OpenSSL commands to generate/view/check Private and Public Keys with either RSA or ECC  
 [Private and Public Keys](/Private%20and%20Public%20Keys)
