@@ -8,19 +8,19 @@ There's a mathematical equation which draws a curve on a graph. You choose a ran
 
 [to learn more on ECC](https://www.instructables.com/Understanding-how-ECDSA-protects-your-data/)
 ## ECDSA signature with OpenSSL
-In this section I'll walk through the process to perform ECDSA signature on a a bogus binary file. That will work on any type of data.  
-1. Generate a key pair
+In this section I'll walk through the process to perform ECDSA signature on a bogus file that we call `data`. That will work on any type of data, either text or binary file. Following are the steps to generate a signature file:  
+1. Generate an ECC private key
 2. Extract the public key, from the private key
-3. Convert the ECC public key in DER and PEM format
-4. Generate a hash
-5. Create a signature using the private key and the hash
-6. Verify the signature  
-## 1. Generate Key Pair
+3. Generate a hash
+4. Create a signature using the private key and the hash
+5. Verify the signature
+6. Modify the source data and verify the signature  
+## 1. Generate an ECC private key
 Use this command to generate an elliptic curve private key `private-key.pem`:
 ```shell
 openssl ecparam -name prime256v1 -genkey -noout -out private-key.pem
 ```
->An ECC Private Key starts with:
+>The file `private-key.pem` looks like:
 >```
 >-----BEGIN EC PRIVATE KEY-----
 > [...]
@@ -31,17 +31,14 @@ Use this command to extract the ECC public key from the private key:
 ```shell
 openssl ec -in private-key.pem -pubout -out public-key.pem
 ```
-## 3. Convert the ECC public key in DER format
-Use this command to convert the public key in DER:
-```shell
-openssl ec -pubin -inform PEM -in public-key.pem -outform DER -out public-key.der
-```
-**Optional**: Use this command to view the public key `DER` file:
-```shell
-openssl asn1parse -inform der -in public-key.der
-```
-## 4. Generate a hash
-I used this `test.txt` file for my data. It's a simple text file. It could have been a binary file.
+>The file `private-key.pem` looks like:
+>```
+>-----BEGIN PUBLIC KEY-----
+> [...]
+>-----END PUBLIC KEY-----
+>```
+## 3. Generate a hash
+I used the file `test.txt` to simulate my precious data. It's a simple text file. It could have been a binary file.
 >```
 >This is the first line.
 >This is a test with ECDSA.
@@ -52,8 +49,7 @@ Use this command to generate a hash:
 openssl dgst -sha256 -binary -out hash-sha256.bin test.txt
 ```
 **Note**: The size of the file `hash-sha256.bin` is 32 bytes or 256 bits 😉
-## 5. Create a signature using the private key and the hash
-
+## 4. Create a signature using the private key and the hash
 ```shell
 openssl pkeyutl -sign -inkey private-key.pem -in hash-sha256.bin -out ecdsa.sig
 ```
@@ -67,7 +63,7 @@ The output is two integer number **`R`** and **`S`**:
 >  2:d=1  hl=2 l=  33 prim: INTEGER     :86A665B1393B230EF7B3D03226C25392D2958F5F7B50AC266F9882DFFF4D7BC7
 >37:d=1  hl=2 l=  33 prim: INTEGER     :9BF6689E4E8CEF98268AE0255A9FD06411446C8E03064C378DCE99154368BC55
 >```
-## 6. Verify the signature
+## 5. Verify the signature
 Use this command to verify the signature:
 ```shell
 openssl pkeyutl -pubin -verify -in hash-sha256.bin -inkey public-key.pem -sigfile ecdsa.sig
@@ -76,7 +72,7 @@ Output:
 >```
 >Signature Verified Successfully
 >```
-## 7. Modify the source data and verify the signature
+## 6. Modify the source data and verify the signature
 In the preceding step we verify the signature against our hash. We could modify the file and redo the last step nd it will succeed. Now lets modify the data, `test.txt`, and check the signature against the new file.
 ```shell
 openssl dgst -sha256 -verify public-key.pem -signature ecdsa.sig test.txt
