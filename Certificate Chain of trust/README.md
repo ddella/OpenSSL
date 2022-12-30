@@ -73,9 +73,9 @@ Output:
 >depth=1: C = CA, ST = QC, L = Montreal, O = IntermediateCA, OU = IT, CN = SubRootCA.com
 >depth=2: C = CA, ST = QC, L = Montreal, O = RootCA, OU = IT, CN = RootCA.com
 >```
-## Verify a certificate signature (RSA only)
+## Verify a certificate signature by hand for RSA only
 [RSA Signature](RSA.md)
-## Verify a certificate signature (Elliptic Curve only)
+## Verify a certificate signature by hand for Elliptic Curve only
 [ECDSA Signature](ECDSA.md)
 ## License
 This project is licensed under the [MIT license](/LICENSE).

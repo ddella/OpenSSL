@@ -1,4 +1,4 @@
-# Verify a certificate signature (Elliptic Curve only)
+# Verify a certificate signature for Elliptic Curve only
 This explains how to verify the signature of a certificate signed with ECC. The prerequisites are:
 1. The certificate we whish to verify
 2. The issuer certificate (we need it's public key)
@@ -71,6 +71,6 @@ If the end-user certificate **wasn't** signed by the issuer or the certificate h
 You can also verify the shell variable `$?`, if you're in a script.
 ## License
 This project is licensed under the [MIT license](/LICENSE).
-
-[_^ back to Certificate Chain of trust page_](README.md)  
-[_< back to root_](../../../)
+[_^ back to top_](#Verify-a-certificate-signature-for-Elliptic-Curve-only)  
+[_< back to Certificate Chain of trust page_](README.md)  
+[_<< back to root_](../../../)
