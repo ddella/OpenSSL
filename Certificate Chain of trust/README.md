@@ -73,7 +73,7 @@ Output:
 >depth=1: C = CA, ST = QC, L = Montreal, O = IntermediateCA, OU = IT, CN = SubRootCA.com
 >depth=2: C = CA, ST = QC, L = Montreal, O = RootCA, OU = IT, CN = RootCA.com
 >```
-## Verify the chain of trust manually
+## Verify the chain of trust manually (for RSA key pair only)
 The best way to understand the signature verification process is to do it manually, aka the hard way 😀
 
 ### Extract the signature value from the certificate
