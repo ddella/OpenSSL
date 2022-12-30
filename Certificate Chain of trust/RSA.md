@@ -104,5 +104,5 @@ I made a very simple script to automate the verification. It takes an end-user c
 ## License
 This project is licensed under the [MIT license](/LICENSE).
 
-[_^ back to main page_](README.md)  
+[_^ back to Certificate Chain of trust page_](README.md)  
 [_< back to root_](../../../)

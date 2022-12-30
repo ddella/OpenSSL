@@ -73,5 +73,5 @@ You could also verify the shell variable `$?`, if you're in a script.
 ## License
 This project is licensed under the [MIT license](/LICENSE).
 
-[_^ back to main page_](README.md)  
+[_^ back to Certificate Chain of trust page_](README.md)  
 [_< back to root_](../../../)
