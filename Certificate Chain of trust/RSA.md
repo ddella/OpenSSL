@@ -1,4 +1,4 @@
-# Verify a certificate signature (RSA only)
+# Verify a certificate signature RSA only
 This explains how to verify the signature of a certificate signed with RSA. The prerequisites are:
 1. The certificate we whish to verify
 2. The issuer certificate (we need it's public key)
@@ -106,7 +106,8 @@ openssl dgst -sha256 -verify int-pubkey.pem -signature sig_encrypted.bin cert_bo
 ## Shell Script to automate the verification (RSA only)
 I made a very simple script to automate the verification. It takes an end-user certificte, an issuer certificate and verify if the issuer really signed the end-user certificate. You can find it [here](https://gist.github.com/ddella/bff877bc4929c5872bf06e9ddcf8ca4c). Remember this is for educational purposes **ONLY**.
 ## License
-This project is licensed under the [MIT license](/LICENSE).
+This project is licensed under the [MIT license](/LICENSE).  
 
-[_^ back to Certificate Chain of trust page_](README.md)  
-[_< back to root_](../../../)
+[_^ back to top of page_](#Verify-a-certificate-signature-for-RSA-only)  
+[_< back to Certificate Chain of trust page_](README.md)  
+[_<< back to root_](../../../)
