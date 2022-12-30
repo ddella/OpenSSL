@@ -64,7 +64,7 @@ The output is two 256-bit integer **`R`** and **`S`**:
 >  2:d=1  hl=2 l=  33 prim: INTEGER     :86A665B1393B230EF7B3D03226C25392D2958F5F7B50AC266F9882DFFF4D7BC7
 >37:d=1  hl=2 l=  33 prim: INTEGER     :9BF6689E4E8CEF98268AE0255A9FD06411446C8E03064C378DCE99154368BC55
 >```
->**Note**: I know the two integers are 33 octets instead of 32 octets. That's because they have their most significant bit set to `1` so it would be consider a negative value but it can't be so it's padded with `0x00`.
+>**Note**: I know the two integers are 33 octets instead of 32 octets (256-bit). That's because they have their most significant bit set to `1` so it would be consider a negative value but it can't be so it's padded with `0x00`.
 
 Use this command to view the binary file in hexadecimal:
 ```shell
@@ -73,7 +73,7 @@ xxd -p ecdsa.sig
 See in yellow, each interger has been padded with `0x00`. If it had not been padded, the first binary digit of the integer would start with a  `1` hence a negative value.
 ![Alt text](/images/padded-octet.jpg "Padded Octet")  
 ## 5. Verify the signature
-Use this command to verify the signature:
+Use this command to verify that the signature correspond to the hash:
 ```shell
 openssl pkeyutl -pubin -verify -in hash-sha256.bin -inkey public-key.pem -sigfile ecdsa.sig
 ```
@@ -82,7 +82,8 @@ Output:
 >Signature Verified Successfully
 >```
 ## 6. Modify the source data and verify the signature
-In the preceding step we verify the signature against our hash. We could modify the file and redo the last step nd it will succeed. Now lets modify the data, `test.txt`, and check the signature against the new file.
+In the preceding step we verified the signature against our hash. We could modify the file and redo the last command and it will still succeed, unless we redo the whole procedure. Now lets modify the data, `test.txt`, and check the signature against the modified file.
+Use this command to verify the signature against the original file:
 ```shell
 openssl dgst -sha256 -verify public-key.pem -signature ecdsa.sig test.txt
 ```
@@ -90,9 +91,9 @@ Output:
 >```
 >Verified OK
 >```
-I just added a blank line at the end of the file `test-bad.txt` and now the verification fails.
+I just added a blank line at the end of the file `test.txt` and now the verification fails.
 ```shell
-openssl dgst -sha256 -verify public-key.pem -signature ecdsa.sig test-bad.txt
+openssl dgst -sha256 -verify public-key.pem -signature ecdsa.sig test.txt
 ```
 Output:
 >```
