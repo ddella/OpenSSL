@@ -31,7 +31,7 @@ Use this command to extract the ECC public key from the private key:
 ```shell
 openssl ec -in private-key.pem -pubout -out public-key.pem
 ```
->The file `private-key.pem` looks like:
+>The file `public-key.pem` looks like:
 >```
 >-----BEGIN PUBLIC KEY-----
 > [...]
@@ -50,6 +50,7 @@ openssl dgst -sha256 -binary -out hash-sha256.bin test.txt
 ```
 **Note**: The size of the file `hash-sha256.bin` is 32 bytes or 256 bits 😉
 ## 4. Create a signature using the private key and the hash
+We are signing the hash value not the file but the hash is derived from the file.
 ```shell
 openssl pkeyutl -sign -inkey private-key.pem -in hash-sha256.bin -out ecdsa.sig
 ```
@@ -57,7 +58,7 @@ openssl pkeyutl -sign -inkey private-key.pem -in hash-sha256.bin -out ecdsa.sig
 ```shell
 openssl asn1parse -inform der -in ecdsa.sig
 ```
-The output is two integer number **`R`** and **`S`**:
+The output is two 256-bit integer **`R`** and **`S`**:
 >```
 >  0:d=0  hl=2 l=  70 cons: SEQUENCE          
 >  2:d=1  hl=2 l=  33 prim: INTEGER     :86A665B1393B230EF7B3D03226C25392D2958F5F7B50AC266F9882DFFF4D7BC7
