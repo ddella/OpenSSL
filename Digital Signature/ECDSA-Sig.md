@@ -64,6 +64,15 @@ The output is two 256-bit integer **`R`** and **`S`**:
 >  2:d=1  hl=2 l=  33 prim: INTEGER     :86A665B1393B230EF7B3D03226C25392D2958F5F7B50AC266F9882DFFF4D7BC7
 >37:d=1  hl=2 l=  33 prim: INTEGER     :9BF6689E4E8CEF98268AE0255A9FD06411446C8E03064C378DCE99154368BC55
 >```
+>**Note**: I know the two integers are 33 octets instead of 32 octets. That's because they have their most significant bit set to `1` so it would be consider a negative value but it can't be so it's padded with `0x00`.
+
+Take a look the first integer `86a665b...7bc7`, if it had not been padded, the first digit would start with a binary `1` hence a negative value.
+
+```shell
+xxd -p ecdsa.sig
+```
+See in yellow, each interger has been padded with `0x00`.
+![Alt text](/images/padded-octet.jpg "Padded Octet")  
 ## 5. Verify the signature
 Use this command to verify the signature:
 ```shell
