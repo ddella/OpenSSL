@@ -38,16 +38,28 @@ Use this command to verify IntermediateCA via RootCA:
 ```shell
 openssl verify -CAfile ca-crt.pem int-crt.pem
 ```
+Output:
+>```
+>int-crt.pem: OK
+>```
 
 Use this command to verify the partial chain with server cert via IntermediateCA:
 ```shell
 openssl verify -no-CAfile -no-CApath -partial_chain -trusted int-crt.pem server-crt.pem
 ```
+Output:
+>```
+>server-crt.pem: OK
+>```
 
 Use this command to verify the server certificate via CA and SubCA Chain (same as below):
 ```shell
 openssl verify -CAfile ca-crt.pem -untrusted int-crt.pem server-crt.pem
 ```
+Output:
+>```
+>server-crt.pem: OK
+>```
 
 Use this command to verify the server certificate via CA and SubCA Chain (same as above):
 ```shell
@@ -61,20 +73,6 @@ Output:
 >depth=1: C = CA, ST = QC, L = Montreal, O = IntermediateCA, OU = IT, CN = SubRootCA.com
 >depth=2: C = CA, ST = QC, L = Montreal, O = RootCA, OU = IT, CN = RootCA.com
 >```
-Use this command to verify the partial chain with Client cert via IntermediateCA
-```shell
-openssl verify -no-CAfile -no-CApath -partial_chain -trusted int-crt.pem client-crt.pem
-```
-
-Use this command to verify the client cert via IntermediateCA via RootCA
-```shell
-openssl verify -CAfile ca-crt.pem -untrusted int-crt.pem client-crt.pem
-```
-
-Use this command to verify the client via CA and SubCA Chain
-```shell
-openssl verify -CAfile ca-chain.pem client-crt.pem
-```
 ## Verify the chain of trust manually
 The best way to understand the signature verification process is to do it manually, aka the hard way 😀
 
@@ -168,7 +166,7 @@ cmp -bl sig_calculated.bin sig_decrypted.bin
 ```
 No output means files are identical. You could also verify the shell variable `$?` if you're in a script.
 
-### Files
+### Files created
 | **File**               | **Description**                                                 |
 |------------------------|-----------------------------------------------------------------|
 | int-crt.pem            | Issuer X.509 certificate                                        |
