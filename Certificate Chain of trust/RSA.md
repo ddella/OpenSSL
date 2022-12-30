@@ -1,7 +1,11 @@
 # Verify a certificate signature (RSA only)
+This explains how to verify the signature of a certificate signed with RSA. The prerequisites are:
+1. The certificate we whish to verify
+2. The issuer certificate (we need it's public key)
+
 The best way to understand the signature verification process is to do it manually, aka the hard way 😀
 ## Extract the signature value from the certificate
-I didn't find a cleaner way to get the signature from a certificate. I print the whole X.509 certificate and grab the last portion of it, which is the signature.
+I didn't find a cleaner way to get the signature from a certificate. I print the whole X.509 certificate and grab the last portion of it, which is the signature. That works for RSA and ECC.
 ```shell
 openssl x509 -in server-crt.pem -text -noout -certopt ca_default -certopt no_validity -certopt no_serial -certopt no_subject -certopt no_extensions -certopt no_signame | grep -v 'Signature Algorithm' | sed 's/Signature Value//g' | tr -d '[:space:] [:punct:]' > signature.hex
 ```
@@ -9,8 +13,8 @@ The output is the signature, in hexadecimal, without any punctuation and line fe
 >```
 >68f449bf50 ... d3b561160a1d0b4a01a80ff79
 >```
-## Extract the signature algorithm from the certificate
-I don't use it for now but it will be usefull in future version of my script.
+## (Optional) Extract the signature algorithm from the certificate
+I don't use it for now but it will be usefull in future version of my script. That works for RSA and ECC.
 ```shell
 openssl x509 -in server-crt.pem -text -noout -certopt ca_default -certopt no_validity -certopt no_serial -certopt no_subject -certopt no_extensions -certopt no_signame | grep 'Signature Algorithm:' | sed 's/Signature Algorithm://g' | tr -d '[:space:]' > sig_algo.txt
 ```
