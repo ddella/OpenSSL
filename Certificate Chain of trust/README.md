@@ -157,7 +157,7 @@ The output creates a bin file `cert_body.bin` that is the binary version of the 
 ```shell
 openssl dgst -sha256 -binary -out sig_calculated.bin cert_body.bin
 ```
-The output is the binary representation of the `sha256` of the certificate.
+The output is the binary representation of the `sha256` of the certificate. We just calculated our own hash from the certificate received from the server.
 
 ### Lets compare the files
 Lets compare the file `sig_decrypted.bin` and `sig_calculated.bin`. If they match, issuer signed the end-user certificate. They should both represent the binary value of the hash signature of the end-user certificate.
