@@ -66,8 +66,8 @@ The output is two 256-bit integer **`R`** and **`S`**:
 >```
 >**Note**: I know the two integers are 33 octets instead of 32 octets. That's because they have their most significant bit set to `1` so it would be consider a negative value but it can't be so it's padded with `0x00`.
 
-Take a look the first integer `86a665b...7bc7`, if it had not been padded, the first digit would start with a binary `1` hence a negative value.
-
+Take a look the both integers, if it had not been padded, the first digit would start with a binary `1` hence a negative value.
+Use this command to view the binary file in hexadecimal:
 ```shell
 xxd -p ecdsa.sig
 ```
