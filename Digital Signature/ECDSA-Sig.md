@@ -5,7 +5,7 @@ A **hash** functions transform text or binary data to fixed-length value and is 
 
 ## Basic idea with Elliptic Curve Cryptography
 There's a mathematical equation which draws a curve on a graph. You choose a random point on that curve and consider that your point of origin. Then you generate a random number, this is your private key, you do some magical mathematical equation using with the pair (random number, point of origin) and you get a second point on the curve, that’s your public key.  
-
+![Alt text](/images/ecdsa.jpg "ECDSA signature")  
 [to learn more on ECC](https://www.instructables.com/Understanding-how-ECDSA-protects-your-data/)
 ## ECDSA signature with OpenSSL
 In this section I'll walk through the process to perform ECDSA signature on a bogus file that we call `data`. That will work on any type of data, either text or binary file. Following are the steps to generate a signature file:  
@@ -71,7 +71,7 @@ Use this command to view the binary file in hexadecimal:
 xxd -p ecdsa.sig
 ```
 See in yellow, each interger has been padded with `0x00`. If it had not been padded, the first binary digit of the integer would start with a  `1` hence a negative value.
-![Alt text](/images/padded-octet.jpg "Padded Octet")  
+![Alt text](/images/padded-octet.jpg "Padded Octet")
 ## 5. Verify the signature
 Use this command to verify that the signature correspond to the hash:
 ```shell
