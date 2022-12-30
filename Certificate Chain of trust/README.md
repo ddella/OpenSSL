@@ -127,9 +127,9 @@ openssl asn1parse -inform der -in sig_decrypted_x690.bin
 ```
 The output is the decoded version of the X.690 file. The signature is at offset 17:
 >```
-> 0:d=0  hl=2 l=  49 cons: SEQUENCE          
-> 2:d=1  hl=2 l=  13 cons: SEQUENCE          
-> 4:d=2  hl=2 l=   9 prim: OBJECT         :sha256
+>  0:d=0  hl=2 l=  49 cons: SEQUENCE          
+>  2:d=1  hl=2 l=  13 cons: SEQUENCE          
+>  4:d=2  hl=2 l=   9 prim: OBJECT         :sha256
 >15:d=2  hl=2 l=   0 prim: NULL              
 >17:d=1  hl=2 l=  32 prim: OCTET STRING   [HEX DUMP]>:89C49CF762F2133FEA6D9495111B0BF7F899B846A55618061FA0AFB906D34B6C
 >```
