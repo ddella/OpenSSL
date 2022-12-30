@@ -1,11 +1,10 @@
 # ECDSA signature with OpenSSL
-**ECDSA** stands for *Elliptic Curve Digital Signature Algorithm*. It creates a digital signature in order to verify the authenticity and integrety of a message by using the authenticator’s public key. Cryptographers agree that's almost impossible to forge an **ECDSA** signature. **ECDSA** does not encrypt your data, it protects against tampering with your data.  
+**ECDSA** stands for *Elliptic Curve Digital Signature Algorithm*. It creates a digital signature in order to verify the authenticity and integrety of a message. A hash of the message is calculated. This hash is signed with the private key of the sender of the data.  The receiver use the public key to get the hash and calculate is own hash against the received data. If both hash match, then the data has not been modified in transit. Cryptographers agree that it is almost impossible to forge an **ECDSA** signature. **ECDSA** does not encrypt your data, it protects against tampering with your data.  
 
 A **hash** functions transform text or binary data to fixed-length value and is known to be collision-resistant and irreversible. Hash is a one-way function.
-
+![Alt text](/images/ecdsa.jpg "ECDSA signature")
 ## Basic idea with Elliptic Curve Cryptography
 There's a mathematical equation which draws a curve on a graph. You choose a random point on that curve and consider that your point of origin. Then you generate a random number, this is your private key, you do some magical mathematical equation using with the pair (random number, point of origin) and you get a second point on the curve, that’s your public key.  
-![Alt text](/images/ecdsa.jpg "ECDSA signature")  
 [to learn more on ECC](https://www.instructables.com/Understanding-how-ECDSA-protects-your-data/)
 ## ECDSA signature with OpenSSL
 In this section I'll walk through the process to perform ECDSA signature on a bogus file that we call `data`. That will work on any type of data, either text or binary file. Following are the steps to generate a signature file:  
@@ -101,6 +100,7 @@ Output:
 >```
 ## License
 This project is licensed under the [MIT license](/LICENSE).  
+Icons from Flaticon were used: [flaticon](https://www.flaticon.com/free-icons/document)
 
 [_^ back to top of page_](#ECDSA-signature-with-OpenSSL)  
 [_< back to Digital Signature_](README.md)  
