@@ -63,7 +63,7 @@ The output is two 256-bit integer **`R`** and **`S`**:
 >  2:d=1  hl=2 l=  33 prim: INTEGER     :86A665B1393B230EF7B3D03226C25392D2958F5F7B50AC266F9882DFFF4D7BC7
 >37:d=1  hl=2 l=  33 prim: INTEGER     :9BF6689E4E8CEF98268AE0255A9FD06411446C8E03064C378DCE99154368BC55
 >```
->**Note**: I know the two integers are 33 octets instead of 32 octets (256-bit). That's because they have their most significant bit set to `1` so it would be consider a negative value but it can't be so it's padded with `0x00`.
+>**Note**: I know the two integers are 33 octets instead of the 32 octets (256-bit) expected. That's because they have their most significant bit is set to `1` so it would be consider a negative value, but it can't be so it's padded with `0x00`. When the math is done, the padding is removed.
 
 Use this command to view the binary file in hexadecimal:
 ```shell
