@@ -2,7 +2,7 @@
 **ECDSA** stands for *Elliptic Curve Digital Signature Algorithm*. It creates a digital signature in order to verify the authenticity and integrety of a message. A hash of the message is calculated. This hash is signed with the private key of the sender of the data.  The receiver use the public key to get the hash and calculate is own hash against the received data. If both hash match, then the data has not been modified in transit. Cryptographers agree that it is almost impossible to forge an **ECDSA** signature. **ECDSA** does not encrypt your data, it protects against tampering with your data.  
 
 A **hash** functions transform *variable* length text or binary data to a *fixed-length* value and is known to be collision-resistant and irreversible (a one-way function).
-![Alt text](/images/ecdsa.jpg "ECDSA signature")
+![Alt text](/images/ecdsa-sig.jpg "ECDSA signature")
 ## Basic idea with Elliptic Curve Cryptography
 There's a mathematical equation which draws a curve on a graph. You choose a random point on that curve and consider that your point of origin. Then you generate a random number, this is your private key, you do some magical mathematical equation using with the pair (random number, point of origin) and you get a second point on the curve, that’s your public key.  
 [to learn more on ECC](https://www.instructables.com/Understanding-how-ECDSA-protects-your-data/)
@@ -74,14 +74,14 @@ See in yellow, each interger has been padded with `0x00`. If it had not been pad
 ## 5. Verify the signature
 Use this command to verify that the signature correspond to the hash:
 ```shell
-openssl pkeyutl -pubin -verify -in hash-sha256.bin -inkey public-key.pem -sigfile ecdsa.sig
+openssl pkeyutl -verify -pubin -in hash-sha256.bin -inkey public-key.pem -sigfile ecdsa.sig
 ```
 Output:
 >```
 >Signature Verified Successfully
 >```
 ## 6. Modify the source data and verify the signature
-In the preceding step we verified the signature against our hash. We could modify the file and redo the last command and it will still succeed, unless we redo the whole procedure. Now lets modify the data, `test.txt`, and check the signature against the modified file.
+In the preceding step we verified the signature against our hash. We could modify the file and redo the last command and it will still succeed, unless we redo the whole procedure. Now lets modify the data, `test.txt`, and check the signature against the modified file.  
 Use this command to verify the signature against the original file:
 ```shell
 openssl dgst -sha256 -verify public-key.pem -signature ecdsa.sig test.txt
