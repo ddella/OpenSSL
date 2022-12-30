@@ -8,16 +8,7 @@ Digital signature provides:
 ## RSA signature with OpenSSL
 [RSA Signature](RSA-Sig.md)
 ## ECDSA signature with OpenSSL
-In this section I'll walk through the process to perform ECDSA signature on a a bogus binary file. That will work on any type of data.  
-1. Generate a private key, this will also generate the corresponding public key
-2. Extract the public key, from the private key
-3. Convert the ECC public key in DER and PEM format
-4. View the public key content
-5. Generate a hash
-6. Create a signature using the private key and the hash
-7. View the content of the signature
-8. Verify the signature  
-
+In this section I'll walk you through the process of performing an ECDSA signature on a file. That will work on any type of data.  
 [ECDSA Signature](ECDSA-Sig.md)
 ## License
 This project is licensed under the [MIT license](/LICENSE).
