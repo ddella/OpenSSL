@@ -48,7 +48,7 @@ Use this command to generate a hash:
 openssl dgst -sha256 -binary -out hash-sha256.bin test.txt
 ```
 **Note**: The size of the file `hash-sha256.bin` is 32 bytes or 256 bits 😉
-## 4. Sign the hash.
+## 4. Sign the hash
 We are signing a hash value, not the file or data. The **hash** function transformed our file of *variable* length to a *fixed-length* value of 256 bit.
 ```shell
 openssl pkeyutl -sign -inkey private-key.pem -in hash-sha256.bin -out ecdsa.sig
@@ -72,7 +72,7 @@ xxd -p ecdsa.sig
 See in yellow, each interger has been padded with `0x00`. If it had not been padded, the first binary digit of the integer would start with a  `1` hence a negative value.
 ![Alt text](/images/padded-octet.jpg "Padded Octet")
 ## 5. Verify the signature
-Use this command to verify that the signature correspond to the hash:
+Use this command to verify if the signature correspond to the hash:
 ```shell
 openssl pkeyutl -verify -pubin -in hash-sha256.bin -inkey public-key.pem -sigfile ecdsa.sig
 ```
@@ -81,7 +81,7 @@ Output:
 >Signature Verified Successfully
 >```
 ## 6. Modify the source data and verify the signature
-In the preceding step we verified the signature against our hash. We could modify the file and redo the last command and it will still succeed, unless we redo the whole procedure. Now lets modify the data, `test.txt`, and check the signature against the modified file.  
+In the preceding step we verified the signature against our hash. We could modify the file, redo the last command and it will still succeed, unless we redo the whole procedure. Now lets modify the data, `test.txt`, and check the signature against the modified file.  
 Use this command to verify the signature against the original file:
 ```shell
 openssl dgst -sha256 -verify public-key.pem -signature ecdsa.sig test.txt
