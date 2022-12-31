@@ -63,13 +63,13 @@ EC signature consists of two numbers **`R`** and **`S`**. This is how the ASN.1 
 >  2:d=1  hl=2 l=  33 prim: INTEGER     :86A665B1393B230EF7B3D03226C25392D2958F5F7B50AC266F9882DFFF4D7BC7
 >37:d=1  hl=2 l=  33 prim: INTEGER     :9BF6689E4E8CEF98268AE0255A9FD06411446C8E03064C378DCE99154368BC55
 >```
->**Note**: I know the two integers are 33 octets instead of the 32 octets (256-bit) expected. That's because they have their most significant bit is set to `1` so it would be consider a negative value, but it can't be so it's padded with `0x00`. When the math is done, the padding is removed.
+>**Note**: I know, the two integers are 33 octets instead of the 32 octets (256-bit) expected. That's because they have their most significant bit set to `1` so it would be consider a negative value, but it can't be so it's padded with `0x00`. When the math is done, the padding is removed.
 
 Use this command to view the binary file in hexadecimal:
 ```shell
 xxd -p ecdsa.sig
 ```
-See in yellow, each interger has been padded with `0x00`. If it had not been padded, the first binary digit of the integer would start with a  `1` hence a negative value.
+>Each integer has been padded with **`0x00`**, see in yellow. If it had not been padded, the first binary digit of the integers would start with a  binary `1`, hence a negative value.
 ![Alt text](/images/padded-octet.jpg "Padded Octet")
 ## 5. Verify the signature
 Use this command to verify if the signature correspond to the hash:
