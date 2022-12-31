@@ -57,7 +57,7 @@ openssl pkeyutl -sign -inkey private-key.pem -in hash-sha256.bin -out ecdsa.sig
 ```shell
 openssl asn1parse -inform der -in ecdsa.sig
 ```
-The output is two 256-bit integer **`R`** and **`S`**:
+EC signature consists of two numbers **`R`** and **`S`**. This is how the ASN.1 structure looks like:
 >```
 >  0:d=0  hl=2 l=  70 cons: SEQUENCE          
 >  2:d=1  hl=2 l=  33 prim: INTEGER     :86A665B1393B230EF7B3D03226C25392D2958F5F7B50AC266F9882DFFF4D7BC7
