@@ -13,7 +13,7 @@ The output is the signature, in hexadecimal, without any punctuation and line fe
 >68f449bf50 ... d3b561160a1d0b4a01a80ff79
 >```
 
-Since the goal is to verify the signature of certificate, let's say we want a bad signature but something that would make sense. A signature that OpenSSL can read.
+**Optional**: Since the goal is to verify the signature of certificate, let's say we want a bad signature but something that would make sense. A signature that OpenSSL can read.
 Use this command to generate a bad signature out of a certificate. Its the same command as above but with the `-badsig` option:
 ```shell
 openssl x509 -in server-crt.pem -badsig -text -noout -certopt ca_default -certopt no_validity -certopt no_serial -certopt no_subject -certopt no_extensions -certopt no_signame | grep -v 'Signature Algorithm' | sed 's/Signature Value//g' | tr -d '[:space:] [:punct:]' > bad.hex
