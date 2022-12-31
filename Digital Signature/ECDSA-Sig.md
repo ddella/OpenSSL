@@ -37,7 +37,7 @@ openssl ec -in private-key.pem -pubout -out public-key.pem
 >-----END PUBLIC KEY-----
 >```
 ## 3. Generate a hash
-I used the file `test.txt` to simulate my precious data. It's a simple text file. It could have been a binary file.
+I used the file `test.txt` to simulate my precious data. It's a simple text file. It could have been a binary file. The **hash** function transformed our file of *variable* length into a *fixed-length* value of 256 bit.
 >```
 >This is the first line.
 >This is a test with ECDSA.
@@ -49,7 +49,7 @@ openssl dgst -sha256 -binary -out hash-sha256.bin test.txt
 ```
 **Note**: The size of the file `hash-sha256.bin` is 32 bytes or 256 bits 😉
 ## 4. Sign the hash
-We are signing a hash value, not the file or data. The **hash** function transformed our file of *variable* length to a *fixed-length* value of 256 bit.
+We are signing a hash value, not the file or data.
 ```shell
 openssl pkeyutl -sign -inkey private-key.pem -in hash-sha256.bin -out ecdsa.sig
 ```
