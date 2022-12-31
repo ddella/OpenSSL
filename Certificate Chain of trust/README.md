@@ -73,10 +73,9 @@ Output:
 >depth=1: C = CA, ST = QC, L = Montreal, O = IntermediateCA, OU = IT, CN = SubRootCA.com
 >depth=2: C = CA, ST = QC, L = Montreal, O = RootCA, OU = IT, CN = RootCA.com
 >```
-## Generate and verify RSA signature
+## Verify an RSA certificate signature by hand
 [RSA Signature](RSA.md)
-## Generate and verify ECDSA signature
-This article shows practical examples of how to generate and verify Elliptic Curve Digital Signature Algorithm(ECDSA) using OpenSSL. 
+## Verify an ECDSA certificate signature by hand
 [ECDSA Signature](ECDSA.md)
 ## License
 This project is licensed under the [MIT license](/LICENSE).
