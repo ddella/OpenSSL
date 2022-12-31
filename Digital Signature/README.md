@@ -6,9 +6,10 @@ Digital signature provides:
 2. **Integrity**: Assure that the message has not been altered during transmission. If a message is digitally signed, any change in the message after signature invalidates the signature.
 3. **Non-repudiation**: An entity that has signed a message cannot at a later time deny having signed it.
 ## RSA signature with OpenSSL
-In this section I'll walk you through the process of performing an ECDSA signature on a file. That will work on any type of data.  [RSA Signature](RSA-Sig.md)
+This article shows a practical example of how to generate and verify an RSA signature using OpenSSL. 
+[RSA Signature](RSA-Sig.md)
 ## ECDSA signature with OpenSSL
-In this section I'll walk you through the process of performing an ECDSA signature on a file. That will work on any type of data.  
+This article shows a practical example of how to generate and verify an Elliptic Curve Digital Signature Algorithm (ECDSA) using OpenSSL. 
 [ECDSA Signature](ECDSA-Sig.md)
 ## License
 This project is licensed under the [MIT license](/LICENSE).
