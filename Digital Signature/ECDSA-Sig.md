@@ -48,8 +48,8 @@ Use this command to generate a hash:
 openssl dgst -sha256 -binary -out hash-sha256.bin test.txt
 ```
 **Note**: The size of the file `hash-sha256.bin` is 32 bytes or 256 bits 😉
-## 4. Create a signature using the private key and the hash
-We are signing the hash value not the file but the hash is derived from the file.
+## 4. Sign the hash.
+We are signing a hash value, not the file or data. The **hash** function transformed our file of *variable* length to a *fixed-length* value of 256 bit.
 ```shell
 openssl pkeyutl -sign -inkey private-key.pem -in hash-sha256.bin -out ecdsa.sig
 ```
