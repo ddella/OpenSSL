@@ -16,6 +16,7 @@ Digital signature provides:
 
 A **hash** functions transform *variable* length data to a *fixed-length* value and is known to be collision-resistant and irreversible (a one-way function). Two random inputs would yield the same hash with probability 2<sup>−n</sup>. The basic idea of hash functions is that a hash-value serves as a compact representation of the input data. It sometimes called a digital fingerprint or message digest.
 
+If even if only one bit of data changes in the message, then the hash will be **completely** different. In the case of the SHA256, used in both **RSA** and **ECDSA** signature, the hash will **always** be 32 bytes or 256 bits, no matter what is the size of the input data. What **RSA** and **ECDSA** signature algorithm does is create a hash of the data and signs that hash. If the data changes, the hash changes, and the signature isn’t valid anymore.
 ## RSA signature with OpenSSL
 This article shows a practical example of how to generate and verify an RSA signature using OpenSSL.  
 [RSA Signature](RSA-Sig.md)
