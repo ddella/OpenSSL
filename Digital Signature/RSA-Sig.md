@@ -45,7 +45,7 @@ openssl dgst -sha256 -sign private-key.pem -out rsa-encrypted.sig test.txt
 >An **RSA** signature is *kind of encrypted*. You can't read the file `rsa-encrypted.sig`
 
 **Optional**
-Use this command to decrypt the signature with public key of signer:
+Use this command to decrypt the signature with the public key of the signer:
 ```shell
 openssl pkeyutl -verifyrecover -pubin -inkey public-key.pem -in rsa-encrypted.sig -out rsa-decrypted.sig
 ```
@@ -55,17 +55,17 @@ openssl asn1parse -inform der -in rsa-decrypted.sig
 ```
 >Output:
 >```
-> 0:d=0  hl=2 l=  49 cons: SEQUENCE          
-> 2:d=1  hl=2 l=  13 cons: SEQUENCE          
-> 4:d=2  hl=2 l=   9 prim: OBJECT         :sha256
+>  0:d=0  hl=2 l=  49 cons: SEQUENCE          
+>  2:d=1  hl=2 l=  13 cons: SEQUENCE          
+>  4:d=2  hl=2 l=   9 prim: OBJECT        :sha256
 >15:d=2  hl=2 l=   0 prim: NULL              
 >17:d=1  hl=2 l=  32 prim: OCTET STRING  [HEX DUMP]:C42175B85AABF162D62F397409289DB930136B541B4BE0A9BE7D9FF21AB75728
 >```
-Use this commande to view the binary data of the hash:
+Use this commande to view the binary data of the hash we calculated in the step above:
 ```shell
 xxd -p hash-sha256.bin
 ```
-You can see the hash value in the `rsa-decrypted.sig` file.
+You can see that the value of the file `hash-sha256.bin` correspond to the last field of the file `rsa-decrypted.sig`.
 >Output:
 >```
 >c42175b85aabf162d62f397409289db930136b541b4be0a9be7d9ff21ab7
