@@ -44,8 +44,9 @@ openssl dgst -sha256 -sign private-key.pem -out rsa-encrypted.sig test.txt
 >The command above signed the hash value, not the file or data.
 >An **RSA** signature is *kind of encrypted*. You can't read the file `rsa-encrypted.sig`
 
-**Optional**
-Use this command to decrypt the signature with the public key of the signer:
+**Optional, you can skip to the next step**
+
+Use this command to decrypt the signature by using the signer's public key:
 ```shell
 openssl pkeyutl -verifyrecover -pubin -inkey public-key.pem -in rsa-encrypted.sig -out rsa-decrypted.sig
 ```
