@@ -1,5 +1,6 @@
 # ECDSA signature with OpenSSL
 **ECDSA** stands for *Elliptic Curve Digital Signature Algorithm*. It creates a digital signature in order to verify the authenticity and integrety of a message. Cryptographers agree that it is almost impossible to forge an **ECDSA** signature. **ECDSA** does not encrypt your data, it protects against tampering with your data.  
+
 ![Alt text](/images/ecdsa-sig.jpg "ECDSA signature")
 ## Basic idea with Elliptic Curve Cryptography
 There's a mathematical equation which draws a curve on a graph. You choose a random point on that curve and consider that your point of origin. Then you generate a random number, this is your private key, you do some magical mathematical equation using with the pair (random number, point of origin) and you get a second point on the curve, that’s your public key.  
