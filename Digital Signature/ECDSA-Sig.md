@@ -1,5 +1,5 @@
 # ECDSA signature with OpenSSL
-**ECDSA** stands for *Elliptic Curve Digital Signature Algorithm*. It creates a digital signature in order to verify the authenticity and integrety of a message. Cryptographers agree that it is almost impossible to forge an **ECDSA** signature. **ECDSA** does not encrypt your data, it protects against tampering with your data.  
+**ECDSA** stands for *Elliptic Curve Digital Signature Algorithm*. It creates a digital signature in order to verify the authenticity and integrity of a message. Cryptographers agree that it is almost impossible to forge an **ECDSA** signature. **ECDSA** does not encrypt your data, it protects against tampering with your data.  
 
 ![Alt text](/images/ecdsa-sig.jpg "ECDSA signature")
 ## Basic idea with Elliptic Curve Cryptography
