@@ -6,7 +6,7 @@
 There's a mathematical equation which draws a curve on a graph. You choose a random point on that curve and consider that your point of origin. Then you generate a random number, this is your private key, you do some magical mathematical equation using with the pair (random number, point of origin) and you get a second point on the curve, that’s your public key.  
 [to learn more on ECC](https://www.instructables.com/Understanding-how-ECDSA-protects-your-data/)
 ## ECDSA signature with OpenSSL
-In this section I'll walk through the process to perform ECDSA signature on a bogus file that we call `data`. That will work on any type of data, either text or binary file. Following are the steps to generate a signature file:  
+In this section I'll walk through the process of performing **ECDSA** signature on a bogus file that we call `data`. That will work on any type of data, either text or binary file. Following are the steps to generate a signature file:  
 1. Generate an ECC private key
 2. Extract the public key, from the private key
 3. Generate a hash
