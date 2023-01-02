@@ -1,5 +1,109 @@
 # RSA signature with OpenSSL (Coming soon)
 
+
+## 1. Generate an RSA private key
+Use this command to generate an elliptic curve private key `private-key.pem`:
+```shell
+openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048 -out private-key.pem
+```
+>The file `private-key.pem` looks like:
+>```
+>-----BEGIN PRIVATE KEY-----
+> [...]
+>-----END PRIVATE KEY-----
+>```
+## 2. Extract the public key, from the private key
+Use this command to extract the ECC public key from the private key:
+```shell
+openssl pkey -pubout -in private-key.pem -out public-key.pem
+```
+>The file `public-key.pem` looks like:
+>```
+>-----BEGIN PUBLIC KEY-----
+> [...]
+>-----END PUBLIC KEY-----
+>```
+## 3. Generate a hash
+I used the file `test.txt` to simulate my precious data. It's a simple text file. It could have been a binary file. The **hash** function transformed our file of *variable* length into a *fixed-length* value of 256 bit.
+>```
+>This is the first line.
+>This is a test with RSA.
+>This is the third and last line.
+>```
+Use this command to generate a hash:
+```shell
+openssl dgst -sha256 -binary -out hash-sha256.bin test.txt
+```
+**Note**: The size of the file `hash-sha256.bin` is 32 bytes or 256 bits 😉
+>-rw-r--r--  1 username  staff  32  1 Jan 00:00 hash-sha256.bin
+## 4. Sign the hash
+Use this command to hash the file, signs the hash and encrypt the signature with private key of signer:
+```shell
+openssl dgst -sha256 -sign private-key.pem -out rsa-encrypted.sig test.txt
+```
+>The command above signed the hash value, not the file or data.
+>An **RSA** signature is *kind of encrypted*. You can't read the file `rsa-encrypted.sig`  
+**Optional**
+Use this command to decrypt the signature with public key of signer:
+```shell
+openssl pkeyutl -verifyrecover -pubin -inkey public-key.pem -in rsa-encrypted.sig -out rsa-decrypted.sig
+```
+Use this commande to view the decrypted RSA signature:
+```shell
+openssl asn1parse -inform der -in rsa-decrypted.sig
+```
+>Output:
+>```
+> 0:d=0  hl=2 l=  49 cons: SEQUENCE          
+> 2:d=1  hl=2 l=  13 cons: SEQUENCE          
+> 4:d=2  hl=2 l=   9 prim: OBJECT         :sha256
+>15:d=2  hl=2 l=   0 prim: NULL              
+>17:d=1  hl=2 l=  32 prim: OCTET STRING  [HEX DUMP]:C42175B85AABF162D62F397409289DB930136B541B4BE0A9BE7D9FF21AB75728
+>```
+Use this commande to view the binary data of the hash:
+```shell
+xxd -p hash-sha256.bin
+```
+You can see the hash value in the `rsa-decrypted.sig` file.
+>Output:
+>```
+>c42175b85aabf162d62f397409289db930136b541b4be0a9be7d9ff21ab7
+>5728
+>```
+## 5. Verify the signature
+Use this command to verify the signature of file `test.txt` with the public of signer:
+```shell
+openssl dgst -sha256 -verify public-key.pem -signature rsa-encrypted.sig test.txt
+```
+Output:
+>```
+>Verified OK
+>```
+**Optional**
+If you decrypted the signarure in the step above, you should have a file `rsa-decrypted.sig`.  
+Use this command to verify that both files are **identical**:
+```shell
+cmp hash-sha256.bin rsa-decrypted.sig
+```
+>No output means both files are **identical**
+## 6. Modify the source data and verify the signature
+Now lets modify the data, `test.txt`, and check the signature against the modified file.  
+Use this command to verify the signature against the original file:
+```shell
+openssl dgst -sha256 -verify public-key.pem -signature rsa-encrypted.sig test.txt
+```
+Output:
+>```
+>Verified OK
+>```
+I just added a blank line at the end of the file `test.txt` and now the verification fails.
+```shell
+openssl dgst -sha256 -verify public-key.pem -signature rsa-encrypted.sig test.txt
+```
+Output:
+>```
+>Verification failure
+>```
 ## License
 This project is licensed under the [MIT license](/LICENSE).  
 Icons from Flaticon were used: [flaticon](https://www.flaticon.com/free-icons/document)

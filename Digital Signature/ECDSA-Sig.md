@@ -42,7 +42,7 @@ I used the file `test.txt` to simulate my precious data. It's a simple text file
 >This is a test with ECDSA.
 >This is the third and last line.
 >```
-Use this command to generate a hash:
+Use this command to generate a hash of the *data*:
 ```shell
 openssl dgst -sha256 -binary -out hash-sha256.bin test.txt
 ```
@@ -74,7 +74,7 @@ xxd -p ecdsa.sig
 >Each integer has been padded with **`0x00`**, see in yellow. If it had not been padded, the first binary digit of the integers would start with a  binary `1`, hence a negative value.
 ![Alt text](/images/padded-octet.jpg "Padded Octet")
 ## 5. Verify the signature
-Use this command to verify if the signature correspond to the hash:
+Use this command to verify if the signature corresponds to the hash:
 ```shell
 openssl pkeyutl -verify -pubin -in hash-sha256.bin -inkey public-key.pem -sigfile ecdsa.sig
 ```
