@@ -47,6 +47,7 @@ Use this command to generate a hash of the *data*:
 openssl dgst -sha256 -binary -out hash-sha256.bin test.txt
 ```
 **Note**: The size of the file `hash-sha256.bin` is 32 bytes or 256 bits 😉
+>-rw-r--r--  1 username  staff  32  1 Jan 00:00 hash-sha256.bin
 ## 4. Sign the hash
 We are signing a hash value, not the file or data.
 ```shell

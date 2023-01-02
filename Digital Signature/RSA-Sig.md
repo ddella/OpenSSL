@@ -2,7 +2,7 @@
 
 
 ## 1. Generate an RSA private key
-Use this command to generate an elliptic curve private key `private-key.pem`:
+Use this command to generate an RSA private key `private-key.pem`:
 ```shell
 openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048 -out private-key.pem
 ```
@@ -13,7 +13,7 @@ openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048 -out private-key.pe
 >-----END PRIVATE KEY-----
 >```
 ## 2. Extract the public key, from the private key
-Use this command to extract the ECC public key from the private key:
+Use this command to extract the RSA public key from the private key:
 ```shell
 openssl pkey -pubout -in private-key.pem -out public-key.pem
 ```
@@ -41,7 +41,6 @@ Use this command to hash the file, signs the hash and encrypt the signature with
 ```shell
 openssl dgst -sha256 -sign private-key.pem -out rsa-encrypted.sig test.txt
 ```
->The command above signed the hash value, not the file or data.
 >An **RSA** signature is *kind of encrypted*. You can't read the file `rsa-encrypted.sig`
 
 **Optional, you can skip to the next step**
@@ -87,7 +86,7 @@ Use this command to extract the hash value from the ASN1 file `rsa-decrypted.sig
 ```shell
 openssl asn1parse -inform der -in rsa-decrypted.sig -offset 17 | sed 's/.*\[HEX DUMP\]://' | xxd -r -p > new-hash.bin
 ```
-Use this command to compare both values:
+Use this command to compare both files:
 ```shell
 cmp new-hash.bin hash-sha256.bin
 ```
