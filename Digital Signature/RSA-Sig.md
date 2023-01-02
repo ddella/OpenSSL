@@ -81,10 +81,14 @@ Output:
 >Verified OK
 >```
 **Optional**
-If you decrypted the signarure in the step above, you should have a file `rsa-decrypted.sig`.  
-Use this command to verify that both files are **identical**:
+If you decrypted the signarure in the step above, you should have a file `rsa-decrypted.sig`. Extract the hash value and compare it to the original hash.
+Use this command to extract the hash value from the ASN1 file `rsa-decrypted.sig`:
 ```shell
-cmp hash-sha256.bin rsa-decrypted.sig
+openssl asn1parse -inform der -in rsa-decrypted.sig -offset 17 | sed 's/.*\[HEX DUMP\]://' | xxd -r -p > new-hash.bin
+```
+Use this command to compare both values:
+```shell
+cmp new-hash.bin hash-sha256.bin
 ```
 >No output means both files are **identical**
 ## 6. Modify the source data and verify the signature
