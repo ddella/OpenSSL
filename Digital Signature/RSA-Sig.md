@@ -23,7 +23,9 @@ openssl pkey -pubout -in private-key.pem -out public-key.pem
 > [...]
 >-----END PUBLIC KEY-----
 >```
-## 3. Generate a hash
+## 3. Generate a hash (optional)
+This section is optional. The command in the next section will take care of creating the hash but you won't have a file with only the hash value.  
+
 I used the file `test.txt` to simulate my precious data. It's a simple text file. It could have been a binary file. The **hash** function transformed our file of *variable* length into a *fixed-length* value of 256 bit.
 >```
 >This is the first line.
@@ -36,14 +38,14 @@ openssl dgst -sha256 -binary -out hash-sha256.bin test.txt
 ```
 **Note**: The size of the file `hash-sha256.bin` is 32 bytes or 256 bits 😉
 >-rw-r--r--  1 username  staff  32  1 Jan 00:00 hash-sha256.bin
-## 4. Sign the hash
-Use this command to hash the file, signs the hash and encrypt the signature with private key of signer:
+## 4. Create, sign and encrypt the hash
+Use this command to hash the file, sign the hash and encrypt the signature with the signer's private key:
 ```shell
 openssl dgst -sha256 -sign private-key.pem -out rsa-encrypted.sig test.txt
 ```
->An **RSA** signature is *kind of encrypted*. You can't read the file `rsa-encrypted.sig`
+>An **RSA** signature is *kind of encrypted*. Saying that the hash has been encrypted with a private key is wrong.
 
-**Optional, you can skip to the next step**
+**Optional, you can skip to the next section**
 
 Use this command to decrypt the signature by using the signer's public key:
 ```shell
