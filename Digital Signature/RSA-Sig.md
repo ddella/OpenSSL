@@ -1,6 +1,7 @@
-# RSA signature with OpenSSL (Coming soon)
+# RSA signature with OpenSSL
+**ECDSA** stands for *Elliptic Curve Digital Signature Algorithm*. It creates a digital signature in order to verify the authenticity and integrety of a message. Cryptographers agree that it is almost impossible to forge an **ECDSA** signature. **ECDSA** does not encrypt your data, it protects against tampering with your data.  
 
-
+![Alt text](/images/rsa-sig.jpg "RSA signature")
 ## 1. Generate an RSA private key
 Use this command to generate an RSA private key `private-key.pem`:
 ```shell
