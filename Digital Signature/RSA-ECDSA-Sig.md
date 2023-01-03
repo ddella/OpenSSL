@@ -29,7 +29,7 @@ Use this command to hash the file, sign the hash and encrypt the signature with 
 ```shell
 openssl dgst -sha256 -sign private-key.pem -out encrypted.sig test.txt
 ```
-**Optional and for RSA ONLY!!!**
+**Optional and for RSA ONLY!!!**  
 Use this command to decrypt the **RSA signature** by using the signer's public key:
 ```shell
 openssl pkeyutl -verifyrecover -pubin -inkey public-key.pem -in encrypted.sig -out decrypted.sig
@@ -46,9 +46,9 @@ openssl asn1parse -inform der -in decrypted.sig
 >15:d=2  hl=2 l=   0 prim: NULL              
 >17:d=1  hl=2 l=  32 prim: OCTET STRING  [HEX DUMP]:C42175B85AABF162D62F397409289DB930136B541B4BE0A9BE7D9FF21AB75728
 >```
-**OR**
-**Optional and for ECDSA ONLY!!!**
-Use this commande to view the signature:
+**OR**  
+**Optional and for ECDSA ONLY!!!**  
+Use this commande to view the **ECDSA** signature:
 ```shell
 openssl asn1parse -inform der -in encrypted.sig
 ```
@@ -59,7 +59,6 @@ openssl asn1parse -inform der -in encrypted.sig
 >37:d=1  hl=2 l=  33 prim: INTEGER     :9BF6689E4E8CEF98268AE0255A9FD06411446C8E03064C378DCE99154368BC55
 >```
 ## 6. Modify the source data and verify the signature
-Now lets modify the data, `test.txt`, and check the signature against the modified file.  
 Use this command to verify the signature against the original file:
 ```shell
 openssl dgst -sha256 -verify public-key.pem -signature encrypted.sig test.txt
@@ -68,7 +67,7 @@ Output:
 >```
 >Verified OK
 >```
-Modify the file `test.txt`, run the verification and now the it fails.
+Modify the file `test.txt`, run the verification and now it fails.
 ```shell
 openssl dgst -sha256 -verify public-key.pem -signature encrypted.sig test.txt
 ```
