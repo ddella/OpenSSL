@@ -1,5 +1,5 @@
 # RSA and ECDSA signature with OpenSSL
-The following commands work with RSA or ECDSA signature.   
+The following commands work with **RSA** or **ECDSA** signature.   
 
 ![Alt text](/images/rsa-ecdsa-sig.jpg "RSA and ECDSA signature")
 ## Signature with OpenSSL
