@@ -23,6 +23,9 @@ This article shows a practical example of how to generate and verify an RSA sign
 ## ECDSA signature with OpenSSL
 This article shows a practical example of how to generate and verify an Elliptic Curve Digital Signature Algorithm (ECDSA) using OpenSSL. 
 [ECDSA Signature](ECDSA-Sig.md)
+## RSA or ECDSA signature with OpenSSL
+This article shows a practical example of how to generate and verify either RSA or ECDSA signature using OpenSSL. 
+[RSA or ECDSA Signature](RSA-ECDSA-Sig.md)
 ## License
 This project is licensed under the [MIT license](/LICENSE).
 
