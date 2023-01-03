@@ -60,7 +60,7 @@ Use this command to decrypt the signature by using the signer's public key:
 ```shell
 openssl pkeyutl -verifyrecover -pubin -inkey public-key.pem -in rsa-encrypted.sig -out rsa-decrypted.sig
 ```
-Use this commande to view the decrypted RSA signature:
+Use this command to view the decrypted RSA signature:
 ```shell
 openssl asn1parse -inform der -in rsa-decrypted.sig
 ```
@@ -72,7 +72,7 @@ openssl asn1parse -inform der -in rsa-decrypted.sig
 >15:d=2  hl=2 l=   0 prim: NULL              
 >17:d=1  hl=2 l=  32 prim: OCTET STRING  [HEX DUMP]:C42175B85AABF162D62F397409289DB930136B541B4BE0A9BE7D9FF21AB75728
 >```
-Use this commande to view the binary data of the hash we calculated in the step above:
+Use this command to view the binary data of the hash we calculated in the step above:
 ```shell
 xxd -p hash-sha256.bin
 ```
