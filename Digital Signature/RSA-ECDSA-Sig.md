@@ -1,7 +1,7 @@
 # RSA and ECDSA signature with OpenSSL
 The following commands work with RSA or ECDSA signature.   
 
-![Alt text](/images/rsa-sig.jpg "RSA signature")
+![Alt text](/images/rsa-ecdsa-sig.jpg "RSA and ECDSA signature")
 ## 1. Generate an RSA or ECC private key
 Use this command to generate an RSA private key `private-key.pem`:
 ```shell
@@ -48,7 +48,7 @@ openssl asn1parse -inform der -in decrypted.sig
 >```
 **OR**  
 **Optional and for ECDSA ONLY!!!**  
-Use this commande to view the **ECDSA** signature:
+Use this command to view the **ECDSA** signature:
 ```shell
 openssl asn1parse -inform der -in encrypted.sig
 ```
