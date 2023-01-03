@@ -2,6 +2,12 @@
 The following commands work with RSA or ECDSA signature.   
 
 ![Alt text](/images/rsa-ecdsa-sig.jpg "RSA and ECDSA signature")
+## Signature with OpenSSL
+In this section I'll walk through the process of performing **RSA** or **ECDSA** signature on a bogus file that we call `data`. That will work on any type of data, either text or binary file. Following are the steps to generate a signature file a verify that signature against the data:  
+1. Generate a private key
+2. Extract the public key, from the private key
+3. Create, sign and encrypt the hash
+4. Modify the source data and verify the signature
 ## 1. Generate an RSA or ECC private key
 Use this command to generate an RSA private key `private-key.pem`:
 ```shell
@@ -22,7 +28,7 @@ Use this command to extract the ECC public key from the private key:
 ```shell
 openssl ec -in private-key.pem -pubout -out public-key.pem
 ```
-## 4. Create, sign and encrypt the hash
+## 3. Create, sign and encrypt the hash
 This section works for both RSA or ECDSA signarure.  
 
 Use this command to hash the file, sign the hash and encrypt the signature with the signer's private key:
@@ -58,7 +64,7 @@ openssl asn1parse -inform der -in encrypted.sig
 >  2:d=1  hl=2 l=  33 prim: INTEGER     :86A665B1393B230EF7B3D03226C25392D2958F5F7B50AC266F9882DFFF4D7BC7
 >37:d=1  hl=2 l=  33 prim: INTEGER     :9BF6689E4E8CEF98268AE0255A9FD06411446C8E03064C378DCE99154368BC55
 >```
-## 6. Modify the source data and verify the signature
+## 4. Modify the source data and verify the signature
 Use this command to verify the signature against the original file:
 ```shell
 openssl dgst -sha256 -verify public-key.pem -signature encrypted.sig test.txt
