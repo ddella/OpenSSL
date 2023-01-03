@@ -29,7 +29,7 @@ Use this command to hash the file, sign the hash and encrypt the signature with 
 ```shell
 openssl dgst -sha256 -sign private-key.pem -out encrypted.sig test.txt
 ```
-**Optional, you can skip to the next section**
+**Optional**
 Use this command to decrypt the signature by using the signer's public key:
 ```shell
 openssl pkeyutl -verifyrecover -pubin -inkey public-key.pem -in encrypted.sig -out decrypted.sig
@@ -46,7 +46,7 @@ openssl asn1parse -inform der -in decrypted.sig
 >15:d=2  hl=2 l=   0 prim: NULL              
 >17:d=1  hl=2 l=  32 prim: OCTET STRING  [HEX DUMP]:C42175B85AABF162D62F397409289DB930136B541B4BE0A9BE7D9FF21AB75728
 >```
-
+**OR**
 >Output for ECDSA:
 >```
 >  0:d=0  hl=2 l=  70 cons: SEQUENCE          
