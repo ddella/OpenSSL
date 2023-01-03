@@ -2,6 +2,14 @@
 **RSA Signarure** stands for *Rivest–Shamir–Adleman Signature Algorithm*. It creates a digital signature in order to verify the authenticity and integrity of a message. **RSA Signarure** does not encrypt your data, it protects against tampering with your data.  
 
 ![Alt text](/images/rsa-sig.jpg "RSA signature")
+## ECDSA signature with OpenSSL
+In this section I'll walk through the process of performing **RSA** signature on a bogus file that we call `data`. That will work on any type of data, either text or binary file. Following are the steps to generate a signature file:  
+1. Generate an RSA private key
+2. Extract the public key, from the private key
+3. Generate a hash
+4. Create, sign and encrypt the hash
+5. Verify the signature
+6. Modify the source data and verify the signature  
 ## 1. Generate an RSA private key
 Use this command to generate an RSA private key `private-key.pem`:
 ```shell
