@@ -29,8 +29,8 @@ Use this command to hash the file, sign the hash and encrypt the signature with 
 ```shell
 openssl dgst -sha256 -sign private-key.pem -out encrypted.sig test.txt
 ```
-**Optional**
-Use this command to decrypt the signature by using the signer's public key:
+**Optional and for RSA ONLY!!!**
+Use this command to decrypt the **RSA signature** by using the signer's public key:
 ```shell
 openssl pkeyutl -verifyrecover -pubin -inkey public-key.pem -in encrypted.sig -out decrypted.sig
 ```
@@ -47,6 +47,11 @@ openssl asn1parse -inform der -in decrypted.sig
 >17:d=1  hl=2 l=  32 prim: OCTET STRING  [HEX DUMP]:C42175B85AABF162D62F397409289DB930136B541B4BE0A9BE7D9FF21AB75728
 >```
 **OR**
+**Optional and for ECDSA ONLY!!!**
+Use this commande to view the signature:
+```shell
+openssl asn1parse -inform der -in encrypted.sig
+```
 >Output for ECDSA:
 >```
 >  0:d=0  hl=2 l=  70 cons: SEQUENCE          
@@ -63,7 +68,7 @@ Output:
 >```
 >Verified OK
 >```
-I just added a blank line at the end of the file `test.txt` and now the verification fails.
+Modify the file `test.txt`, run the verification and now the it fails.
 ```shell
 openssl dgst -sha256 -verify public-key.pem -signature encrypted.sig test.txt
 ```
