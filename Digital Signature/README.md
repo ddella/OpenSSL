@@ -18,13 +18,13 @@ A **hash** functions transform *variable* length data to a *fixed-length* value 
 
 If even if only one bit of data changes in the message, then the hash will be **completely** different. In the case of the SHA256, used in both **RSA** and **ECDSA** signature, the hash will **always** be 32 bytes or 256 bits, no matter what is the size of the input data. What **RSA** and **ECDSA** signature algorithm does is create a hash of the data and signs that hash. If the data changes, the hash changes, and the signature isn’t valid anymore.
 ## RSA signature with OpenSSL
-This article shows a practical example of how to generate and verify an RSA signature using OpenSSL.  
+This article shows a practical example of how to generate and verify an **RSA** signature using OpenSSL.  
 [RSA Signature](RSA-Sig.md)
 ## ECDSA signature with OpenSSL
-This article shows a practical example of how to generate and verify an Elliptic Curve Digital Signature Algorithm (ECDSA) using OpenSSL. 
+This article shows a practical example of how to generate and verify an Elliptic Curve Digital Signature Algorithm (**ECDSA**) using OpenSSL. 
 [ECDSA Signature](ECDSA-Sig.md)
 ## RSA or ECDSA signature with OpenSSL
-This article shows a practical example of how to generate and verify either RSA or ECDSA signature using OpenSSL. 
+This article shows a practical example of how to generate and verify either **RSA** or **ECDSA** signature using OpenSSL. 
 [RSA or ECDSA Signature](RSA-ECDSA-Sig.md)
 ## License
 This project is licensed under the [MIT license](/LICENSE).
