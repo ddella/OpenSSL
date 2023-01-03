@@ -26,7 +26,7 @@ openssl pkey -pubout -in private-key.pem -out public-key.pem
 **OR**
 Use this command to extract the ECC public key from the private key:
 ```shell
-openssl ec -in private-key.pem -pubout -out public-key.pem
+openssl ec -pubout -in private-key.pem -out public-key.pem
 ```
 ## 3. Create, sign and encrypt the hash
 This section works for both RSA or ECDSA signarure.  

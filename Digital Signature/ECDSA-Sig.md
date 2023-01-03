@@ -27,7 +27,7 @@ openssl ecparam -name prime256v1 -genkey -noout -out private-key.pem
 ## 2. Extract the public key, from the private key
 Use this command to extract the ECC public key from the private key:
 ```shell
-openssl ec -in private-key.pem -pubout -out public-key.pem
+openssl ec -pubout -in private-key.pem -out public-key.pem
 ```
 >The file `public-key.pem` looks like:
 >```
