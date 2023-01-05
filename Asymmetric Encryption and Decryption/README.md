@@ -65,6 +65,8 @@ You have two new files that are the encrypted version of `file.bin`.
 >-rw-r--r--  1 username  staff  1049075  1 Jan 00:00 file.bin.enc.rsa
 >```
 ## 4. View encrypted file structure
+Let's take a look at the header of an encrypted file. The command `openssl cms -cmsout ...` prints the header of **ECC** or **RSA** encrypted files. We can clearly see that in both cases the symmetric key is sent to the recipient of the message.  
+
 Use this command to view the CMS structure of an **ECC** the encrypted file:
 ```shell
 openssl cms -inform DER -cmsout -print -in file.bin.enc.ecc | grep -B 100 'encryptedContent:'
@@ -172,16 +174,17 @@ openssl cms -decrypt -in file.bin.enc.rsa -binary -inform DEM -inkey rsa-key.pem
 ```
 >Files `ecc-key.pem` and `rsa-key.pem` contains the respective private key.
 
-The files `ecc-file.bin` and `rsa-file.bin` should be identaical to the original file `file.bin` 
+The files `ecc-file.bin` and `rsa-file.bin` should be identaical to the original file `file.bin`. We'll do a simple digest on all three files and make sure all three values are identical.  
+
 ```
-% md5 file.bin
-MD5 (file.bin) = 273fc8fbebe5c8b2f9fc9efa635579f6
+% openssl dgst -sha256 file.bin
+SHA2-256(file.bin)= d619296b4620a168d87a221487f2b001d604eedf78355ba8a97963816c99cd10
 
-% md5 rsa-file.bin
-MD5 (rsa-file.bin) = 273fc8fbebe5c8b2f9fc9efa635579f6
+% openssl dgst -sha256 rsa-file.bin
+HA2-256(rsa-file.bin)= d619296b4620a168d87a221487f2b001d604eedf78355ba8a97963816c99cd10
 
-% md5 ecc-file.bin
-MD5 (ecc-file.bin) = 273fc8fbebe5c8b2f9fc9efa635579f6
+% openssl dgst -sha256 ecc-file.bin
+SHA2-256(ecc-file.bin)= d619296b4620a168d87a221487f2b001d604eedf78355ba8a97963816c99cd10
 ```
 ## License
 This project is licensed under the [MIT license](/LICENSE).  
