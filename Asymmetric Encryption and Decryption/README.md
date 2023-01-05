@@ -65,9 +65,9 @@ You have two new files that are the encrypted version of `file.bin`.
 >-rw-r--r--  1 username  staff  1049075  1 Jan 00:00 file.bin.enc.rsa
 >```
 ## 4. View encrypted file structure
-Use this command to view the CMS structure of an ECC the encrypted file:
+Use this command to view the CMS structure of an **ECC** the encrypted file:
 ```shell
-openssl cms -inform DER -cmsout -print -recip ecc-crt.pem -in file.bin.enc.ecc | grep -B 100 'encryptedContent:'
+openssl cms -inform DER -cmsout -print -in file.bin.enc.ecc | grep -B 100 'encryptedContent:'
 ```
 
 Output:
@@ -114,8 +114,9 @@ Output:
 >      encryptedContent:
 >```
 
+Use this command to view the CMS structure of an **RSA** the encrypted file:
 ```shell
-openssl asn1parse -inform der -in file.bin.enc.rsa
+openssl cms -inform DER -cmsout -print -in file.bin.enc.rsa | grep -B 100 'encryptedContent:'
 ```
 
 Output:
