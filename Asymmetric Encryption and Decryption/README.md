@@ -131,7 +131,7 @@ Output:
 openssl asn1parse -inform der -in file.bin.rsa
 ```
 
-# 5. Decrypt a file with OpenSSL SMIME/CMS
+# 5. Decrypt a file with OpenSSL CMS
 Use this command to decrypt with using RSA and ECC private key:
 ```shell
 openssl cms -decrypt -in file.bin.ecc -binary -inform DEM -inkey ecc-key.pem -out ecc-file.bin
