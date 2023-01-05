@@ -13,7 +13,27 @@ We will use a self signed certificate throughout this example. I've made two scr
 - [ECC self signed certificate](https://gist.github.com/ddella/f6954409d2090908f6fec1fc3280d9d1)
 - [RSA self signed certificate](https://gist.github.com/ddella/d04a0a0a155b2237b67ad8e0b2302017)
 
-## 2. Extract the public key, from the private key (OPTIONAL)
+Let's try both RSA and ECC. I ran both scripts:  
+
+```shell
+./self_signed_ecc.sh ecc
+```
+
+```shell
+./self_signed_rsa.sh rsa
+```
+
+I got the following files:  
+
+>```
+>-rw-r--r--   1 username  staff  1302  1 Jan 00:00 ecc-crt.pem
+>-rw-r--r--   1 username  staff   952  1 Jan 00:00 ecc-csr.pem
+>-rw-------   1 username  staff   294  1 Jan 00:00 ecc-key.pem
+>-rw-r--r--   1 username  staff  1842  1 Jan 00:00 rsa-crt.pem
+>-rw-r--r--   1 username  staff  1488  1 Jan 00:00 rsa-csr.pem
+>-rw-------   1 username  staff  1708  1 Jan 00:00 rsa-key.pem
+>```
+## 2. Extract the public key from the private key (OPTIONAL)
 You can extract the public key from the private key. This step is **optional** and not needed for now.  
 
 Use this command to extract the RSA public key from the RSA private key:
@@ -26,9 +46,11 @@ Use this command to extract the ECC public key from the ECC private key:
 openssl ec -pubout -in private-key.pem -out public-key.pem
 ```
 ## 3. Encrypt a file with OpenSSL CMS
-Use this command to encrypt with an RSA or ECC public key:
-openssl cms -encrypt -binary -outform DER -in file.bin -aes256 -out file.bin.enc 1-crt.pem
+Use this command to encrypt with an RSA or ECC public key:  
 
+```shell
+openssl cms -encrypt -binary -outform DER -in file.bin -aes256 -out file.bin.enc 1-crt.pem
+```
 ## License
 This project is licensed under the [MIT license](/LICENSE).  
 
