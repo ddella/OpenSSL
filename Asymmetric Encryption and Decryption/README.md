@@ -54,8 +54,8 @@ This created a 10MB binray file with random data.
 
 Use this command to encrypt with an RSA or ECC public key:  
 ```shell
-openssl cms -encrypt -binary -outform DER -in file.bin -aes256 -out file.bin.ecc ecc-crt.pem
-openssl cms -encrypt -binary -outform DER -in file.bin -aes256 -out file.bin.rsa rsa-crt.pem
+openssl cms -encrypt -binary -outform DER -in file.bin -aes-256-cbc -out file.bin.ecc ecc-crt.pem
+openssl cms -encrypt -binary -outform DER -in file.bin -aes-256-cbc -out file.bin.rsa rsa-crt.pem
 ```
 
 You have two new files that are the encrypted version of `file.bin`.
@@ -131,6 +131,25 @@ Output:
 openssl asn1parse -inform der -in file.bin.rsa
 ```
 
+# 5. Decrypt a file with OpenSSL SMIME/CMS
+Use this command to decrypt with using RSA and ECC private key:
+```shell
+openssl cms -decrypt -in file.bin.ecc -binary -inform DEM -inkey ecc-key.pem -out ecc-file.bin
+openssl cms -decrypt -in file.bin.rsa -binary -inform DEM -inkey rsa-key.pem -out rsa-file.bin
+```
+>Files `ecc-key.pem` and `rsa-key.pem` contains the respective private key.
+
+The files `ecc-file.bin` and `rsa-file.bin` should be identaical to the original file `file.bin` 
+```
+% md5 file.bin
+MD5 (file.bin) = 273fc8fbebe5c8b2f9fc9efa635579f6
+
+% md5 rsa-file.bin
+MD5 (rsa-file.bin) = 273fc8fbebe5c8b2f9fc9efa635579f6
+
+% md5 ecc-file.bin
+MD5 (ecc-file.bin) = 273fc8fbebe5c8b2f9fc9efa635579f6
+```
 ## License
 This project is licensed under the [MIT license](/LICENSE).  
 
