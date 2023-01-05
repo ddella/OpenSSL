@@ -54,8 +54,8 @@ This created a 10MB binray file with random data.
 
 Use this command to encrypt with an RSA or ECC public key:  
 ```shell
-openssl cms -encrypt -binary -outform DER -in file.bin -aes-256-cbc -out file.bin.enc.ecc ecc-crt.pem
-openssl cms -encrypt -binary -outform DER -in file.bin -aes-256-cbc -out file.bin.enc.rsa rsa-crt.pem
+openssl cms -encrypt -binary -outform DER -in file.bin -aes256 -out file.bin.enc.ecc ecc-crt.pem
+openssl cms -encrypt -binary -outform DER -in file.bin -aes256 -out file.bin.enc.rsa rsa-crt.pem
 ```
 
 You have two new files that are the encrypted version of `file.bin`.
@@ -65,74 +65,106 @@ You have two new files that are the encrypted version of `file.bin`.
 >-rw-r--r--  1 username  staff  1049075  1 Jan 00:00 file.bin.enc.rsa
 >```
 ## 4. View encrypted file structure
-Use this command to view the ASN.1 structure of each the encrypted file:
+Use this command to view the CMS structure of an ECC the encrypted file:
 ```shell
-openssl asn1parse -inform der -in file.bin.enc.ecc
+openssl cms -inform DER -cmsout -print -recip ecc-crt.pem -in file.bin.enc.ecc | grep -B 100 'encryptedContent:'
 ```
 
 Output:
 >```
->0:d=0  hl=5 l=1048952 cons: SEQUENCE          
->5:d=1  hl=2 l=   9 prim: OBJECT            :pkcs7-envelopedData
->16:d=1  hl=5 l=1048936 cons: cont [ 0 ]        
->21:d=2  hl=5 l=1048931 cons: SEQUENCE          
->26:d=3  hl=2 l=   1 prim: INTEGER           :02
->29:d=3  hl=4 l= 280 cons: SET               
->33:d=4  hl=4 l= 276 cons: cont [ 1 ]        
->37:d=5  hl=2 l=   1 prim: INTEGER           :03
->40:d=5  hl=2 l=  81 cons: cont [ 0 ]        
->42:d=6  hl=2 l=  79 cons: cont [ 1 ]        
->44:d=7  hl=2 l=   9 cons: SEQUENCE          
->46:d=8  hl=2 l=   7 prim: OBJECT            :id-ecPublicKey
->55:d=7  hl=2 l=  66 prim: BIT STRING        
->123:d=5  hl=2 l=  24 cons: SEQUENCE          
->125:d=6  hl=2 l=   9 prim: OBJECT            :dhSinglePass-stdDH-sha1kdf-scheme
->136:d=6  hl=2 l=  11 cons: SEQUENCE          
->138:d=7  hl=2 l=   9 prim: OBJECT            :id-aes256-wrap
->149:d=5  hl=3 l= 161 cons: SEQUENCE          
->152:d=6  hl=3 l= 158 cons: SEQUENCE          
->155:d=7  hl=2 l= 114 cons: SEQUENCE          
->157:d=8  hl=2 l=  90 cons: SEQUENCE          
->159:d=9  hl=2 l=  11 cons: SET               
->161:d=10 hl=2 l=   9 cons: SEQUENCE          
->163:d=11 hl=2 l=   3 prim: OBJECT            :countryName
->168:d=11 hl=2 l=   2 prim: PRINTABLESTRING   :CA
->172:d=9  hl=2 l=  11 cons: SET               
->174:d=10 hl=2 l=   9 cons: SEQUENCE          
->176:d=11 hl=2 l=   3 prim: OBJECT            :stateOrProvinceName
->181:d=11 hl=2 l=   2 prim: UTF8STRING        :QC
->185:d=9  hl=2 l=  17 cons: SET               
->187:d=10 hl=2 l=  15 cons: SEQUENCE          
->189:d=11 hl=2 l=   3 prim: OBJECT            :localityName
->194:d=11 hl=2 l=   8 prim: UTF8STRING        :Montreal
->204:d=9  hl=2 l=  12 cons: SET               
->206:d=10 hl=2 l=  10 cons: SEQUENCE          
->208:d=11 hl=2 l=   3 prim: OBJECT            :organizationName
->213:d=11 hl=2 l=   3 prim: UTF8STRING        :ecc
->218:d=9  hl=2 l=  11 cons: SET               
->220:d=10 hl=2 l=   9 cons: SEQUENCE          
->222:d=11 hl=2 l=   3 prim: OBJECT            :organizationalUnitName
->227:d=11 hl=2 l=   2 prim: UTF8STRING        :IT
->231:d=9  hl=2 l=  16 cons: SET               
->233:d=10 hl=2 l=  14 cons: SEQUENCE          
->235:d=11 hl=2 l=   3 prim: OBJECT            :commonName
->240:d=11 hl=2 l=   7 prim: UTF8STRING        :ecc.com
->249:d=8  hl=2 l=  20 prim: INTEGER           :290AEA79EFB4FA15BD49064353A197D0E4188224
->271:d=7  hl=2 l=  40 prim: OCTET STRING      [HEX DUMP]:D63FEE3332C1083F58768BE4C35B82C191416E740C55E5415E2C873186DAB35FEF5A0B821B50CD49
->313:d=3  hl=5 l=1048639 cons: SEQUENCE          
->318:d=4  hl=2 l=   9 prim: OBJECT            :pkcs7-data
->329:d=4  hl=2 l=  29 cons: SEQUENCE          
->331:d=5  hl=2 l=   9 prim: OBJECT            :aes-256-cbc
->342:d=5  hl=2 l=  16 prim: OCTET STRING      [HEX DUMP]:1348084D85B7D46EE55700331D78FDCE
->360:d=4  hl=5 l=1048592 prim: cont [ 0 ]        
+>CMS_ContentInfo: 
+>  contentType: pkcs7-envelopedData (1.2.840.113549.1.7.3)
+>  d.envelopedData: 
+>    version: 2
+>    originatorInfo: <ABSENT>
+>    recipientInfos:
+>      d.kari: 
+>        version: 3
+>        d.originatorKey: 
+>          algorithm: 
+>            algorithm: id-ecPublicKey (1.2.840.10045.2.1)
+>            parameter: <ABSENT>
+>          publicKey:  (0 unused bits)
+>            0000 - 04 6f 42 9c 8a 30 52 b0-51 18 32 77 5f 76   .oB..0R.Q.2w_v
+>            000e - 7f 9a d9 88 77 7f 13 39-79 62 91 d9 c5 bc   ....w..9yb....
+>            001c - 8a e1 a5 6c e5 64 19 ec-98 6c c5 27 79 50   ...l.d...l.'yP
+>            002a - 9e 76 7d d7 17 c5 1c 90-bd 33 a0 d4 8c 6a   .v}......3...j
+>            0038 - 96 6c e2 fc ad a5 34 b8-54                  .l....4.T
+>        ukm: <ABSENT>
+>        keyEncryptionAlgorithm: 
+>          algorithm: dhSinglePass-stdDH-sha1kdf-scheme (1.3.133.16.840.63.0.2)
+>          parameter: SEQUENCE:
+>    0:d=0  hl=2 l=  11 cons: SEQUENCE          
+>    2:d=1  hl=2 l=   9 prim:  OBJECT            :id-aes256-wrap
+>        recipientEncryptedKeys:
+>            d.issuerAndSerialNumber: 
+>              issuer: C=CA, ST=QC, L=Montreal, O=ecc, OU=IT, CN=ecc.com
+>              serialNumber: 0x290AEA79EFB4FA15BD49064353A197D0E4188224
+>            encryptedKey: 
+>              0000 - 03 02 de c4 ca 81 8f bf-76 78 db cc d7 8b   ........vx....
+>              000e - 73 a7 3e 90 7d b3 90 84-52 94 73 f1 5d 2d   s.>.}...R.s.]-
+>              001c - 30 82 0b b6 97 f0 51 d6-8d 6b fc 01         0.....Q..k..
+>    encryptedContentInfo: 
+>      contentType: pkcs7-data (1.2.840.113549.1.7.1)
+>      contentEncryptionAlgorithm: 
+>        algorithm: aes-256-cbc (2.16.840.1.101.3.4.1.42)
+>        parameter: OCTET STRING:
+>          0000 - 8b 16 13 b9 a9 08 0f eb-c7 c7 25 1f e5 c8 42   ..........%...B
+>          000f - 9e                                             .
+>      encryptedContent:
 >```
 
 ```shell
 openssl asn1parse -inform der -in file.bin.enc.rsa
 ```
 
+Output:
+>```
+>CMS_ContentInfo: 
+>  contentType: pkcs7-envelopedData (1.2.840.113549.1.7.3)
+>  d.envelopedData: 
+>    version: 0
+>    originatorInfo: <ABSENT>
+>    recipientInfos:
+>      d.ktri: 
+>        version: 0
+>        d.issuerAndSerialNumber: 
+>          issuer: C=CA, ST=QC, L=Montreal, O=rsa, OU=IT, CN=rsa.com
+>          serialNumber: 0x691AFFBEE17C2C7750EA8855E09B600493808A08
+>        keyEncryptionAlgorithm: 
+>          algorithm: rsaEncryption (1.2.840.113549.1.1.1)
+>          parameter: NULL
+>        encryptedKey: 
+>          0000 - 24 f3 8e 6d 42 3e 2d a6-ba eb a6 f2 5d df 7d   $..mB>-.....].}
+>          000f - 81 af bb 00 1d fb 1d 89-a3 47 1f 5b bc 28 c3   .........G.[.(.
+>          001e - 7e 4d d9 56 a5 86 a5 6d-a1 00 24 27 d4 97 b1   ~M.V...m..$'...
+>          002d - 1a f7 c6 61 55 ab 1e d9-a0 1e 01 b9 86 27 1b   ...aU........'.
+>          003c - 4d fe 6f f8 fa 35 4b 11-8f b3 2a 6c 5e 7c 43   M.o..5K...*l^|C
+>          004b - e9 b4 00 4e 22 b4 7c 83-b8 bc d8 ce 1f ff e8   ...N".|........
+>          005a - d4 b8 c0 ea 5d 45 be fd-c3 03 fb 1e 1b cd eb   ....]E.........
+>          0069 - 6a c6 bc 9d 32 5d 5e 84-09 4e 58 4e 6b a1 cc   j...2]^..NXNk..
+>          0078 - 6d ed 5f 5c fe 5b 7f 9b-2e a2 c8 f7 48 12 d4   m._\.[......H..
+>          0087 - 04 98 ab 19 1f 9c 53 f8-bb 0f 42 b7 71 0f 7d   ......S...B.q.}
+>          0096 - 78 c6 f4 c1 fb 37 b6 fd-9d 37 ab 0e 2b 97 6b   x....7...7..+.k
+>          00a5 - 01 46 4b d4 69 37 9a b6-8c e2 a2 ec 59 ae 3c   .FK.i7......Y.<
+>          00b4 - 54 f2 68 f9 e5 37 8c 14-db 86 b8 ab c4 60 92   T.h..7.......`.
+>          00c3 - 63 25 90 08 ec 17 92 ff-a2 dd 62 84 f3 80 ba   c%........b....
+>          00d2 - d6 37 aa 71 b9 55 e1 92-81 7c 76 de 73 55 cd   .7.q.U...|v.sU.
+>          00e1 - 52 e7 3f 5b e5 86 09 ca-a1 81 ba c1 07 e0 19   R.?[...........
+>          00f0 - f4 7e f9 2c 76 ae 6f 30-2d 9f 4e 4a f1 7b 87   .~.,v.o0-.NJ.{.
+>          00ff - 70                                             p
+>    encryptedContentInfo: 
+>      contentType: pkcs7-data (1.2.840.113549.1.7.1)
+>      contentEncryptionAlgorithm: 
+>        algorithm: aes-256-cbc (2.16.840.1.101.3.4.1.42)
+>        parameter: OCTET STRING:
+>          0000 - 0a b0 83 a0 a4 fb 2d 0d-d6 ff 99 ef 7f 13 03   ......-........
+>          000f - 92                                             .
+>      encryptedContent: 
+>```
+
 # 5. Decrypt a file with OpenSSL CMS
-Use this command to decrypt using RSA and ECC private key:
+Use this command to decrypt using ECC and RSA private key:
 ```shell
 openssl cms -decrypt -in file.bin.enc.ecc -binary -inform DEM -inkey ecc-key.pem -out ecc-file.bin
 openssl cms -decrypt -in file.bin.enc.rsa -binary -inform DEM -inkey rsa-key.pem -out rsa-file.bin
