@@ -54,20 +54,20 @@ This created a 10MB binray file with random data.
 
 Use this command to encrypt with an RSA or ECC public key:  
 ```shell
-openssl cms -encrypt -binary -outform DER -in file.bin -aes-256-cbc -out file.bin.ecc ecc-crt.pem
-openssl cms -encrypt -binary -outform DER -in file.bin -aes-256-cbc -out file.bin.rsa rsa-crt.pem
+openssl cms -encrypt -binary -outform DER -in file.bin -aes-256-cbc -out file.bin.enc.ecc ecc-crt.pem
+openssl cms -encrypt -binary -outform DER -in file.bin -aes-256-cbc -out file.bin.enc.rsa rsa-crt.pem
 ```
 
 You have two new files that are the encrypted version of `file.bin`.
 >```
 >-rw-r--r--  1 username  staff  1048576  1 Jan 00:00 file.bin
->-rw-r--r--  1 username  staff  1048957  1 Jan 00:00 file.bin.ecc
->-rw-r--r--  1 username  staff  1049075  1 Jan 00:00 file.bin.rsa
+>-rw-r--r--  1 username  staff  1048957  1 Jan 00:00 file.bin.enc.ecc
+>-rw-r--r--  1 username  staff  1049075  1 Jan 00:00 file.bin.enc.rsa
 >```
 ## 4. View encrypted file structure
 Use this command to view the ASN.1 structure of each the encrypted file:
 ```shell
-openssl asn1parse -inform der -in file.bin.ecc
+openssl asn1parse -inform der -in file.bin.enc.ecc
 ```
 
 Output:
@@ -128,14 +128,14 @@ Output:
 >```
 
 ```shell
-openssl asn1parse -inform der -in file.bin.rsa
+openssl asn1parse -inform der -in file.bin.enc.rsa
 ```
 
 # 5. Decrypt a file with OpenSSL CMS
-Use this command to decrypt with using RSA and ECC private key:
+Use this command to decrypt using RSA and ECC private key:
 ```shell
-openssl cms -decrypt -in file.bin.ecc -binary -inform DEM -inkey ecc-key.pem -out ecc-file.bin
-openssl cms -decrypt -in file.bin.rsa -binary -inform DEM -inkey rsa-key.pem -out rsa-file.bin
+openssl cms -decrypt -in file.bin.enc.ecc -binary -inform DEM -inkey ecc-key.pem -out ecc-file.bin
+openssl cms -decrypt -in file.bin.enc.rsa -binary -inform DEM -inkey rsa-key.pem -out rsa-file.bin
 ```
 >Files `ecc-key.pem` and `rsa-key.pem` contains the respective private key.
 
