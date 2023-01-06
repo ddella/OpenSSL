@@ -77,7 +77,7 @@ Output:
 [RSA Signature](RSA.md)
 ## Verify an ECDSA certificate signature by hand
 [ECDSA Signature](ECDSA.md)
-## Verify an ECDSA certificate signature by hand
+## Extract all certificates from chain
 [Extract all certificates from chain](Extract-Cert.md)
 ## License
 This project is licensed under the [MIT license](/LICENSE).
