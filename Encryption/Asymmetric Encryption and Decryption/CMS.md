@@ -189,8 +189,8 @@ HA2-256(rsa-file.bin)= d619296b4620a168d87a221487f2b001d604eedf78355ba8a97963816
 % openssl dgst -sha256 ecc-file.bin
 SHA2-256(ecc-file.bin)= d619296b4620a168d87a221487f2b001d604eedf78355ba8a97963816c99cd10
 ```
-## WARNING
-If you look at line 19 of file `buffer.c`, there’s a limit to the size of a file with S/MIME to `0x5ffffffc` or `1 610 612 732` octets. The limit is enforced at line 87. See below the code from version 3.0.7. It’s possible to bypass this restriction with a custom-built OpenSSL version.  
+## WARNING - File size limit
+If you look at line 19 of file `buffer.c`, there’s a limit to the size of a file with S/MIME to `0x5ffffffc` or `1 610 612 732` octets. The limit is enforced at line 87. See below the code from version 3.0.7. It’s possible to bypass this restriction with a custom-built OpenSSL version or by splitting the file in smaller chunck.  
 
 This shows the limit:
 ![buffer.c-limit](/images/buffer-c-1.jpg)
