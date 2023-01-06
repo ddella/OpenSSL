@@ -1,4 +1,4 @@
-# Cryptographic Message Syntax (CMS)
+# Cryptographic Message Syntax
 The Cryptographic Message Syntax (CMS) is the IETF's standard for cryptographically protected messages. It can be used to digitally sign, digest, authenticate or encrypt any form of digital data.
 
 CMS uses public key encryption based on RSA or Elliptic Curve Cryptography (ECC) algorithms and stores the encrypted versions of the random key in the CMS object. The random key is used to encrypt the actual CMS payload with a symmetric algorithm and store it in the CMS.
@@ -192,5 +192,5 @@ SHA2-256(ecc-file.bin)= d619296b4620a168d87a221487f2b001d604eedf78355ba8a9796381
 ## License
 This project is licensed under the [MIT license](/LICENSE).  
 
-[_^ back to top of page_](#Cryptographic-Message-Syntax-(CMS))  
+[_^ back to top of page_](#Cryptographic-Message-Syntax)  
 [_< back to root_](../../../)
