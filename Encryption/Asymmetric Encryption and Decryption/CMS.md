@@ -198,9 +198,9 @@ This shows the limit:
 This is where they enforce the limit:
 ![buffer.c-enforced](/images/buffer-c-2.jpg)
 
-I tried with a file bigger than the `LIMIT_BEFORE_EXPANSION` constant. See results below:
+I tried to encrypt a file with one octet more than the `LIMIT_BEFORE_EXPANSION` constant. See results below:
 
->`0x5ffffffc` = `1610612732`  
+>`LIMIT_BEFORE_EXPANSION = 0x5ffffffc == 1610612732`  
 
 ```
 % < /dev/urandom head -c 1610612733 > file1.bin
