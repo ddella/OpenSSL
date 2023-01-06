@@ -190,10 +190,34 @@ HA2-256(rsa-file.bin)= d619296b4620a168d87a221487f2b001d604eedf78355ba8a97963816
 SHA2-256(ecc-file.bin)= d619296b4620a168d87a221487f2b001d604eedf78355ba8a97963816c99cd10
 ```
 ## WARNING
-If you look at line 19 of file `buffer.c`, there’s a limit to the size of a file with S/MIME to `0x5ffffffc` or `1 610 612 732` octets. The limit is enforced at line 87. See below the code from version 3.0.7. It’s possible to bypass this restriction with a custom-built OpenSSL version.
+If you look at line 19 of file `buffer.c`, there’s a limit to the size of a file with S/MIME to `0x5ffffffc` or `1 610 612 732` octets. The limit is enforced at line 87. See below the code from version 3.0.7. It’s possible to bypass this restriction with a custom-built OpenSSL version.  
+
+This shows the limit:
 ![buffer.c-limit](/images/buffer-c-1.jpg)
 
+
 ![buffer.c-enforced](/images/buffer-c-2.jpg)
+
+```
+% < /dev/urandom head -c 1807152000 > file1.bin
+% ls -la file1*
+-rw-r--r--  1 daniel  staff  1807152000  6 Jan 14:40 file1.bin
+
+% openssl cms -encrypt -binary -outform DER -in file1.bin -aes256 -out file1.bin.enc.ecc ecc-crt.pem
+% ls -la file1*                                                                                     
+-rw-r--r--  1 daniel  staff  1807152000  6 Jan 14:40 file1.bin
+-rw-r--r--  1 daniel  staff  1807152386  6 Jan 14:41 file1.bin.enc.ecc
+
+% openssl cms -inform DER -cmsout -print -in file1.bin.enc.ecc | grep -B 100 'encryptedContent:'
+Error reading SMIME Content Info
+C038E64DF87F0000:error:038C0100:memory buffer routines:BUF_MEM_grow_clean:malloc failure:../crypto/buffer/buffer.c:128:
+C038E64DF87F0000:error:068C0100:asn1 encoding routines:asn1_d2i_read_bio:malloc failure:../crypto/asn1/a_d2i_fp.c:209:
+
+% openssl cms -decrypt -in file1.bin.enc.ecc -binary -inform DEM -inkey ecc-key.pem -out ecc-file1.bin
+Error reading SMIME Content Info
+C038E64DF87F0000:error:038C0100:memory buffer routines:BUF_MEM_grow_clean:malloc failure:../crypto/buffer/buffer.c:128:
+C038E64DF87F0000:error:068C0100:asn1 encoding routines:asn1_d2i_read_bio:malloc failure:../crypto/asn1/a_d2i_fp.c:209:
+```
 
 ## License
 This project is licensed under the [MIT license](/LICENSE).  
