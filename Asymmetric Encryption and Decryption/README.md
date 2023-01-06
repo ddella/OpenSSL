@@ -7,6 +7,9 @@ Encryption is done with a public key and requires the corresponding private key 
 
 Both `openssl cms` and `openssl smime` utilities can be used for digitally signing, verifying, encrypted, and decrypting files. The `openssl cms` utility supports newer methods of encryption like ECC. This is why we’ll use `openssl cms` for this example.
 
+## Encryption and decryption with CMS
+In this example we will explore the commands to encrypt and decrypt a file with asymmetric key of type **RSA** and **ECC**.  
+
 ## 1. Generate an RSA or ECC self signed certificate
 We will use a self signed certificate throughout this example. I've made two scripts of my Gist to generate the certificates. Each script creates three files. You will onkly need the certificate `-crt.pem` and the private key `-key.pem`.  
 
@@ -50,9 +53,9 @@ Use this command, or any of your choice, to generate a dummy file for encryption
 ```shell
 < /dev/urandom head -c 1048576 > file.bin
 ```
-This created a 10MB binray file with random data.  
+This creates a 10MB binray file with random data.  
 
-Use this command to encrypt with an RSA or ECC public key:  
+Use those commands to encrypt with an **RSA** and **ECC** public key. The `openssl cms` command just requires the certificate of the receipient of the message. It will extract the public key from it.  
 ```shell
 openssl cms -encrypt -binary -outform DER -in file.bin -aes256 -out file.bin.enc.ecc ecc-crt.pem
 openssl cms -encrypt -binary -outform DER -in file.bin -aes256 -out file.bin.enc.rsa rsa-crt.pem
@@ -65,7 +68,7 @@ You have two new files that are the encrypted version of `file.bin`.
 >-rw-r--r--  1 username  staff  1049075  1 Jan 00:00 file.bin.enc.rsa
 >```
 ## 4. View encrypted file structure
-Let's take a look at the header of an encrypted file. The command `openssl cms -cmsout ...` prints the header of **ECC** or **RSA** encrypted files. We can clearly see that in both cases the symmetric key is sent to the recipient of the message.  
+Let's take a look at the header of an encrypted file. The command `openssl cms -cmsout ...` prints the header of **ECC** or **RSA** encrypted file. As stated in the introduction, the algorithm stores the encrypted versions of the random key in the CMS object.  
 
 Use this command to view the CMS structure of an **ECC** the encrypted file:
 ```shell
@@ -174,7 +177,7 @@ openssl cms -decrypt -in file.bin.enc.rsa -binary -inform DEM -inkey rsa-key.pem
 ```
 >Files `ecc-key.pem` and `rsa-key.pem` contains the respective private key.
 
-The files `ecc-file.bin` and `rsa-file.bin` should be identaical to the original file `file.bin`. We'll do a simple digest on all three files and make sure all three values are identical.  
+The files `ecc-file.bin` and `rsa-file.bin` should be a copy of the original file `file.bin`. We'll do a simple digest on all three files and make sure all three values are identical.  
 
 ```
 % openssl dgst -sha256 file.bin
