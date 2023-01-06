@@ -195,18 +195,22 @@ If you look at line 19 of file `buffer.c`, there’s a limit to the size of a fi
 This shows the limit:
 ![buffer.c-limit](/images/buffer-c-1.jpg)
 
-
+This is where they enforce the limit:
 ![buffer.c-enforced](/images/buffer-c-2.jpg)
 
+I tried with a file bigger than the `LIMIT_BEFORE_EXPANSION` constant. See results below:
+
+>`0x5ffffffc` = `1610612732`  
+
 ```
-% < /dev/urandom head -c 1807152000 > file1.bin
+% < /dev/urandom head -c 1610612733 > file1.bin
 % ls -la file1*
--rw-r--r--  1 daniel  staff  1807152000  6 Jan 14:40 file1.bin
+-rw-r--r--  1 daniel  staff  1610612733  1 Jan 00:00 file1.bin
 
 % openssl cms -encrypt -binary -outform DER -in file1.bin -aes256 -out file1.bin.enc.ecc ecc-crt.pem
-% ls -la file1*                                                                                     
--rw-r--r--  1 daniel  staff  1807152000  6 Jan 14:40 file1.bin
--rw-r--r--  1 daniel  staff  1807152386  6 Jan 14:41 file1.bin.enc.ecc
+% ls -la file1*
+-rw-r--r--  1 daniel  staff  1610612733  1 Jan 00:00 file1.bin
+-rw-r--r--  1 daniel  staff  1610613106  1 Jan 00:00 file1.bin.enc.ecc
 
 % openssl cms -inform DER -cmsout -print -in file1.bin.enc.ecc | grep -B 100 'encryptedContent:'
 Error reading SMIME Content Info
@@ -218,7 +222,6 @@ Error reading SMIME Content Info
 C038E64DF87F0000:error:038C0100:memory buffer routines:BUF_MEM_grow_clean:malloc failure:../crypto/buffer/buffer.c:128:
 C038E64DF87F0000:error:068C0100:asn1 encoding routines:asn1_d2i_read_bio:malloc failure:../crypto/asn1/a_d2i_fp.c:209:
 ```
-
 ## License
 This project is licensed under the [MIT license](/LICENSE).  
 
