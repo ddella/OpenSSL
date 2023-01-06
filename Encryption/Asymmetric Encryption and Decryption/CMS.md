@@ -207,6 +207,9 @@ I tried to encrypt a file with one octet more than the `LIMIT_BEFORE_EXPANSION` 
 % ls -la file1*
 -rw-r--r--  1 username  staff  1610612733  1 Jan 00:00 file1.bin
 
+% du -h file1.bin                                                                                     
+1.5G	file1.bin
+
 % openssl cms -encrypt -binary -outform DER -in file1.bin -aes256 -out file1.bin.enc.ecc ecc-crt.pem
 % ls -la file1*
 -rw-r--r--  1 username  staff  1610612733  1 Jan 00:00 file1.bin
