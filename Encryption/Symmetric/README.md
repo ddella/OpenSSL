@@ -1,10 +1,14 @@
 # Symmetric Encryption and Decryption
+## List of supported ciphers
+Use this command to list the supported ciphers:
+```
+openssl enc -ciphers
+```
 ## Generate a dummy file
 Generate a dummy file with random data and more than 1.5GB. See my other example aboput file size limitation [here](../Asymmetric%20Encryption%20and%20Decryption/CMS.md#warning---file-size-limit)  
 ```shell
 < /dev/urandom head -c 1610612733 > file1.bin
 ```
-
 >Looks like there's not size limitation for symmetrical encryption
 ## Encrypt
 This is a type of encryption where only one secret key or password is used to encrypt and decrypt a file or data.  
@@ -19,6 +23,13 @@ The command will ask for an encryption password and a confirmation:
 enter AES-256-CBC encryption password:
 Verifying - enter AES-256-CBC encryption password:
 ```
+Let’s find out each part in our code
+
+    -aes-256-cbc — the cipher name( symmetric cipher : AES ;block to stream conversion : CBC(cipher block chaining))
+    -pass pass:<password> — to specify the password (here password is kekayan)
+    -P — Print out the salt, key and IV used.
+    -in file— input file /input file absolute path(here image.png)
+    -out file— output file /output file absolute path(here file.enc)
 
 ## Decrypt
 Use this command to decrypt of a file with a symmetric key:
