@@ -16,7 +16,6 @@ This is a type of encryption where only one secret key or password is used to en
 Use this command to encrypt of a file with a symmetric key:
 ```shell
 openssl enc -aes-256-cbc -e -salt -pbkdf2 -p -in file.bin -out file.bin.enc
-openssl enc -aes-256-cbc -e -salt -pbkdf2 -p -pass pass:mysecret -in file.bin -out file.bin.enc
 ```
 >Use the option `-pass pass:mysecret` to specify the password on the command line
 
@@ -83,6 +82,36 @@ openssl enc -e -kfile mypass -aes-256-cbc -md sha512 -pbkdf2 -iter 100000 -salt 
 
 ```shell
 openssl enc -d -kfile mypass -aes-256-cbc -md sha512 -pbkdf2 -iter 100000 -salt -in file.enc -out file.txt
+```
+## Encrypted file format
+**INCOMPLETE**  
+The only thing OpenSSL saves in the encrypted file is a 16 octets header:
+  * The string 'Salted__' `0x5361 6c74 6564 5f5f`
+  * An 8 octets randomised "Salt"??? `0xfe05 9b80 92f6 c188`
+  * The encrypted data
+
+A simple text `file.txt`:
+```
+1st line
+2nd line
+3rd line
+```
+
+Use this command to `null` encrypted the text file:
+```shell
+openssl enc -null -e -pbkdf2 -p -pass pass:mysecret -in file.txt -out file.null.enc
+```
+
+Use this command to view the encrypted file:
+```shell
+xxd file.null.enc
+```
+
+Output:
+```
+00000000: 5361 6c74 6564 5f5f fe05 9b80 92f6 c188  Salted__........
+00000010: 3173 7420 6c69 6e65 0a32 6e64 206c 696e  1st line.2nd lin
+00000020: 650a 3372 6420 6c69 6e65 0a              e.3rd line.
 ```
 ## License
 This project is licensed under the [MIT license](/LICENSE).  
