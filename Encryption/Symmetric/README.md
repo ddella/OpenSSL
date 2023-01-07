@@ -5,7 +5,7 @@ Use this command to list the supported ciphers:
 openssl enc -ciphers
 ```
 ## Generate a dummy file
-Generate a dummy file with random data and more than 1.5GB. See my other example aboput file size limitation [here](../Asymmetric%20Encryption%20and%20Decryption/CMS.md#warning---file-size-limit)  
+Generate a dummy file with random data and more than 1.5GB. See my other example about file size limitation with OpenSSL and CMS [here](../Asymmetric%20Encryption%20and%20Decryption/CMS.md#warning---file-size-limit)  
 ```shell
 < /dev/urandom head -c 1610612733 > file.bin
 ```
@@ -88,7 +88,7 @@ openssl enc -d -kfile mypass -aes-256-cbc -md sha512 -pbkdf2 -iter 100000 -salt 
 
 The only thing OpenSSL saves in the encrypted file is a 16 octets header:
   * The string 'Salted__' `0x5361 6c74 6564 5f5f`
-  * An 8 octets randomised "Salt"??? `0xfe05 9b80 92f6 c188`
+  * An 8 octets randomised "Salt" `0xdb64 819f 64a7 8751`
   * The encrypted data  
 
 >The other options, like the password used to encrypt the file, are *assumed* to be known by both parties.
@@ -105,6 +105,12 @@ Use this command to `null` encrypted the text file:
 ```shell
 openssl enc -null -e -pbkdf2 -p -pass pass:mysecret -in file.txt -out file.null.enc
 ```
+>The `-p` option prints the salt value
+
+Output:
+```
+salt=DB64819F64A78751
+```
 
 Use this command to view the encrypted file:
 ```shell
@@ -113,7 +119,7 @@ xxd file.null.enc
 
 Output:
 ```
-00000000: 5361 6c74 6564 5f5f fe05 9b80 92f6 c188  Salted__........
+00000000: 5361 6c74 6564 5f5f db64 819f 64a7 8751  Salted__.d..d..Q
 00000010: 3173 7420 6c69 6e65 0a32 6e64 206c 696e  1st line.2nd lin
 00000020: 650a 3372 6420 6c69 6e65 0a              e.3rd line.
 ```
