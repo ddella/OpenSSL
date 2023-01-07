@@ -34,11 +34,10 @@ The options used on the command line:
     -aes-256-cbc        — the cipher
     -pbkdf2             - Use PBKDF2 algorithm
     -salt               - Use a randomly generated salt
-    -pass pass:mysecret — the password in clear (password is: mysecret)
+    -pass pass:mysecret — the password in clear. The password is: mysecret (see Passphrase options below)
     -P                  — Print out the salt, key and IV used (see last three lines of output above)
     -in file            — file to encrypt
     -out file           — encrypted file
-
 ## Decrypt
 Use this command to decrypt of a file with a symmetric key:
 ```shell
