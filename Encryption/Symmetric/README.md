@@ -84,7 +84,7 @@ openssl enc -e -kfile mypass -aes-256-cbc -md sha512 -pbkdf2 -iter 100000 -salt 
 openssl enc -d -kfile mypass -aes-256-cbc -md sha512 -pbkdf2 -iter 100000 -salt -in file.enc -out file.txt
 ```
 ## Encrypted file format
-**INCOMPLETE**  
+**This section is INCOMPLETE**  
 The only thing OpenSSL saves in the encrypted file is a 16 octets header:
   * The string 'Salted__' `0x5361 6c74 6564 5f5f`
   * An 8 octets randomised "Salt"??? `0xfe05 9b80 92f6 c188`
