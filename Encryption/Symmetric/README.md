@@ -1,6 +1,6 @@
 # Symmetric Encryption and Decryption
 ## Generate a dummy file
-Generate a dummy file with random data and more than 1.5GB  
+Generate a dummy file with random data and more than 1.5GB. See my other example aboput file size limitation [here](../Asymmetric%20Encryption%20and%20Decryption/CMS.md#warning---file-size-limit)  
 ```shell
 < /dev/urandom head -c 1610612733 > file1.bin
 ```
