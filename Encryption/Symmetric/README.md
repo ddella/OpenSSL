@@ -5,6 +5,7 @@ Generate a dummy file with random data and more than 1.5GB. See my other example
 < /dev/urandom head -c 1610612733 > file1.bin
 ```
 
+>Looks like there's not size limitation for symmetrical encryption
 ## Encrypt
 This is a type of encryption where only one secret key or password is used to encrypt and decrypt a file or data.  
 
@@ -31,7 +32,7 @@ The command will ask for the decryption password used to encrypt the file:
 enter AES-256-CBC decryption password:
 ```
 ## Verification
-The files `new-file.bin` should be a copy of the original file `file.bin`. We'll do a simple digest on the two files and make sure all hash values are identical.  
+The file `new-file.bin` should be a copy of the original file `file.bin`. We'll do a simple digest on the two files and make sure all hash values are identical.  
 
 ```
 % openssl dgst -sha256 file.bin 
@@ -48,7 +49,7 @@ openssl enc -e -kfile mypass -aes-256-cbc -md sha512 -pbkdf2 -iter 100000 -salt 
 
 ```shell
 openssl enc -d -kfile mypass -aes-256-cbc -md sha512 -pbkdf2 -iter 100000 -salt -in file.enc -out file.txt
-``` 
+```
 ## License
 This project is licensed under the [MIT license](/LICENSE).  
 
