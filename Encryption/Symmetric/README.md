@@ -101,7 +101,7 @@ A simple text `file.txt`:
 3rd line
 ```
 
-Use this command to `null` encrypted the text file:
+Use this command to `null` encrypt the text file (no encryption):
 ```shell
 openssl enc -null -e -pbkdf2 -p -pass pass:mysecret -in file.txt -out file.null.enc
 ```
