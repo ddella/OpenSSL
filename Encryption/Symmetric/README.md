@@ -74,14 +74,35 @@ SHA2-256(file.bin)= 7976f1fedef9adc6095e21e8d2869b53f323c29c0053e111a9290f8c9c85
 % openssl dgst -sha256 new-file.bin
 SHA2-256(new-file.bin)= 7976f1fedef9adc6095e21e8d2869b53f323c29c0053e111a9290f8c9c8569d4
 ```
-## More
-More symmetric encryption/decryption options:
+## Full example
+Here is a full example on hoe to encrypt and decrypt a file with symmetric key.  
+
+Use this command to generate a random key of 256 bit:
 ```shell
-openssl enc -e -kfile mypass -aes-256-cbc -md sha512 -pbkdf2 -iter 100000 -salt -in file.txt -out file.enc
+openssl rand -out key.bin 32
 ```
 
+Use this command to encrypt the file `file.bin` with the key generated above and save the file as `file.bin.enc`:
 ```shell
-openssl enc -d -kfile mypass -aes-256-cbc -md sha512 -pbkdf2 -iter 100000 -salt -in file.enc -out file.txt
+openssl enc -e -aes-256-cbc -p -md sha512 -salt -pbkdf2 -iter 100000 -pass file:./key.bin -in file.bin -out file.bin.enc
+```
+
+Use this command to decrypt the file `file.bin.enc` with the key same key used to encrypt:
+```shell
+openssl enc -d -aes-256-cbc -p -md sha512 -salt -pbkdf2 -iter 100000 -pass file:./key.bin -in file.bin.enc -out newfile.bin
+```
+
+### Optional
+Use this command to make verify that the new decrypted file is identical as the original one:
+```shell
+openssl dgst -sha256 file.bin 
+openssl dgst -sha256 newfile.bin
+```
+
+Output:
+```
+SHA2-256(file.bin)= 1c885a76546d19bc10983be0158b02352d77f53d8d90c8d4b94017eefdcccaf1
+SHA2-256(newfile.bin)= 1c885a76546d19bc10983be0158b02352d77f53d8d90c8d4b94017eefdcccaf1
 ```
 ## Encrypted file format
 **This section is INCOMPLETE**  
