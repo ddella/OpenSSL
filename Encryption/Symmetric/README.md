@@ -75,14 +75,14 @@ SHA2-256(file.bin)= 7976f1fedef9adc6095e21e8d2869b53f323c29c0053e111a9290f8c9c85
 SHA2-256(new-file.bin)= 7976f1fedef9adc6095e21e8d2869b53f323c29c0053e111a9290f8c9c8569d4
 ```
 ## Full example
-Here is a full example on hoe to encrypt and decrypt a file with symmetric key.  
+Following is a full example on how to encrypt and decrypt a file with symmetric key.  
 
 Use this command to generate a random key of 256 bit:
 ```shell
 openssl rand -out key.bin 32
 ```
 
-Use this command to encrypt the file `file.bin` with the key generated above and save the file as `file.bin.enc`:
+Use this command to encrypt the file `file.bin` with the key generated above and save it as `file.bin.enc`:
 ```shell
 openssl enc -e -aes-256-cbc -p -md sha512 -salt -pbkdf2 -iter 100000 -pass file:./key.bin -in file.bin -out file.bin.enc
 ```
@@ -93,7 +93,7 @@ openssl enc -d -aes-256-cbc -p -md sha512 -salt -pbkdf2 -iter 100000 -pass file:
 ```
 
 ### Optional
-Use this command to make verify that the new decrypted file is identical as the original one:
+Use this command to verify that the new decrypted file is identical to the original one:
 ```shell
 openssl dgst -sha256 file.bin 
 openssl dgst -sha256 newfile.bin
