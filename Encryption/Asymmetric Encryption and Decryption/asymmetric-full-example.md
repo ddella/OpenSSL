@@ -16,13 +16,11 @@ Use this command to generate a self-signed certificate with the key pair:
 >We need only one certificate, since we encrypt one file and send it to a receipient.
 ## Sender
 ### Files
-```
-Original file to encrypt: `file.bin`
-Generate a random symmetric key for encryption: `key.bin`
-Encrypted file: `file.bin.enc`
-Download the recipient Certificate: rsa-crt.pem
-Public Key extracted from certificate: `rsa-public-key.pem`
-```
+>Original file to encrypt: `file.bin`
+>Generate a random symmetric key for encryption: `key.bin`
+>Encrypted file: `file.bin.enc`
+>Download the recipient Certificate: rsa-crt.pem
+>Public Key extracted from certificate: `rsa-public-key.pem`
 
 ### Encrypt the file
 Even with asymmetric encryption, we always do symmetrical encryption with a random key.  
@@ -56,11 +54,9 @@ At this point, you send the encrypted symmetric key `key.bin.enc` and the encryp
 
 ## Recipient
 ### Files
-```
-Encrypted file: `file.bin.enc`
-Encrypted symmetric key: `key.bin.enc`
-Private Key: `rsa-key.pem`
-```
+>Encrypted file: `file.bin.enc`
+>Encrypted symmetric key: `key.bin.enc`
+>Private Key: `rsa-key.pem`
 
 ### Decrypt the file
 The recipient uses this command to decrypt the symmetric key `key.bin.enc` with his own private `rsa-key.pem`:
@@ -75,6 +71,6 @@ openssl enc -d -aes-256-cbc -p -md sha512 -salt -pbkdf2 -iter 100000 -pass file:
 ## License
 This project is licensed under the [MIT license](/LICENSE).  
 
-[_^ back to top of page_](#Asymmetric-encryption-by hand)  
+[_^ back to top of page_](#Asymmetric-encryption-by-hand)  
 [_< back to encryption_](../)  
 [_<< back to root_](../../../../)
