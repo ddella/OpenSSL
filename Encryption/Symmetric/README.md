@@ -1,4 +1,5 @@
 # Symmetric Encryption and Decryption
+Symmetric encryption uses a password (or passphrase) to encrypt a file and the same password is used to decrypt it.  
 ## List of supported ciphers
 Use this command to list the supported ciphers:
 ```
