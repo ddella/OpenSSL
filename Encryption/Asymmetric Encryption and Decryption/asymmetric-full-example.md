@@ -66,7 +66,7 @@ openssl pkeyutl -decrypt -inkey rsa-key.pem -in key.bin.enc -out key.bin
 
 The receiver uses this command to decrypt the file `file.bin.enc` with the key `key.bin`:
 ```shell
-openssl enc -d -aes-256-cbc -p -md sha512 -salt -pbkdf2 -iter 100000 -pass file:./key.bin -in file.bin.enc -out newfile.bin
+openssl enc -d -aes-256-cbc -p -md sha512 -salt -pbkdf2 -iter 100000 -pass file:./key.bin -in file.bin.enc -out file.bin
 ```
 ## Icons
 https://www.flaticon.com/free-icons/document  
