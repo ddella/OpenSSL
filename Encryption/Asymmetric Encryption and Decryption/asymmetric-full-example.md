@@ -9,7 +9,7 @@ Files used throughout this example:
 >Public Key: `rsa-public-key.pem`  
 >Receiver Certificate: `rsa-crt.pem`  
 
-![Alt](images/Asymmetric-Enc.jpg)
+![Alt](../images/Asymmetric-Enc.jpg)
 ## Let's do a complete example of asymmetric encryption by hand
 Use this command to generate an ECC self-signed certificate with the key pair:
 [ECC self-signed certificate](https://gist.github.com/ddella/f6954409d2090908f6fec1fc3280d9d1)
