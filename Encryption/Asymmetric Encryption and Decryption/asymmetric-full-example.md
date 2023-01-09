@@ -69,9 +69,9 @@ The receiver uses this command to decrypt the file `file.bin.enc` with the key `
 openssl enc -d -aes-256-cbc -p -md sha512 -salt -pbkdf2 -iter 100000 -pass file:./key.bin -in file.bin.enc -out newfile.bin
 ```
 ## Icons
-https://www.flaticon.com/free-icons/document
-https://www.flaticon.com/free-icon/woman_2922561?term=people&page=1&position=35&origin=search&related_id=2922561
-https://www.flaticon.com/free-icon/man_2922624?term=man&page=1&position=14&origin=style&related_id=2922624
+https://www.flaticon.com/free-icons/document  
+https://www.flaticon.com/free-icon/woman_2922561?term=people&page=1&position=35&origin=search&related_id=2922561  
+https://www.flaticon.com/free-icon/man_2922624?term=man&page=1&position=14&origin=style&related_id=2922624  
 
 ## License
 This project is licensed under the [MIT license](/LICENSE).  
