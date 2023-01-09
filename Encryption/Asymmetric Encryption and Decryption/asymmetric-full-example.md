@@ -2,12 +2,12 @@
 This example is educational purposes ONLY. It shows all the steps to encrypt a file with a receiver's public key.  
 
 Files used throughout this example:
->Original file to encrypt: `file.bin`
->Symmetric Key for encryption: `key.bin`
->Encrypted file: `file.bin.enc`
->Private Key: `rsa-key.pem`
->Public Key: `rsa-public-key.pem`
->Recipient Certificate: `rsa-crt.pem`
+>Original file to encrypt: `file.bin`  
+>Symmetric Key for encryption: `key.bin`  
+>Encrypted file: `file.bin.enc`  
+>Private Key: `rsa-key.pem`  
+>Public Key: `rsa-public-key.pem`  
+>Recipient Certificate: `rsa-crt.pem`  
 
 ## Let's do a complete example of asymmetric encryption by hand.
 Use this command to generate a self-signed certificate with the key pair:
