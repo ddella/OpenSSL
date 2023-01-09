@@ -2,8 +2,8 @@
 This example is educational purposes ONLY. It shows all the steps to encrypt a file with a receiver's public key.  
 
 Files used throughout this example:
+>Original file to encrypt: `file.bin`
 ```
-Original file to encrypt: file.bin
 Symmetric Key for encryption: key.bin
 Encrypted file: file.bin.enc
 Private Key: rsa-key.pem
