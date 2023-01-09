@@ -54,9 +54,9 @@ At this point, you send the encrypted symmetric key `key.bin.enc` and the encryp
 
 ## Receiver
 ### Files
->Encrypted file: `file.bin.enc`
->Encrypted symmetric key: `key.bin.enc`
->Private Key: `rsa-key.pem`
+>Encrypted file: `file.bin.enc`  
+>Encrypted symmetric key: `key.bin.enc`  
+>Private Key: `rsa-key.pem`  
 
 ### Decrypt the file
 The receiver uses this command to decrypt the symmetric key `key.bin.enc` with his own private `rsa-key.pem`:
