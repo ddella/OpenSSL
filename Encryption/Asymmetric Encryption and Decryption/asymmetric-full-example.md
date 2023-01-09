@@ -3,13 +3,12 @@ This example is educational purposes ONLY. It shows all the steps to encrypt a f
 
 Files used throughout this example:
 >Original file to encrypt: `file.bin`
-```
-Symmetric Key for encryption: key.bin
-Encrypted file: file.bin.enc
-Private Key: rsa-key.pem
-Public Key: rsa-public-key.pem
-Recipient Certificate: rsa-crt.pem
-```
+>Symmetric Key for encryption: `key.bin`
+>Encrypted file: `file.bin.enc`
+>Private Key: `rsa-key.pem`
+>Public Key: `rsa-public-key.pem`
+>Recipient Certificate: `rsa-crt.pem`
+
 ## Let's do a complete example of asymmetric encryption by hand.
 Use this command to generate a self-signed certificate with the key pair:
 [ECC self-signed certificate](https://gist.github.com/ddella/f6954409d2090908f6fec1fc3280d9d1)
