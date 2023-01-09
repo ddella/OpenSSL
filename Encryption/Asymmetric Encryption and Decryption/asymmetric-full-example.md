@@ -1,5 +1,5 @@
 # Asymmetric encryption by hand
-This example is for educational purposes ONLY. It shows all the steps the sender does to encrypt a file with a receiver's public key. It shows all the steps the receiver does to decrypt the file.  
+This example is for educational purposes **ONLY**. It shows all the steps the sender does to encrypt a file with a receiver's public key. It shows all the steps the receiver does to decrypt the file.  
 
 Files used throughout this example:  
 >Original file to encrypt: `file.bin`  
@@ -9,6 +9,7 @@ Files used throughout this example:
 >Public Key: `rsa-public-key.pem`  
 >Receiver Certificate: `rsa-crt.pem`  
 
+![Alt](images/Asymmetric-Enc.jpg)
 ## Let's do a complete example of asymmetric encryption by hand
 Use this command to generate an ECC self-signed certificate with the key pair:
 [ECC self-signed certificate](https://gist.github.com/ddella/f6954409d2090908f6fec1fc3280d9d1)
