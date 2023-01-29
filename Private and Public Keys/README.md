@@ -3,23 +3,27 @@
 
 # Private and Public Keys
 This is **not** a tutorial about Public Key Cryptography (PKC) or Asymmetric Encryption.
-1. It's about a cheat sheet of OpenSSL commands to generate/view/check different types of private and public keys.
+1. It's about a cheat sheet of OpenSSL commands to generate, view and check different types of private and public keys.
 2. It's about the anatomy of private and public keys.  
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## ECC Private and Public Keys
-This section shows the different OpenSSL commands to generate/view/check **ECC** private and public keys.
+This section shows the different OpenSSL commands to generate, view and check **ECC** private and public keys.
 <p align="left"><a href="ECC-PPK">ECC Private and Public Keys</a></p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## RSA Private and Public Keys
-This section shows the different OpenSSL commands to generate/view/check **RSA** private and public keys.
+This section shows the different OpenSSL commands to generate, view and check **RSA** private and public keys.
 <p align="left"><a href="RSA-PPK">RSA Private and Public Keys</a></p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## ECC Private and Public Keys Anatomy
 This section explains the anatomy of an **ECC** private and public key.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## RSA Private and Public Keys Anatomy
 This section explains the anatomy of an **RSA** private and public key.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- LICENSE -->
 # License
