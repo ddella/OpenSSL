@@ -4,10 +4,16 @@
 # RSA Private and Public Key Anatomy
 **This applies to RSA keys only**. In this example I'm using a 512-bit private key. This is consider very insecure and should **never** be used in production.  
 For RSA, when we say a 512-bit key, it's the size of the modulus, which is one component of the public and private key.
-The private key is a key pair of the private exponent (**d**) and the modulus (**n**). It is presented as follow: (**d,n**)
+The **private key** is a key pair of the private exponent (**d**) and the modulus (**n**). It is presented as follow: (**d,n**)
 
 1. The private exponent **d**
 2. The modulus **n** is the product of two large prime numbers
+>**Note**: The modulus (**n**) is the same number for the private and public key  
+
+The **public key** is a key pair of the public exponent (**e**) and the modulus (**n**). It is presented as follow: (**e,n**)
+
+1.	The public exponent **e** (almost always 65537)
+2.	The modulus **n** is the product of two large prime numbers  
 >**Note**: The modulus (**n**) is the same number for the private and public key  
 
 The RSA Public Key is derived from the Private Key. We never generate a public key. We always generate a private key and that private key has the public key. They are both mathematically related.
@@ -39,8 +45,8 @@ n = 128
   
 ## Fields
 This following information are always included in the private key and in this order:
-1. Modulus
-2. Public Exponent
+1. Modulus (RSA public and private key)
+2. Public Exponent (RSA public key)
 3. Private Exponent
 4. Prime number 1
 5. Prime number 2
@@ -164,9 +170,9 @@ Representation of an RSA 512-bit private key with a bit of math. I wanted to kee
 ## Extract the Public Key from the Private Key
 Use this command to extract the RSA public key from the private key:
 ```shell
-openssl pkey -pubout -in private-key.pem -out public-key.pem
+openssl pkey -pubout -in RSA-private-key.pem -out RSA-public-key.pem
 ```
-The file `public-key.pem` has the public key in `PEM` format. You can open it with any text editor.
+The file `RSA-public-key.pem` has the public key in `PEM` format. You can open it with any text editor.
 >```
 >-----BEGIN PUBLIC KEY-----
 >MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAMvjFzLpDIyNItZSl0Vb8WZxTbUkfijp
@@ -177,7 +183,7 @@ The file `public-key.pem` has the public key in `PEM` format. You can open it wi
 Lets convert the public key `PEM` file to hexadecimal. The `PEM` file is the base64 representation of the key. The idea is to convert the base64 file to binary and then convert the binary to readable hexadecimal. Take a look at this script `pem2hex.sh` on my Gist [here](https://gist.github.com/ddella/d07d5b827f3638e727bbf3dc1210d4a2) to convert a `PEM` formatted file to hexadecimal.
 Use the command to convert the file. The output is on stdout.
 ```shell
-./pem2hex.sh public-key.pem
+./pem2hex.sh RSA-public-key.pem
 ```
 The public key in hexadecimal.
 >```
@@ -190,11 +196,11 @@ The public key in hexadecimal.
 
 Use this command to get the public key detail:
 ```shell
-openssl pkey -pubin -text -noout -in public-key.pem
+openssl pkey -pubin -text -noout -in RSA-public-key.pem
 ```
 This command will output the same results as the preceding command but by reading the information from private key:
 ```shell
-openssl pkey -text_pub -noout -in private-key.pem
+openssl pkey -text_pub -noout -in RSA-private-key.pem
 ```
 The ouput of both commands is:
 >````
@@ -229,7 +235,7 @@ The representation of the OID was taken from Microsoft [here](https://learn.micr
 ## OpenSSL ASN.1 Parser
 OpenSSL includes an ASN.1 parser. The numbers is the first column are in hexadecimal. They represent the byte offset of the binary public key file.
 ```shell
-openssl asn1parse -inform pem -in public-key.pem -strparse 20
+openssl asn1parse -inform pem -in RSA-public-key.pem -strparse 20
 ```
 The output is:
 >```
@@ -248,15 +254,15 @@ The file `RSA-private-key.bin` is the binary representation of the RSA private k
 ```shell
 openssl enc -d -base64 -in RSA-private-key.pem -out RSA-private-key.bin
 ```
-The file `RSA-public-key.pem` is the RSA public key extracted from the private key `PEM` file.  
+The file `RSA-RSA-public-key.pem` is the RSA public key extracted from the private key `PEM` file.  
 ```shell
-openssl pkey -in RSA-private-key.pem -pubout -out RSA-public-key.pem
+openssl pkey -in RSA-private-key.pem -pubout -out RSA-RSA-public-key.pem
 ```
 The binary file is 344 octets. According to the header in the hexadecimal dump of the private key, the size is 0x0154 (340) octets plus the 4 octets for the header. That equals to 344 octets of the binary file.  
 ```
 -rw-r--r--   1 username  staff   344 01 Jan 00:00 RSA-private-key.bin
 -rw-------   1 username  staff   522 01 Jan 00:00 RSA-private-key.pem
--rw-r--r--   1 username  staff   182 01 Jan 00:00 RSA-public-key.pem
+-rw-r--r--   1 username  staff   182 01 Jan 00:00 RSA-RSA-public-key.pem
 ```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
