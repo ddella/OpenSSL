@@ -131,24 +131,28 @@ openssl asn1parse -inform pem -in ECC-private-key.pem
 > Check [X.690 on Wikipedia](https://en.wikipedia.org/wiki/X.690) for the ASN.1 tags
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Files
+## Commands used to create the files
 The file `ECC-private-key.pem` is the ECC private key.  
 ```shell
 openssl ecparam -name prime256v1 -genkey -noout -out ECC-private-key.pem
 ```
-The file `ecc-private-key.bin` is the binary representation of the ECC private key `PEM` file.  
+
+The file `ECC-private-key.bin` is the binary representation of the ECC private key `PEM` file.  
 ```shell
-openssl enc -d -base64 -in ECC-private-key.pem -out ecc-private-key.bin
+openssl enc -d -base64 -in ECC-private-key.pem -out ECC-private-key.bin
 ```
-The file `ecc-public-key.pem` is the ECC public key extracted from the private key `PEM` file.  
+>The binary file can be viewed with `xxd ECC-private-key.bin` or `hexdump -C ECC-private-key.bin`  
+
+The file `ECC-public-key.pem` is the ECC public key extracted from the private key `ECC-private-key.pem` file.  
 ```shell
-openssl ec -in ECC-private-key.pem -pubout -out ecc-public-key.pem
+openssl ec -in ECC-private-key.pem -pubout -out ECC-public-key.pem
 ```
+
 The binary file is 121 bytes. According to the header in the hexadecimal dump of the private key `PEM` file, the size is 0x77 (119) bytes plus 2 bytes for the header and that equals to 121 bytes.  
 ```
--rw-r--r--  1 username  staff  121 01 Jan 00:00 ecc-private-key.bin  
+-rw-r--r--  1 username  staff  121 01 Jan 00:00 ECC-private-key.bin  
 -rw-------@ 1 username  staff  227 01 Jan 00:00 ECC-private-key.pem  
--rw-r--r--  1 username  staff  178 01 Jan 00:00 ecc-public-key.pem  
+-rw-r--r--  1 username  staff  178 01 Jan 00:00 ECC-public-key.pem  
 ```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
