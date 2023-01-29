@@ -7,27 +7,27 @@ This is **not** a tutorial about Public Key Cryptography (PKC) or Asymmetric Enc
 2. It's about the anatomy of private and public keys.  
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## ECC Private and Public Keys
+# ECC Private and Public Keys
 This section shows the different OpenSSL commands to generate, view and check **ECC** private and public keys.
 <p align="left"><a href="ECC-PPK">ECC Private and Public Keys</a></p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## RSA Private and Public Keys
+# RSA Private and Public Keys
 This section shows the different OpenSSL commands to generate, view and check **RSA** private and public keys.
 <p align="left"><a href="RSA-PPK">RSA Private and Public Keys</a></p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## ECC Private and Public Keys Anatomy
+# ECC Private and Public Keys Anatomy
 This section explains the anatomy of an **ECC** private and public key.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## RSA Private and Public Keys Anatomy
+# RSA Private and Public Keys Anatomy
 This section explains the anatomy of an **RSA** private and public key.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- LICENSE -->
 # License
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+Distributed under the MIT License. See [LICENSE](/LICENSE.txt) for more information.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTACT -->
