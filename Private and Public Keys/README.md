@@ -19,6 +19,7 @@ This section shows the different OpenSSL commands to generate, view and check **
 
 # ECC Private and Public Keys Anatomy
 This section explains the anatomy of an **ECC** private and public key.
+<p align="left"><a href="ECC-Anatomy">ECC Private and Public Key Anatomy</a></p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 # RSA Private and Public Keys Anatomy
@@ -27,7 +28,7 @@ This section explains the anatomy of an **RSA** private and public key.
 
 <!-- LICENSE -->
 # License
-Distributed under the MIT License. See [LICENSE](/LICENSE.txt) for more information.
+Distributed under the MIT License. See [LICENSE](/LICENSE) for more information.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTACT -->

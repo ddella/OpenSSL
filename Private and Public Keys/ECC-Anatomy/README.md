@@ -1,3 +1,6 @@
+<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
+<a name="readme-top"></a>
+
 # ECC Private and Public Key Anatomy
 **This applies to ECC key only**. In this example I'm using a 256-bit ECC key. This is considered very secure. It's the equivalent to an 3072-bit RSA key.  
 The public key in ECC are EC points - pairs of integer coordinates {x, y}, laying on a curve.  
@@ -7,17 +10,21 @@ The public key in ECC are EC points - pairs of integer coordinates {x, y}, layin
 The private key represents the number of hops on a curve to go from start to end. This number is almost impossible to guess.  
 
 The ECC Public Key is derived from the Private Key. We never generate a public key. We always generate a private key and that private key has the public key. They are both mathematically related.  
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## Advantages of ECC
 1. With ECC you get equivalent cryptographic strength with significantly smaller key size
 2. A smaller key size enable stronger security with faster TSL handshakes, which translates to better user experiance
 3. Smaller certificate size translates to less information transfer on TLS negociation, lowering network overhead
 4. Low on CPU consumption and memory usage for both client and server
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 The shorter key lengths mean devices require less processing power to encrypt and decrypt data, making ECC a good fit for mobile devices, Internet of Things, and other use cases with more limited computing power.
 ## How big is a 256-bit key
 Just to give you an idea of how large is a 256-bit number, it would look like:
 1. ~77 decimal digits
 2. 64 hexadeciaml digits
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### How many decimal digits
 If `n` is the number of digits, in base 10, you have to solve the equation 10<sup>n</sup> = 2<sup>256</sup>
@@ -37,9 +44,13 @@ n = log<sub>16(</sub>2<sup>256</sup>)
 n = 256 * log<sub>16</sub>2  
 n = 64  
 >If `n` is the number of digits in base 16, just divide the number of bits by 4, since every hexadeciaml digit is exactly 4 bits.  
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## Fields
 There's way less information in an ECC key-pair than with RSA. The only information included are the Private, Public Keys and the OID to identify the type of keys.  
 >This might not be accurate. Everything is based on a lots of reading and a bit of reverse engineering 😀  
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## ECC Private Key - PEM format
 The first thing to do is to convert the private key `PEM`file to hexadecimal. The `PEM` file is the base64 representation of the key. For this example, I generated a 256-bit ECC private key.
 >you never generate a public key  
@@ -72,6 +83,8 @@ The hexadeciaml representation of the `PEM` file:
 ```
 I've colored the private and public key to show that the public key is included in the private key. This is exactly like the RSA private key.  
 ![Alt text](/images/ecc-key-pair-hex.jpg "ECC key pair in hex format")  
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## ECC Private Key detail
 Use this command to get the ECC private key details:
 ```shell
@@ -94,9 +107,13 @@ The ouput should be:
 UNIVERSAL OID.1.2.840.10045.3.1.7
 ```
 >This is what I meant when I said *a bit of reverse engineering*. When decoding the file, I was left with some fields. I tried some numbers the get the OID value and found a match 😉  
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## OID value representation
 The representation of the OID was taken from Microsoft [here](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-gpnap/ff1a8675-0008-408c-ba5f-686a10389adc)
 ![Alt text](/images/key-oid-ecc.jpg "Key pair OID")
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## OpenSSL ASN.1 Parser
 OpenSSL includes an ASN.1 parser. The numbers in the first column represent the byte offset of the binary private key file.
 ```shell
@@ -112,6 +129,8 @@ openssl asn1parse -inform pem -in ecc-private-key.pem
 53:d=2  hl=2 l=  66 prim: BIT STRING
 ```
 > Check [X.690 on Wikipedia](https://en.wikipedia.org/wiki/X.690) for the ASN.1 tags
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## Files
 The file `ecc-private-key.pem` is the ECC private key.  
 ```shell
@@ -131,8 +150,23 @@ The binary file is 121 bytes. According to the header in the hexadecimal dump of
 -rw-------@ 1 username  staff  227 01 Jan 00:00 ecc-private-key.pem  
 -rw-r--r--  1 username  staff  178 01 Jan 00:00 ecc-public-key.pem  
 ```
-## License
-This project is licensed under the [MIT license](/LICENSE).
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-[_^ back to top_](#ECC-Private-and-Public-Key-Anatomy)  
-[_< back to root_](../../../)
+<!-- LICENSE -->
+# License
+Distributed under the MIT License. See `LICENSE.txt` for more information.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- CONTACT -->
+# Contact
+Daniel Della-Noce - [Linkedin](https://www.linkedin.com/in/daniel-della-noce-2176b622/) - daniel@isociel.com
+
+Project Link: [https://github.com/ddella/OpenSSL](https://github.com/ddella/OpenSSL)
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- ACKNOWLEDGMENTS -->
+# Acknowledgments
+* [OpenSSL](https://www.openssl.org/)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="../../">back to root</a>)</p>
