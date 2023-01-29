@@ -35,13 +35,6 @@ A single **PEM** file could contain an end-entity certificate, a private key, or
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## PKCS#8
-Don't be confused by the PKCS #8 format. It's the standard format to store private ket. The PKCS #8 private key may be encrypted with a passphrase. PKCS #8 private keys are typically exchanged in PEM base64-encoded format, for example:
-
-    -----BEGIN PRIVATE KEY-----
-    -----END PRIVATE KEY-----
-
-    -----BEGIN ENCRYPTED PRIVATE KEY-----
-    -----END ENCRYPTED PRIVATE KEY-----
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## PKCS#12

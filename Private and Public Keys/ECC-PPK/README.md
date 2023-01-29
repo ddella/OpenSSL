@@ -45,11 +45,6 @@ Use this command to extract the corresponding public key from the private key:
 openssl ec -in ECC-private-key.pem -pubout -out ECC-public-key.pem
 ```
 
-This command has the same effect has the preceding one and works for both `ECC` and `RSA` private key:
-```shell
-openssl pkcs8 -topk8 -inform PEM -outform PEM -nocrypt -in ECC-private-key.pem  -out ECC-public-key.pem
-```
-
 Use this command to extract the public and private key in hex format:
 ```shell
 openssl ec -noout -text -in ECC-private-key.pem
