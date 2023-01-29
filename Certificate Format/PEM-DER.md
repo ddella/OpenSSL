@@ -90,4 +90,4 @@ Project Link: [https://github.com/ddella/OpenSSL](https://github.com/ddella/Open
 * [www.digicert.com](https://www.digicert.com/kb/ssl-support/openssl-quick-reference-guide.htm)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-<p align="right">(<a href="../">back to root</a>)</p>
+<p align="right">(<a href="README.md">back to Certificate format section</a>)</p>
