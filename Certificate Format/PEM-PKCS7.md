@@ -19,7 +19,7 @@ openssl crl2pkcs7 -nocrl -certfile RSA-server-crt.pem -certfile RSA-int-crt.pem 
 
 >**Note**: You can use one or more `-certfile` options to specify which certificates to add to the PKCS#7 file.  
 
-They are usually `ASCII` files which can contain server, intermediate and CA certificates.
+PKCS#7 files are usually `ASCII` and can contain server, intermediate and CA certificates.
 
 ### View PKCS#7 file
 Use this command to view the content of an ECC PKCS#7-encoded **certificate** file:

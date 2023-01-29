@@ -40,6 +40,12 @@ Use this command to extract the corresponding public key from the private key:
 ```shell
 openssl pkey -pubout -in RSA-private-key.pem -out RSA-public-key.pem
 ```
+
+This command has the same effect has the preceding one and works for both `ECC` and `RSA` private key:
+```shell
+openssl pkcs8 -topk8 -inform PEM -outform PEM -nocrypt -in RSA-private-key.pem  -out RSA-public-key.pem
+```
+
 > This gives the Public key in PEM format
 
 The following two commands gives the same results and outputs the public key to `stdout`.  
