@@ -15,7 +15,7 @@ Both **ECC** and **RSA** generate a pair of private/public key mathematically ti
 ## Generate an ECC Private Key
 This section is about generating a private/public ECC key pair.
 
->It's important to note that we never generate a public key but rather a private key, that contains the public key. This is valid for both ECC and RSA.
+>**Note**: It's important to note that we never generate a public key but rather a private key, that contains the public key. This is valid for both ECC and RSA.
 
 Use this command to prints a list of all curve 'short names':
 ```shell
