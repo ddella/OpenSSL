@@ -141,7 +141,13 @@ The file `ECC-private-key.bin` is the binary representation of the ECC private k
 ```shell
 openssl enc -d -base64 -in ECC-private-key.pem -out ECC-private-key.bin
 ```
->The binary file can be viewed with `xxd ECC-private-key.bin` or `hexdump -C ECC-private-key.bin`  
+>Use either command to view the hexadeciaml dump of the binary file:
+```shell
+xxd ECC-private-key.bin
+```
+```shell
+hexdump -C ECC-private-key.bin
+```
 
 The file `ECC-public-key.pem` is the ECC public key extracted from the private key `ECC-private-key.pem` file.  
 ```shell
