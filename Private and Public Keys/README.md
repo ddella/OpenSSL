@@ -21,15 +21,6 @@ Only the **Modulus**, **publicExponent** and **privateExponent** are required fo
 The openssl `genpkey` utility has superseded the `genrsa` utility. It is recommended to use `genpkey` going forward.
 
 ***
-## Private and Public key with EC keys
-
-ECC and RSA both generate a pair of public/private key mathematically tied together to allow two parties to communicate securely. The main advantage of ECC is that a 256-bit key in ECC offers about the same security as a 3072-bit key using RSA.
-
->`ECC Public Key`: Is the staring and ending points on a curve   
->`ECC Private Key`: Is the number of hops from start to finish  
-
-![Alt text](/images/ecc-priv-pub-key.jpg "ECC Private and Public key")
-
 ***
 ## Generate an RSA Private Key
 Use this command to create an unencrypted 2048-bit private key `private-key.pem`:
@@ -102,56 +93,6 @@ openssl rsa -modulus -noout -in private-key.pem
 >The modulus is the same for both the private and the public key.
 
 ***
-## Generate an Elliptic Curve Private Key
-Use this command to prints a list of all curve 'short names':
-```shell
-openssl ecparam -list_curves
-```
-
-Use this command to generate an elliptic curve private key `private-key.pem`:
-```shell
-openssl ecparam -name prime256v1 -genkey -noout -out private-key.pem
-```
->An ECC Private Key starts with:
->```
->-----BEGIN EC PRIVATE KEY-----
-> [...]
->-----END EC PRIVATE KEY-----
->```
-
-
->Use `-noout`  parameter to remove the information parameters used to generate the key from  the file  
->Use `-prime256v1` for X9.62/SECG curve over a 256-bit prime field  
->Use `-secp384r1` for NIST/SECG curve over a 384-bit prime field  
->Use `-secp521r1` for NIST/SECG curve over a 521-bit prime field  
-
-Use this command to extract the corresponding public key from the private key:
-```shell
-openssl ec -in private-key.pem -pubout -out public-key.pem
-```
-
-Use this command to extract the public and private key in hex format:
-```shell
-openssl ec -in private-key.pem -noout -text
-```
-
-Use this command to get the following private key details:
-1. The public key
-2. The private key
-3. The algorithm used to generate the keys
-
-```shell
-openssl pkey -text -noout -in private-key.pem
-```
->Replace `-text` by `-text_pub` to get only the public key (modulus and public exponent)  
->This command works with both RSA and ECC private keys  
-
-Use this command to check key consistency:
-```shell
-openssl ec -in private-key.pem -noout -check
-```
->If valid, will return `EC Key valid` else `unable to load Key`.
-
 ***
 ## Encrypt/Decrypt an RSA Private Key
 Does only works with **RSA** Private Key.
@@ -177,26 +118,6 @@ openssl rsa -in private-key.pem.enc -out private-key.pem
 >The first line of `mypass` is the password  
 
 ***
-## Encrypt/Decrypt an ECC Private Key
-Does only works with **ECC** Private Key.
-
-This takes an plain text ECC Private Key `private-key.pem` and outputs an encrypted version of it in the file `private-key.pem.enc`:
-```shell
-openssl ec -in private-key.pem -aes256 -out private-key.pem.enc
-```
->An ECC encrypted private key starts with:  
->```
->-----BEGIN EC PRIVATE KEY-----
->Proc-Type: 4,ENCRYPTED
->DEK-Info: AES-256-CBC,4AB00EF87803C74D6645B3543B174734
-> [...]
->-----END EC PRIVATE KEY-----
->```
-
-This takes an encrypted private key `private-key.pem.enc` and outputs a decrypted version of it `private-key.pem`:
-```shell
-openssl ec -in private-key.pem.enc -out private-key.pem
-```
 ***
 ## Verify an RSA Private Key matches a Public Key
 We know that an RSA Private key contains the Public Key. To verify that both keys are related, just hash them and if the value is the same, they **are** related.  
@@ -218,24 +139,6 @@ openssl req -in server-csr.pem -pubkey -noout | openssl dgst -sha256 -r | cut -d
 >`MD5` could have been used instead of `SHA256`  
 >The public key is included in the private key, the server certificate and the CSR and is the **same**.
 ***
-## Verify an ECC Private Key matches a Public Key
-We know that an ECC Private key contains the Public Key. To verify that both keys are related, just hash them and if the value is the same, they **are** related.  
-If you have the public and private key in a separate files, hash both public key and make sure the results matches.  
-```shell
-openssl ec -in private-key.pem -pubout | openssl dgst -sha256 -r | cut -d' ' -f1
-openssl sha256 -r public-key.pem | cut -d' ' -f1
-```
->`MD5` could have been used instead of `SHA256`  
-***
-## Verify an ECC Private Key matches a Certificate and a CSR
-To verify that a private key matches a certificate and it's CSR, just hash the public key of all three and if the value is the same, they **are** related.  
-```shell
-openssl ec -in private-key.pem -pubout | openssl dgst -sha256 -r | cut -d' ' -f1
-openssl x509 -in server-crt.pem -pubkey -noout | openssl dgst -sha256 -r | cut -d' ' -f1
-openssl req -in server-csr.pem -pubkey -noout | openssl dgst -sha256 -r | cut -d' ' -f1
-```
->`MD5` could have been used instead of `SHA256`  
->The public key is included in the private key, the server certificate and the CSR and is the **same**.
 ***
 ## License
 This project is licensed under the [MIT license](/LICENSE).
