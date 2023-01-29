@@ -119,8 +119,8 @@ openssl ec -in ECC-private-key.pem -pubout | openssl dgst -sha256 -r | cut -d' '
 openssl x509 -in server-crt.pem -pubkey -noout | openssl dgst -sha256 -r | cut -d' ' -f1
 openssl req -in server-csr.pem -pubkey -noout | openssl dgst -sha256 -r | cut -d' ' -f1
 ```
->`MD5` could have been used instead of `SHA256`  
->The public key is included in the private key, the server certificate and the CSR and is the **same**.
+>`MD5` could have been used instead of `SHA256` to make the numbers smaller.  
+>The public key, included in the private key, the server certificate and the CSR, is the **same** public key.
 
 <!-- LICENSE -->
 # License
