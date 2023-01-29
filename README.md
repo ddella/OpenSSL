@@ -18,10 +18,10 @@ OpenSSL commands to verify certificate signature with either RSA or ECC
 ***
 ## Private and Public keys (RSA and ECC)
 OpenSSL commands to generate, view and check Private and Public Keys with either **ECC** or **RSA** algorithm.  
-1. [ECC Private and Public Keys](ECC-PPK)
-2. [RSA Private and Public Keys](RSA-PPK)
-3. [ECC key anatomy](ECC-Anatomy)
-4. [RSA key anatomy](RSA-Anatomy)
+1. [ECC Private and Public Keys](/Private%20and%20Public%20Keys/ECC-PPK)
+2. [RSA Private and Public Keys](/Private%20and%20Public%20Keys/RSA-PPK)
+3. [ECC key anatomy](/Private%20and%20Public%20Keys/ECC-Anatomy)
+4. [RSA key anatomy](/Private%20and%20Public%20Keys/RSA-Anatomy)
 ***
 ## Generate Certificate Chain with Elliptic Curve keys
 In this section we will generate a full certificate chain.
