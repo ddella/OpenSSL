@@ -57,7 +57,7 @@ The first thing to do is to convert the private key `PEM`file to hexadecimal. Th
 
 To view the ECC Private Key in PEM (base64) format, just type:
 ```shell
-cat ecc-private-key.pem
+cat ECC-private-key.pem
 ```
 The output will look like this:
 >```
@@ -71,7 +71,7 @@ The output will look like this:
 Convert the private key `PEM` file to hexadecimal.  
 Check this script `pem2hex.sh` on my Gist [here](https://gist.github.com/ddella/d07d5b827f3638e727bbf3dc1210d4a2) to convert a `PEM` formatted file to hexadecimal.
 ```shell
-./pem2hex.sh ecc-private-key.pem
+./pem2hex.sh ECC-private-key.pem
 ```
 The hexadeciaml representation of the `PEM` file:
 ```
@@ -88,7 +88,7 @@ I've colored the private and public key to show that the public key is included 
 ## ECC Private Key detail
 Use this command to get the ECC private key details:
 ```shell
-openssl ec -in ecc-private-key.pem -noout -text
+openssl ec -in ECC-private-key.pem -noout -text
 ```
 The top left side of the table is the output of the preceding command. The top righ side of the table is the hexadecimal representation of the base64 PEM file.  
 The bottom portion of the table represents the decoded values of every fields in an ECC private key.  
@@ -117,7 +117,7 @@ The representation of the OID was taken from Microsoft [here](https://learn.micr
 ## OpenSSL ASN.1 Parser
 OpenSSL includes an ASN.1 parser. The numbers in the first column represent the byte offset of the binary private key file.
 ```shell
-openssl asn1parse -inform pem -in ecc-private-key.pem
+openssl asn1parse -inform pem -in ECC-private-key.pem
 ```
 ```
  0:d=0  hl=2 l= 119 cons: SEQUENCE
@@ -132,22 +132,22 @@ openssl asn1parse -inform pem -in ecc-private-key.pem
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Files
-The file `ecc-private-key.pem` is the ECC private key.  
+The file `ECC-private-key.pem` is the ECC private key.  
 ```shell
-openssl ecparam -name prime256v1 -genkey -noout -out ecc-private-key.pem
+openssl ecparam -name prime256v1 -genkey -noout -out ECC-private-key.pem
 ```
 The file `ecc-private-key.bin` is the binary representation of the ECC private key `PEM` file.  
 ```shell
-openssl enc -d -base64 -in ecc-private-key.pem -out ecc-private-key.bin
+openssl enc -d -base64 -in ECC-private-key.pem -out ecc-private-key.bin
 ```
 The file `ecc-public-key.pem` is the ECC public key extracted from the private key `PEM` file.  
 ```shell
-openssl ec -in ecc-private-key.pem -pubout -out ecc-public-key.pem
+openssl ec -in ECC-private-key.pem -pubout -out ecc-public-key.pem
 ```
 The binary file is 121 bytes. According to the header in the hexadecimal dump of the private key `PEM` file, the size is 0x77 (119) bytes plus 2 bytes for the header and that equals to 121 bytes.  
 ```
 -rw-r--r--  1 username  staff  121 01 Jan 00:00 ecc-private-key.bin  
--rw-------@ 1 username  staff  227 01 Jan 00:00 ecc-private-key.pem  
+-rw-------@ 1 username  staff  227 01 Jan 00:00 ECC-private-key.pem  
 -rw-r--r--  1 username  staff  178 01 Jan 00:00 ecc-public-key.pem  
 ```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
