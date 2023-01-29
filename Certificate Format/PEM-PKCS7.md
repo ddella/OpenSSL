@@ -15,7 +15,7 @@ Use this command if you want to add PEM certificates `*-crt.pem` to a PKCS#7 fil
 openssl crl2pkcs7 -nocrl -certfile ECC-server-crt.pem -certfile ECC-int-crt.pem -out ECC-domain-crt.p7b
 openssl crl2pkcs7 -nocrl -certfile RSA-server-crt.pem -certfile RSA-int-crt.pem -out RSA-domain-crt.p7b
 ```
->**Note:** that you can use one or more `-certfile` options to specify which certificates to add to the PKCS#7 file.  
+>**Note**: that you can use one or more `-certfile` options to specify which certificates to add to the PKCS#7 file.  
 >Add the option `-outform DER` to save the file in DER-format
 
 They are usually `ASCII` files which can contain server, intermediate and CA certificates.
