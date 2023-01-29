@@ -35,8 +35,46 @@ The **PKCS#12** format is a container format that stores both the certificate an
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 # PEM Conversions
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## PEM to DER
 This section lists the commands to convert from a `.pem` encoded format to a `.der` encoded format. I listed the commands for both **ECC** and **RSA** cryptography in every section.
-[PEM to DER](PEM-DER)
+
+### Convert certificate
+Use this command to convert a PEM-encoded **certificate** `*-crt.pem` to a DER-encoded **certificate** `*-crt.der`:
+```shell
+openssl x509 -in ECC-server-crt.pem -outform der -out ECC-server-crt.der
+openssl x509 -in RSA-server-crt.pem -outform der -out RSA-server-crt.der 
+```
+
+### Convert private key
+Use this command to convert a PEM-encoded **private key** `*-server-key.pem` to a DER-encoded **private key** `*-server-key.der`:
+```shell
+openssl ec -inform PEM -in ECC-server-key.pem -outform DER -out ECC-server-key.der
+openssl rsa -inform PEM -in RSA-server-key.pem -outform DER -out RSA-server-key.der
+```
+
+### Convert public key
+Use this command to convert a PEM-encoded **public key** `*-public-key.pem` to a DER-encoded **public key** `*-public-key.der`:
+```shell
+openssl ec -pubin -inform PEM -in ECC-public-key.pem -outform DER -out ECC-public-key.der
+openssl rsa -pubin -inform PEM -in RSA-server-key.pem -outform DER -out RSA-server-key.der
+```
+
+### View DER file
+Use this command to view the content of an RSA DER-encoded **certificate**, **private key** and **public key** file:
+```shell
+openssl x509 -text -noout -inform der -in ECC-server-crt.der
+openssl ec -text -noout -inform der -in ECC-server-key.der
+openssl ec -text -noout -pubin -inform der -in ECC-public-key.der
+```
+
+Use this command to view the content of an RSA DER-encoded **certificate**, **private key** and **public key** file:
+```shell
+openssl x509 -text -noout -inform der -in RSA-server-crt.der
+openssl rsa -text -noout -inform der -in RSA-server-key.der
+openssl rsa -text -noout -pubin -inform der -in RSA-public-key.der
+```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## PEM to PKCS#7
