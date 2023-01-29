@@ -39,10 +39,12 @@ This section lists the commands to convert from a `.pem` to `.der` format and vi
 <p align="left"><a href="PEM-DER.md">PEM to DER section</a></p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-# PEM to PKCS#7
+# PEM - PKCS#7 Conversion
+<p align="left"><a href="PEM-PKCS7.md">PEM to PKCS#7 section</a></p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-# PEM to PKCS#12
+# PEM - PKCS#12 Conversion
+<p align="left"><a href="PEM-PKCS12.md">PEM to PKCS#12 section</a></p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- LICENSE -->
