@@ -2,9 +2,11 @@
 <a name="readme-top"></a>
 
 # PEM Conversions
+1. Commands to convert from PEM to DER format
+2. Commands to convert from DER to PEM format
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## PEM to DER
+## 1. PEM to DER
 This section lists the commands to convert from a `.pem` encoded format to a `.der` encoded format. I listed the commands for both **ECC** and **RSA** cryptography in every section.
 
 ### Convert certificate
@@ -17,15 +19,15 @@ openssl x509 -in RSA-server-crt.pem -outform der -out RSA-server-crt.der
 ### Convert private key
 Use this command to convert a PEM-encoded **private key** `*-server-key.pem` to a DER-encoded **private key** `*-server-key.der`:
 ```shell
-openssl ec -inform PEM -in ECC-server-key.pem -outform DER -out ECC-server-key.der
-openssl rsa -inform PEM -in RSA-server-key.pem -outform DER -out RSA-server-key.der
+openssl ec -in ECC-server-key.pem -outform DER -out ECC-server-key.der
+openssl rsa -in RSA-server-key.pem -outform DER -out RSA-server-key.der
 ```
 
 ### Convert public key
 Use this command to convert a PEM-encoded **public key** `*-public-key.pem` to a DER-encoded **public key** `*-public-key.der`:
 ```shell
-openssl ec -pubin -inform PEM -in ECC-public-key.pem -outform DER -out ECC-public-key.der
-openssl rsa -pubin -inform PEM -in RSA-server-key.pem -outform DER -out RSA-server-key.der
+openssl ec -pubin -in ECC-public-key.pem -outform DER -out ECC-public-key.der
+openssl rsa -pubin -in RSA-public-key.pem -outform DER -out RSA-public-key.der
 ```
 
 ### View DER file
@@ -42,6 +44,32 @@ openssl x509 -text -noout -inform der -in RSA-server-crt.der
 openssl rsa -text -noout -inform der -in RSA-server-key.der
 openssl rsa -text -noout -pubin -inform der -in RSA-public-key.der
 ```
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 2. DER to PEM
+This section lists the commands to convert from a `.der` encoded format to a `.pem` encoded format. I listed the commands for both **ECC** and **RSA** cryptography in every section.
+
+### Convert certificate
+Use this command to convert a DER-encoded **certificate** `*-crt.der` to a PEM-encoded **certificate** `*-crt.pem`:
+```shell
+openssl x509 -inform der -in ECC-server-crt.der -out ECC-server-crt.pem
+openssl x509 -inform der -in RSA-server-crt.der -out RSA-server-crt.pem
+```
+
+### Convert private key
+Use this command to convert a DER-encoded **private key** `*-server-key.der` to a PEM-encoded **private key** `*-server-key.pem`:
+```shell
+openssl ec -inform der -in ECC-server-key.der -out ECC-server-key.pem
+openssl rsa -inform der -in RSA-server-key.der -out RSA-server-key.pem
+```
+
+### Convert public key
+Use this command to convert a DER-encoded **public key** `*-public-key.der` to a PEM-encoded **public key** `*-public-key.pem`:
+```shell
+openssl ec -pubin -inform DER -in ECC-public-key.der -out ECC-public-key.pem
+openssl rsa -pubin -inform DER -in RSA-public-key.der -out RSA-public-key.pem
+```
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- LICENSE -->
