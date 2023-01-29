@@ -2,8 +2,8 @@
 <a name="readme-top"></a>
 
 # PEM Conversions
-1. Commands to convert from PEM to DER format
-2. Commands to convert from DER to PEM format
+1. Commands to convert from `PEM` to `DER` format
+2. Commands to convert from `DER` to `PEM` format
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 1. PEM to DER

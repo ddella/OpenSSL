@@ -36,7 +36,7 @@ The **PKCS#12** format is a container format that stores both the certificate an
 
 # PEM - DER Conversion
 This section lists the commands to convert from a `.pem` to `.der` format and vice-versa. I listed the commands for both **ECC** and **RSA** cryptography.
-<p align="left">(<a href="PEM-DER">PEM to DER</a>)</p>
+<p align="left"><a href="PEM-DER.md">PEM to DER section</a></p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 # PEM to PKCS#7
