@@ -47,7 +47,7 @@ openssl ec -in ECC-private-key.pem -pubout -out ECC-public-key.pem
 
 Use this command to extract the public and private key in hex format:
 ```shell
-openssl ec -in ECC-private-key.pem -noout -text
+openssl ec -noout -text -in ECC-private-key.pem
 ```
 
 Use this command to get the following private key details:
@@ -65,7 +65,22 @@ Use this command to check key consistency:
 ```shell
 openssl ec -in ECC-private-key.pem -noout -check
 ```
->If valid, will return `EC Key valid` else `unable to load Key`.
+>If valid, will return `EC Key valid` else `unable to load Key`.  
+>If inside a shell script, you could test for the variable `$?`. A value of `0` indicates a valid key and a value of `1` indicates an invalid key.
+
+    % openssl ec -in valid-ECC-private-key.pem -noout -check
+    read EC key
+    EC Key valid.
+    % echo $?
+    0
+
+    % openssl ec -in invalid-ECC-private-key.pem -noout -check
+    read EC key
+    Could not read private key from ECC-private-key.pem
+    unable to load Key
+    % echo $?                                         
+    1
+
 
 ## Encrypt/Decrypt an ECC Private Key
 Does only works with **ECC** Private Key.
