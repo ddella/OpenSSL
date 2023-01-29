@@ -17,13 +17,14 @@ This section shows the different OpenSSL commands to generate, view and check **
 <p align="left"><a href="RSA-PPK">RSA Private and Public Keys</a></p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-# ECC Private and Public Keys Anatomy
+# ECC Private and Public Key Anatomy
 This section explains the anatomy of an **ECC** private and public key.
 <p align="left"><a href="ECC-Anatomy">ECC Private and Public Key Anatomy</a></p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-# RSA Private and Public Keys Anatomy
+# RSA Private and Public Key Anatomy
 This section explains the anatomy of an **RSA** private and public key.
+<p align="left"><a href="RSA-Anatomy">RSA Private and Public Key Anatomy</a></p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- LICENSE -->

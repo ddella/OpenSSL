@@ -1,4 +1,7 @@
-# OpenSSL RSA Private Key Anatomy
+<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
+<a name="readme-top"></a>
+
+# RSA Private and Public Key Anatomy
 **This applies to RSA keys only**. In this example I'm using a 512-bit private key. This is consider very insecure and should **never** be used in production.  
 For RSA, when we say a 512-bit key, it's the size of the modulus, which is one component of the public and private key.
 The private key is a key pair of the private exponent (**d**) and the modulus (**n**). It is presented as follow: (**d,n**)
@@ -32,6 +35,7 @@ If `n` is the number of digits in base 16, you have to solve the equation 16<sup
 n = log<sub>16(</sub>2<sup>512</sup>)  
 n = 512 * log<sub>16</sub>2  
 n = 128  
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
   
 ## Fields
 This following information are always included in the private key and in this order:
@@ -45,6 +49,8 @@ This following information are always included in the private key and in this or
 8. Coefficient
 
 This applies to RSA private key only. It's based on [RSA Private Key Breakdown](http://etherhack.co.uk/asymmetric/docs/rsa_key_breakdown.html) and a little bit of reverse engineering 😀
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## RSA Private Key in PEM
 The first thing to do is to convert the private key `PEM` file to hexadecimal. The `PEM` file is a base64 representation of the key. For this example, I generated a 512-bit RSA private key to keep the numbers small but in reality this is insecure.
 Use this command to generate an RSA 512-bit private key:
@@ -68,6 +74,7 @@ cat private-key.pem
 >u8QvL7v2p4g=
 >-----END PRIVATE KEY-----
 >```
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## RSA Private Key in Hexadecimal
 Convert the private key `PEM` file to hexadecimal.  
@@ -92,6 +99,8 @@ The hexadecimal representation of the `PEM` file:
 >97 c8 3d 21 a3 6e 8f 1c c5 02 21 00 dd 19 c8 60 2e 9a dc 5b cf cf cd a1 5d 
 >9f 18 42 09 ae cc 03 73 1b 10 79 bb c4 2f 2f bb f6 a7 88
 >```
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## RSA Private Key in detail
 Use this command to get the private key detail:
 ```shell
@@ -106,6 +115,8 @@ Each field of the private key.
 ASN.1 format. I used the value `0x3082` as an example.  
 ![Alt text](/images/asn-1-tag.jpg "X.690 ASN.1 tags")
 >For more information on the X.690 specification, take a look on [Wikipedia](https://en.wikipedia.org/wiki/X.690)
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## OID value representation
 To get the OID value from hexadecimal, I used a simple script by Matthias Gaertner found [here](https://www.rtner.de/software/oid.html) or on my Gist [here](https://gist.github.com/ddella/2c716646125912a6ef8bed6273f647f2)  
 To compile, just use GCC/Apple clang:
@@ -122,6 +133,8 @@ The ouput should be:
 >```
 The representation of the OID was taken from Microsoft [here](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-gpnap/ff1a8675-0008-408c-ba5f-686a10389adc)
 ![Alt text](/images/key-oid-rsa.jpg "Key pair OID")
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## OpenSSL ASN.1 Parser
 OpenSSL includes an ASN.1 parser. The numbers is the first column are in hexadecimal. They represent the byte offset of the binary private key file.
 ```shell
@@ -141,6 +154,8 @@ openssl asn1parse -inform pem -in private-key.pem -strparse 22
 ```
 The next graphic is the same output as the above but with each components colored.  
 ![Alt text](/images/rsa-priv-key-asn.jpg "RSA Private key in ASN.1")
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## RSA Private Key with a bit of math
 Representation of an RSA 512-bit private key with a bit of math. I wanted to keep this as simple as possible. It gives an idea of how those numbers are calculated. In reality, it's way more complicated than what you see here.  
 
@@ -165,8 +180,23 @@ The binary file is 344 octets. According to the header in the hexadecimal dump o
 -rw-------   1 username  staff   522 01 Jan 00:00 private-key.pem
 -rw-r--r--   1 username  staff   182 01 Jan 00:00 public-key.pem
 ```
-## License
-This project is licensed under the [MIT license](/LICENSE).
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-[_^ back to top_](#OpenSSL-RSA-Private-Key-Anatomy)  
-[_< back to root_](../../../)
+<!-- LICENSE -->
+# License
+Distributed under the MIT License. See `LICENSE.txt` for more information.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- CONTACT -->
+# Contact
+Daniel Della-Noce - [Linkedin](https://www.linkedin.com/in/daniel-della-noce-2176b622/) - daniel@isociel.com
+
+Project Link: [https://github.com/ddella/OpenSSL](https://github.com/ddella/OpenSSL)
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- ACKNOWLEDGMENTS -->
+# Acknowledgments
+* [OpenSSL](https://www.openssl.org/)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="../">back to root</a>)</p>
