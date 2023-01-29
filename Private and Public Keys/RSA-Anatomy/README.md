@@ -55,11 +55,11 @@ This applies to RSA private key only. It's based on [RSA Private Key Breakdown](
 The first thing to do is to convert the private key `PEM` file to hexadecimal. The `PEM` file is a base64 representation of the key. For this example, I generated a 512-bit RSA private key to keep the numbers small but in reality this is insecure.
 Use this command to generate an RSA 512-bit private key:
 ```shell
-openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:512 -out private-key.pem
+openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:512 -out RSA-private-key.pem
 ```
 To view the RSA Private Key in PEM (base64) format, just type:
 ```shell
-cat private-key.pem
+cat RSA-private-key.pem
 ```
 >RSA Private Key in Base64 PEM format
 >```
@@ -80,7 +80,7 @@ cat private-key.pem
 Convert the private key `PEM` file to hexadecimal.  
 Check this script `pem2hex.sh` on my Gist [here](https://gist.github.com/ddella/d07d5b827f3638e727bbf3dc1210d4a2) to convert a `PEM` formatted file to hexadecimal.
 ```shell
-./pem2hex.sh private-key.pem
+./pem2hex.sh RSA-private-key.pem
 ```
 The hexadecimal representation of the `PEM` file:
 >```
@@ -102,9 +102,9 @@ The hexadecimal representation of the `PEM` file:
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## RSA Private Key in detail
-Use this command to get the private key detail:
+Use this command to get the RSA private key detail:
 ```shell
-openssl pkey -text -noout -in private-key.pem
+openssl pkey -text -noout -in RSA-private-key.pem
 ```
 The left side of the table is the output of the preceding command. The righ side of the table is the hexadecimal representation of the base64 PEM file.  
 
@@ -138,7 +138,7 @@ The representation of the OID was taken from Microsoft [here](https://learn.micr
 ## OpenSSL ASN.1 Parser
 OpenSSL includes an ASN.1 parser. The numbers is the first column are in hexadecimal. They represent the byte offset of the binary private key file.
 ```shell
-openssl asn1parse -inform pem -in private-key.pem -strparse 22
+openssl asn1parse -inform pem -in RSA-private-key.pem -strparse 22
 ```
 ```
   0:d=0  hl=4 l= 314 cons: SEQUENCE          
@@ -162,23 +162,23 @@ Representation of an RSA 512-bit private key with a bit of math. I wanted to kee
 ![Alt text](/images/rsa-priv-key.jpg "RSA Private key")
 ***
 ## Files
-The file `private-key.pem` is the RSA private key.  
+The file `RSA-private-key.pem` is the RSA private key.  
 ```shell
-openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:512 -out private-key.pem
+openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:512 -out RSA-private-key.pem
 ```
-The file `private-key.bin` is the binary representation of the RSA private key `PEM` file.  
+The file `RSA-private-key.bin` is the binary representation of the RSA private key `PEM` file.  
 ```shell
-openssl enc -d -base64 -in private-key.pem -out private-key.bin
+openssl enc -d -base64 -in RSA-private-key.pem -out RSA-private-key.bin
 ```
-The file `public-key.pem` is the RSA public key extracted from the private key `PEM` file.  
+The file `RSA-public-key.pem` is the RSA public key extracted from the private key `PEM` file.  
 ```shell
-openssl pkey -in private-key.pem -pubout -out public-key.pem
+openssl pkey -in RSA-private-key.pem -pubout -out RSA-public-key.pem
 ```
 The binary file is 344 octets. According to the header in the hexadecimal dump of the private key, the size is 0x0154 (340) octets plus the 4 octets for the header. That equals to 344 octets of the binary file.  
 ```
--rw-r--r--   1 username  staff   344 01 Jan 00:00 private-key.bin
--rw-------   1 username  staff   522 01 Jan 00:00 private-key.pem
--rw-r--r--   1 username  staff   182 01 Jan 00:00 public-key.pem
+-rw-r--r--   1 username  staff   344 01 Jan 00:00 RSA-private-key.bin
+-rw-------   1 username  staff   522 01 Jan 00:00 RSA-private-key.pem
+-rw-r--r--   1 username  staff   182 01 Jan 00:00 RSA-public-key.pem
 ```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
