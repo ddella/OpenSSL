@@ -2,7 +2,7 @@
 <a name="readme-top"></a>
 
 # ECC Private and Public Keys
-This section shows the different [OpenSSL](https://www.openssl.org/) commands to generate/view/check an Elliptic Curve Cryptographt **(ECC)** private and public keys.
+This section shows the different [OpenSSL](https://www.openssl.org/) commands to generate/view/check an Elliptic Curve Cryptographic **(ECC)** private and public keys.
 
 ## Private and Public key with ECC keys
 Both **ECC** and **RSA** generate a pair of private/public key mathematically tied together to allow two parties to communicate securely. The main advantage of ECC is that a 256-bit key in ECC offers about the same security as a 3072-bit key using RSA.
@@ -80,7 +80,6 @@ openssl ec -in ECC-private-key.pem -noout -check
     unable to load Key
     % echo $?                                         
     1
-
 
 ## Encrypt/Decrypt an ECC Private Key
 Does only works with **ECC** Private Key.
