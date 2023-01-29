@@ -13,12 +13,16 @@ Both **ECC** and **RSA** generate a pair of private/public key mathematically ti
 ![Alt text](/images/ecc-priv-pub-key.jpg "ECC Private and Public key")
 
 ## Generate an ECC Private Key
+This section is about generating a private/public ECC key pair.
+
+>It's important to note that we never generate a public key but rather a private key, that contains the public key. This is valid for both ECC and RSA.
+
 Use this command to prints a list of all curve 'short names':
 ```shell
 openssl ecparam -list_curves
 ```
 
-Use this command to generate an elliptic curve private key `private-key.pem`:
+Use this command to generate an **ECC** private key `private-key.pem`:
 ```shell
 openssl ecparam -name prime256v1 -genkey -noout -out private-key.pem
 ```
@@ -35,6 +39,7 @@ openssl ecparam -name prime256v1 -genkey -noout -out private-key.pem
 >Use `-secp384r1` for NIST/SECG curve over a 384-bit prime field  
 >Use `-secp521r1` for NIST/SECG curve over a 521-bit prime field  
 
+## Extract ECC Public Key
 Use this command to extract the corresponding public key from the private key:
 ```shell
 openssl ec -in private-key.pem -pubout -out public-key.pem
