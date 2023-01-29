@@ -7,7 +7,7 @@
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 1. PEM to PKCS#7
-This section lists the commands to convert from a `.pem` encoded format to a `.p7b` encoded format. I listed the commands for both **ECC** and **RSA** cryptography in every section.
+This section lists the commands to convert from a `.pem` encoded format to a `.p7b` encoded format. The commands are identical for both **ECC** and **RSA** cryptography.
 
 ### Convert certificate
 Use this command if you want to add PEM certificates `*-crt.pem` to a PKCS#7 file `*-domain.p7b`:
@@ -15,7 +15,7 @@ Use this command if you want to add PEM certificates `*-crt.pem` to a PKCS#7 fil
 openssl crl2pkcs7 -nocrl -certfile ECC-server-crt.pem -certfile ECC-int-crt.pem -out ECC-domain-crt.p7b
 openssl crl2pkcs7 -nocrl -certfile RSA-server-crt.pem -certfile RSA-int-crt.pem -out RSA-domain-crt.p7b
 ```
->**Note**: that you can use one or more `-certfile` options to specify which certificates to add to the PKCS#7 file.  
+>**Note:** that you can use one or more `-certfile` options to specify which certificates to add to the PKCS#7 file.  
 >Add the option `-outform DER` to save the file in DER-format
 
 They are usually `ASCII` files which can contain server, intermediate and CA certificates.
@@ -34,8 +34,8 @@ This section lists the commands to convert from a `.p7b` encoded format to a `.p
 ### Convert certificate
 Use this command to convert a DER-encoded **certificate** `*-crt.p7b` to a PEM-encoded **certificate** `*-crt.pem`:
 ```shell
-openssl pkcs7 -in ECC-domain-crt.p7b -print_certs -out ECC-domain-crt.pem
-openssl pkcs7 -in RSA-domain-crt.p7b -print_certs -out RSA-domain-crt.pem
+openssl pkcs7 -print_certs -in ECC-domain-crt.p7b -out ECC-domain-crt.pem
+openssl pkcs7 -print_certs -in RSA-domain-crt.p7b -out RSA-domain-crt.pem
 ```
 >Add the option `-inform DER` to read a DER-format file
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
