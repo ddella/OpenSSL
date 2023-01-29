@@ -27,7 +27,11 @@ A single **PEM** file could contain an end-entity certificate, a private key, or
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## PKSC#7
-**PKCS#7** (also known as P7B) is a container format for digital certificates that is most often found in Windows and Java server contexts, and usually has the extension .`p7b`. **PKCS#7** files are never used to store private keys.
+**PKCS#7** (also known as P7B) is a container format for digital certificates that is most often found in Windows and Java server contexts, and usually has the extension .`p7b`. **PKCS#7** files are never used to store private keys. A `p7b` can be a text file containing one or more items in Base64 ASCII encoding, each with plain-text headers and footers.
+
+    -----BEGIN PKCS7-----
+    -----END PKCS7-----
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## PKCS#12

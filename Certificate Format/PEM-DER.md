@@ -31,7 +31,7 @@ openssl rsa -pubin -in RSA-public-key.pem -outform DER -out RSA-public-key.der
 ```
 
 ### View DER file
-Use this command to view the content of an RSA DER-encoded **certificate**, **private key** and **public key** file:
+Use this command to view the content of an ECC DER-encoded **certificate**, **private key** and **public key** file:
 ```shell
 openssl x509 -text -noout -inform der -in ECC-server-crt.der
 openssl ec -text -noout -inform der -in ECC-server-key.der
