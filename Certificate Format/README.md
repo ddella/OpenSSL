@@ -34,27 +34,15 @@ A single **PEM** file could contain an end-entity certificate, a private key, or
 The **PKCS#12** format is a container format that stores both the certificate and the private key. This format is useful for moving a certificate and it’s corresponding private key to a new system. **PKCS#12** files use either the `.pfx` or `.p12` file extension.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-# PEM Conversions
-This section lists the commands to convert from a `.pem` encoded format to a `.der` encoded format. I listed the commands for both **ECC** and **RSA** cryptography in every section.
+# PEM - DER Conversion
+This section lists the commands to convert from a `.pem` to `.der` format and vice-versa. I listed the commands for both **ECC** and **RSA** cryptography.
 [PEM to DER](PEM-DER)
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## PEM to PKCS#7
+# PEM to PKCS#7
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## PEM to PKCS#12
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-# PKCS#7 Conversions
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-## PKCS#7 to PEM
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-## PKCS#7 to DER
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-## PKCS#7 to PKCS#12
+# PEM to PKCS#12
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- LICENSE -->
