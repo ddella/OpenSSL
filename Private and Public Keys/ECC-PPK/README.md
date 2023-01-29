@@ -138,4 +138,4 @@ Project Link: [https://github.com/ddella/OpenSSL](https://github.com/ddella/Open
 * [OpenSSL](https://www.openssl.org/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-<p align="right">(<a href="../../../">back to root</a>)</p>
+<p align="right">(<a href="../../">back to root</a>)</p>
