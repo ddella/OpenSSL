@@ -16,21 +16,12 @@ OpenSSL commands to encrypt/decrypt with either RSA or ECC keys. I will cover sy
 OpenSSL commands to verify certificate signature with either RSA or ECC  
 [Certificate Chain of trust](/Certificate%20Chain%20of%20trust)
 ***
-## Private/Public keys (RSA and ECC)
-OpenSSL commands to generate/view/check Private and Public Keys with either RSA or ECC  
-[Private and Public Keys](/Private%20and%20Public%20Keys)
-***
-## Private key anatomy (RSA)
-OpenSSL RSA Private Key anatomy  
-[Private Key anatomy](/Private%20Key%20Anatomy)
-***
-## Public key anatomy (RSA)
-OpenSSL RSA Public Key anatomy  
-[Public Key anatomy](/Public%20Key%20Anatomy)
-***
-## Private and Public key anatomy (ECC)
-OpenSSL ECC Private and Public Key anatomy  
-[Private and Public key anatomy](/ECC%20Key%20Anatomy)
+## Private and Public keys (RSA and ECC)
+OpenSSL commands to generate, view and check Private and Public Keys with either RSA or ECC.  
+1. [ECC Private and Public Keys](ECC-PPK)
+2. [RSA Private and Public Keys](RSA-PPK)
+3. [ECC key anatomy](ECC-Anatomy)
+3. [RSA key anatomy](RSA-Anatomy)
 ***
 ## Generate Certificate Chain with Elliptic Curve keys
 In this section we will generate a full certificate chain.
