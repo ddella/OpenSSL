@@ -22,9 +22,9 @@ Use this command to prints a list of all curve 'short names':
 openssl ecparam -list_curves
 ```
 
-Use this command to generate an **ECC** private key `private-key.pem`:
+Use this command to generate an **ECC** private key `ECC-private-key.pem`:
 ```shell
-openssl ecparam -name prime256v1 -genkey -noout -out private-key.pem
+openssl ecparam -name prime256v1 -genkey -noout -out ECC-private-key.pem
 ```
 >An ECC Private Key starts with:
 >```
@@ -42,12 +42,12 @@ openssl ecparam -name prime256v1 -genkey -noout -out private-key.pem
 ## Extract ECC Public Key
 Use this command to extract the corresponding public key from the private key:
 ```shell
-openssl ec -in private-key.pem -pubout -out public-key.pem
+openssl ec -in ECC-private-key.pem -pubout -out ECC-public-key.pem
 ```
 
 Use this command to extract the public and private key in hex format:
 ```shell
-openssl ec -in private-key.pem -noout -text
+openssl ec -in ECC-private-key.pem -noout -text
 ```
 
 Use this command to get the following private key details:
@@ -56,23 +56,23 @@ Use this command to get the following private key details:
 3. The algorithm used to generate the keys
 
 ```shell
-openssl pkey -text -noout -in private-key.pem
+openssl pkey -text -noout -in ECC-private-key.pem
 ```
 >Replace `-text` by `-text_pub` to get only the public key (modulus and public exponent)  
 >This command works with both RSA and ECC private keys  
 
 Use this command to check key consistency:
 ```shell
-openssl ec -in private-key.pem -noout -check
+openssl ec -in ECC-private-key.pem -noout -check
 ```
 >If valid, will return `EC Key valid` else `unable to load Key`.
 
 ## Encrypt/Decrypt an ECC Private Key
 Does only works with **ECC** Private Key.
 
-This takes an plain text ECC Private Key `private-key.pem` and outputs an encrypted version of it in the file `private-key.pem.enc`:
+This takes an plain text ECC Private Key `ECC-private-key.pem` and outputs an encrypted version of it in the file `ECC-private-key.pem.enc`:
 ```shell
-openssl ec -in private-key.pem -aes256 -out private-key.pem.enc
+openssl ec -in ECC-private-key.pem -aes256 -out ECC-private-key.pem.enc
 ```
 >An ECC encrypted private key starts with:  
 >```
@@ -83,24 +83,24 @@ openssl ec -in private-key.pem -aes256 -out private-key.pem.enc
 >-----END EC PRIVATE KEY-----
 >```
 
-This takes an encrypted private key `private-key.pem.enc` and outputs a decrypted version of it `private-key.pem`:
+This takes an encrypted private key `ECC-private-key.pem.enc` and outputs a decrypted version of it `ECC-private-key.pem`:
 ```shell
-openssl ec -in private-key.pem.enc -out private-key.pem
+openssl ec -in ECC-private-key.pem.enc -out ECC-private-key.pem
 ```
 
 ## Verify an ECC Private Key matches a Public Key
 We know that an ECC Private key contains the Public Key. To verify that both keys are related, just hash them and if the value is the same, they **are** related.  
 If you have the public and private key in a separate files, hash both public key and make sure the results matches.  
 ```shell
-openssl ec -in private-key.pem -pubout | openssl dgst -sha256 -r | cut -d' ' -f1
-openssl sha256 -r public-key.pem | cut -d' ' -f1
+openssl ec -in ECC-private-key.pem -pubout | openssl dgst -sha256 -r | cut -d' ' -f1
+openssl sha256 -r ECC-public-key.pem | cut -d' ' -f1
 ```
 >`MD5` could have been used instead of `SHA256`  
 ***
 ## Verify an ECC Private Key matches a Certificate and a CSR
 To verify that a private key matches a certificate and it's CSR, just hash the public key of all three and if the value is the same, they **are** related.  
 ```shell
-openssl ec -in private-key.pem -pubout | openssl dgst -sha256 -r | cut -d' ' -f1
+openssl ec -in ECC-private-key.pem -pubout | openssl dgst -sha256 -r | cut -d' ' -f1
 openssl x509 -in server-crt.pem -pubkey -noout | openssl dgst -sha256 -r | cut -d' ' -f1
 openssl req -in server-csr.pem -pubkey -noout | openssl dgst -sha256 -r | cut -d' ' -f1
 ```
