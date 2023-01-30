@@ -30,6 +30,12 @@ openssl ec -pubin -in ECC-public-key.pem -outform DER -out ECC-public-key.der
 openssl rsa -pubin -in RSA-public-key.pem -outform DER -out RSA-public-key.der
 ```
 
+Use this command to convert a PEM-encoded **private key** `*-server-key.pem` to a DER-encoded **public key** `*-public-key.der`:
+```shell
+openssl ec -pubout -in ECC-server-key.pem -outform DER -out ECC-public-key.der
+openssl rsa -pubout -in RSA-server-key.pem -outform DER -out RSA-public-key.der
+```
+
 ### View DER file
 Use this command to view the content of an ECC DER-encoded **certificate**, **private key** and **public key** file:
 ```shell
