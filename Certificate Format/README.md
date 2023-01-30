@@ -11,6 +11,7 @@
     -----END CERTIFICATE-----  
 
 A single **PEM** file could contain an end-entity certificate, a private key, or multiple certificates forming a complete chain of trust. **PEM** files are usually seen with the extensions `.crt`, `.pem`, `.cer`, and `.key` for private keys. You could give any extension to a **PEM** file. A PEM encoded certificate file is really a **DER** file base64 encoded.
+<p align="left">(<a href="PEM-DER.md">PEN to DER conversion</a>)</p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## DER
