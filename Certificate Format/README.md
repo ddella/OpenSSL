@@ -31,16 +31,16 @@ A single **PEM** file could contain an end-entity certificate, a private key, or
 The **PKCS#12** format is a container format that stores both the certificate, the private key and can also stores the whole chain of trust. This format is useful for moving a certificate and it’s corresponding private key to a new system. **PKCS#12** files use either `.pfx` or `.p12` file extension.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-# PEM - DER Conversion
+## PEM - DER Conversion
 This section lists the commands to convert from a `.pem` to `.der` format and vice-versa. I listed the commands for both **ECC** and **RSA** cryptography.
 <p align="left"><a href="PEM-DER.md">PEM to DER section</a></p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-# PEM - PKCS#7 Conversion
+## PEM - PKCS#7 Conversion
 This section lists the commands to convert from a `.pem` to `.der` format and vice-versa. I listed the commands for both **ECC** and **RSA** cryptography.<p align="left"><a href="PEM-PKCS7.md">PEM to PKCS#7 section</a></p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-# PEM - PKCS#12 Conversion
+## PEM - PKCS#12 Conversion
 <p align="left"><a href="PEM-PKCS12.md">PEM to PKCS#12 section</a></p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
