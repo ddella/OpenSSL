@@ -56,7 +56,7 @@ This gives the modulus and the public exponent in hex format from the **Public**
 openssl pkey -pubin -text -noout -in RSA-public-key.pem
 ```
 
-Use this command to view the key modulus:
+Use this command to view the key modulus (this is RSA specific,as there's no modulus for ECC):
 ```shell
 openssl rsa -modulus -noout -in RSA-private-key.pem
 ```
@@ -65,18 +65,18 @@ openssl rsa -modulus -noout -in RSA-private-key.pem
 ## Verify an RSA Private Key
 Use this command to verify that a private key `RSA-private-key.pem` is valid. It will only output `RSA key ok`or `Could not read private key from RSA-private-key.pem`:
 ```shell
-openssl rsa -check -noout -in RSA-private-key.pem
+openssl pkey -check -noout -in RSA-private-key.pem
 ```
 
 >If valid, will return `RSA key ok` else `Could not read private key from RSA-private-key.pem`.  
 >If inside a shell script, you could test for the variable `$?`. A value of `0` indicates a valid key and a value of `1` indicates an invalid key.
 
-    % openssl rsa -check -noout -in valid-RSA-private-key.pem
+    % openssl pkey -check -noout -in valid-RSA-private-key.pem
     RSA key ok
     % echo $?
     0
 
-    % openssl rsa -check -noout -in invalid-RSA-private-key.pem
+    % openssl pkey -check -noout -in invalid-RSA-private-key.pem
     Could not read private key from RSA-private-key.pem
     % echo $?                                         
     1
@@ -112,7 +112,7 @@ openssl pkey -text -noout -in RSA-private-key.pem
 >This command works with both RSA and ECC private keys  
 
 ```shell
-openssl rsa -noout -text -in RSA-private-key.pem
+openssl pkey -noout -text -in RSA-private-key.pem
 ```
 >This command works only with RSA private keys  
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -122,7 +122,7 @@ Does only works with **RSA** Private Key.
 
 This takes an plain text private key `RSA-private-key.pem` and outputs an encrypted version of it in the file `RSA-private-key.pem.enc`:
 ```shell
-openssl rsa -aes256 -in RSA-private-key.pem -out RSA-private-key.pem.enc
+openssl pkey -aes256 -in RSA-private-key.pem -out RSA-private-key.pem.enc
 ```
 >An RSA encrypted private key starts with:  
 >```
@@ -133,7 +133,7 @@ openssl rsa -aes256 -in RSA-private-key.pem -out RSA-private-key.pem.enc
 
 This takes an encrypted private key `RSA-private-key.pem.enc` and outputs a decrypted version of it `RSA-private-key.pem`:
 ```shell
-openssl rsa -in RSA-private-key.pem.enc -out RSA-private-key.pem
+openssl pkey -in RSA-private-key.pem.enc -out RSA-private-key.pem
 ```
 >Use the `-passout file:mypass` parameter to read the password from a file, when encrypting the key  
 >Use the `-passin file:mypass` parameter to read the password from a file, when decrypting the key  
