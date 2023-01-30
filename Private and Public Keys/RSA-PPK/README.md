@@ -1,11 +1,13 @@
 <!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
 <a name="readme-top"></a>
 
-# RSA Private and Public Keys
-This section shows the different [OpenSSL](https://www.openssl.org/) commands to generate/view/check an Rivest, Shamir, & Adleman **(RSA)** private and public keys.
+# RSA Private and Public Key
+This section shows the different [OpenSSL](https://www.openssl.org/) commands to generate, view and check a Rivest, Shamir, & Adleman **(RSA)** private and public key.
+
+The commands used in this section generate unencrypted private key in PEM PKCS#8 format. The PKCS#8 format is the most interoperable format.
 
 ## Private and Public key with RSA keys
-Both **ECC** and **RSA** generate a pair of private/public key mathematically tied together to allow two parties to communicate securely. The main advantage of ECC is that a 256-bit key in ECC offers about the same security as a 3072-bit key using RSA.
+Both **ECC** and **RSA** generate a pair of private and public key mathematically tied together to allow two parties to communicate securely. The main advantage of ECC is that a 256-bit key in ECC offers about the same security as a 3072-bit key using RSA.
 
 >`RSA Public Key`: Is the **Modulus** and **publicExponent**  
 >`RSA Private Key`: Is the **privateExponent**   
@@ -20,10 +22,9 @@ Use this command to create an unencrypted 2048-bit private key `RSA-private-key.
 ```shell
 openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048 -out RSA-private-key.pem
 ```
->An RSA Private Key starts with:
+>A PKCS#8 Private Key, both RSA and ECC, starts with:
 >```
 >-----BEGIN PRIVATE KEY-----
-> [...]
 >-----END PRIVATE KEY-----
 >```
 
