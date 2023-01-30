@@ -93,11 +93,8 @@ openssl pkey -in ECC-private-key.pem -aes256 -out ECC-private-key.pem.enc
 ```
 >An ECC encrypted private key starts with:  
 >```
->-----BEGIN EC PRIVATE KEY-----
->Proc-Type: 4,ENCRYPTED
->DEK-Info: AES-256-CBC,4AB00EF87803C74D6645B3543B174734
-> [...]
->-----END EC PRIVATE KEY-----
+>-----BEGIN ENCRYPTED PRIVATE KEY-----
+>-----END ENCRYPTED PRIVATE KEY-----
 >```
 
 This takes an encrypted private key `ECC-private-key.pem.enc` and outputs a decrypted version of it `ECC-private-key.pem`:
