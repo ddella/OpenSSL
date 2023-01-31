@@ -135,7 +135,7 @@ Project Link: [https://github.com/ddella/OpenSSL](https://github.com/ddella/Open
 
 <!-- ACKNOWLEDGMENTS -->
 # Acknowledgments
-* [OpenSSL](https://www.openssl.org/)
+* [OpenSSL GenPkey](https://www.openssl.org/docs/man3.0/man1/openssl-genpkey.html)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 <p align="right">(<a href="../">back to root</a>)</p>
